@@ -907,56 +907,64 @@
     setTimeout(() => { heroLeft.style.transition = 'opacity 1s ease, transform 1s ease'; heroLeft.style.opacity = '1'; heroLeft.style.transform = 'translateY(0)'; }, 100);
   </script>
 </body>
-</html>
 <!-- ACESSO ADMIN OCULTO -->
-<a href="admin.html" style="
-position:fixed;
-bottom:5px;
-right:5px;
-width:18px;
-height:18px;
-opacity:0;
-z-index:99999;
-"></a>
+<a href="admin.html" id="adminHiddenAccess"></a>
+
+<style>
+  #adminHiddenAccess {
+    position: fixed;
+    right: 8px;
+    bottom: 8px;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    z-index: 99999;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+  }
+</style>
 
 <script>
-let clicks = 0;
+  (function () {
+    const ADMIN_URL = "admin.html";
 
-document.addEventListener("click", () => {
-  clicks++;
+    let clickCount = 0;
+    let clickTimer = null;
+    let keySequence = "";
 
-  if (clicks === 7) {
-    window.location.href = "admin.html";
-  }
+    function goToAdmin() {
+      window.location.href = ADMIN_URL;
+    }
 
-  setTimeout(() => {
-    clicks = 0;
-  }, 2000);
-});
+    function handleSecretClick() {
+      clickCount++;
 
-let sequence = "";
+      if (clickCount >= 7) {
+        goToAdmin();
+        return;
+      }
 
-document.addEventListener("keydown", (e) => {
-  sequence += e.key.toLowerCase();
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 2000);
+    }
 
-  if (sequence.includes("admin")) {
-    window.location.href = "admin.html";
-  }
+    function handleSecretKeys(event) {
+      keySequence += String(event.key).toLowerCase();
 
-  if (sequence.length > 10) {
-    sequence = "";
-  }
-});
-</script>
-let timer;
+      if (keySequence.includes("admin")) {
+        goToAdmin();
+        return;
+      }
 
-document.addEventListener("touchstart", () => {
-  timer = setTimeout(() => {
-    window.location.href = "admin.html";
-  }, 1200); // segura 1.2s
-});
+      if (keySequence.length > 20) {
+        keySequence = keySequence.slice(-20);
+      }
+    }
 
-document.addEventListener("touchend", () => {
-  clearTimeout(timer);
-});
+    document.addEventListener("click", handleSecretClick);
+    document.addEventListener("touchstart", handleSecretClick, { passive: true });
+    document.addEventListener("keydown", handleSecretKeys);
+  })();
 </script>
