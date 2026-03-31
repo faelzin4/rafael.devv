@@ -21,9 +21,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -33,7 +31,6 @@
       cursor: none;
     }
 
-    /* CURSOR */
     .cursor {
       position: fixed;
       width: 12px; height: 12px;
@@ -58,7 +55,6 @@
       mix-blend-mode: exclusion;
     }
 
-    /* NOISE OVERLAY */
     body::before {
       content: '';
       position: fixed;
@@ -69,7 +65,6 @@
       opacity: 0.35;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -83,48 +78,14 @@
       border-bottom: 1px solid var(--border);
       background: rgba(10,10,10,0.6);
     }
-
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.3rem;
-      letter-spacing: -0.03em;
-    }
-
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
     .nav-logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
     .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 10px 22px; border-radius: 100px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s !important; }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(200,242,59,0.4); }
 
-    .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
-      padding: 10px 22px;
-      border-radius: 100px;
-      font-weight: 500;
-      transition: transform 0.2s, box-shadow 0.2s !important;
-    }
-
-    .nav-cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(200,242,59,0.4);
-    }
-
-    /* HERO */
     .hero {
       min-height: 100vh;
       display: grid;
@@ -135,7 +96,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero::after {
       content: '';
       position: absolute;
@@ -144,812 +104,198 @@
       background: radial-gradient(circle, rgba(200,242,59,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
     }
-
     .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
+      content: ''; width: 6px; height: 6px;
+      background: var(--accent); border-radius: 50%;
       animation: pulse 2s infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 28px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
-      display: block;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: rgba(240,237,230,0.65);
-      max-width: 440px;
-      margin-bottom: 40px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 16px 32px;
-      border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: none;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.3s;
-    }
-
-    .btn-primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(200,242,59,0.35);
-    }
-
-    .btn-ghost {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 0;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+    .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; letter-spacing: -0.04em; margin-bottom: 28px; }
+    .hero h1 em { font-style: normal; color: var(--accent); display: block; }
+    .hero-desc { font-size: 1.05rem; line-height: 1.7; color: rgba(240,237,230,0.65); max-width: 440px; margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-primary { background: var(--accent); color: #000; border: none; padding: 16px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: none; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(200,242,59,0.35); }
+    .btn-ghost { color: var(--text); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; padding: 16px 0; opacity: 0.7; transition: opacity 0.2s; }
     .btn-ghost:hover { opacity: 1; }
+    .hero-visual { position: relative; height: 520px; }
 
-    /* HERO VISUAL */
-    .hero-visual {
-      position: relative;
-      height: 520px;
-    }
+    .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; background: var(--surface); }
+    .marquee-track { display: flex; gap: 60px; animation: marquee 18s linear infinite; white-space: nowrap; }
+    .marquee-track span { font-family: 'Syne', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); flex-shrink: 0; }
+    .marquee-track span.accent { color: var(--accent); }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    .hero-card-main {
-      position: absolute;
-      top: 0; right: 0;
-      width: 320px; height: 380px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
+    section { padding: 100px 40px; }
+    .section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+    .section-desc { color: rgba(240,237,230,0.6); font-size: 1rem; line-height: 1.7; max-width: 520px; }
 
-    .hero-card-main img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(20%);
-    }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
+    .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 30px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .service-card:hover { border-color: rgba(200,242,59,0.3); transform: translateY(-4px); }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transition: transform 0.4s; transform-origin: left; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 52px; height: 52px; background: rgba(200,242,59,0.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 24px; }
+    .service-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 12px; }
+    .service-card p { font-size: 0.9rem; line-height: 1.65; color: rgba(240,237,230,0.55); }
+    .service-card .tag { display: inline-block; margin-top: 20px; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.15); color: var(--accent); font-size: 0.72rem; padding: 4px 12px; border-radius: 100px; letter-spacing: 0.05em; }
 
-    .hero-card-side {
-      position: absolute;
-      bottom: 30px; left: 0;
-      width: 240px; height: 280px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
+    .how-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+    .step-list { display: flex; flex-direction: column; gap: 4px; }
+    .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start; cursor: default; transition: background 0.3s; }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.05em; padding-top: 4px; }
+    .step-content h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .step-content p { font-size: 0.88rem; line-height: 1.65; color: rgba(240,237,230,0.5); }
 
-    .hero-card-side img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(20%);
-    }
-
-    .hero-stat-card {
-      position: absolute;
-      bottom: 60px; right: 40px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px 22px;
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-stat-card .num {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 2rem;
-      color: var(--accent);
-    }
-
-    .hero-stat-card .label {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    /* MARQUEE */
-    .marquee-wrap {
-      overflow: hidden;
+    #mentoria {
+      background: var(--bg);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 18px 0;
-      background: var(--surface);
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 60px;
-      animation: marquee 18s linear infinite;
-      white-space: nowrap;
-    }
-
-    .marquee-track span {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      flex-shrink: 0;
-    }
-
-    .marquee-track span.accent { color: var(--accent); }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* SECTIONS */
-    section { padding: 100px 40px; }
-
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
-
-    .section-desc {
-      color: rgba(240,237,230,0.6);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 520px;
-    }
-
-    /* SERVICES */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 60px;
-    }
-
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 30px;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
     }
-
-    .service-card:hover {
-      border-color: rgba(200,242,59,0.3);
-      transform: translateY(-4px);
-    }
-
-    .service-card::before {
+    #mentoria::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0);
-      transition: transform 0.4s;
-      transform-origin: left;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(45,255,212,0.05) 0%, transparent 70%);
+      pointer-events: none;
     }
+    .mentoria-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .mentoria-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(45,255,212,0.08); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); padding: 6px 14px; border-radius: 100px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; }
+    .mentoria-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 1.5s infinite; }
+    .mentoria-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 20px; }
+    .mentoria-title em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .mentoria-desc { font-size: 1rem; line-height: 1.75; color: rgba(240,237,230,0.6); margin-bottom: 32px; }
+    .mentoria-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .mentoria-bullets li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.5; color: rgba(240,237,230,0.8); }
+    .mentoria-bullets li .check { width: 20px; height: 20px; background: rgba(200,242,59,0.1); border: 1px solid rgba(200,242,59,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .mentoria-price-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 48px 40px; position: relative; overflow: hidden; }
+    .mentoria-price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .mentoria-preco-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .mentoria-preco-valor { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+    .mentoria-preco-valor .currency { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .mentoria-preco-valor .amount { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--text); }
+    .mentoria-preco-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 36px; }
+    .mentoria-includes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; padding: 24px; background: rgba(200,242,59,0.03); border: 1px solid rgba(200,242,59,0.08); border-radius: 14px; }
+    .mentoria-includes .inc-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: rgba(240,237,230,0.75); }
+    .btn-comprar-mentoria { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; border: none; padding: 18px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; cursor: none; text-decoration: none; letter-spacing: -0.01em; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-comprar-mentoria:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(200,242,59,0.3); }
+    .mentoria-garantia { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 16px; font-size: 0.78rem; color: var(--muted); }
 
-    .service-card:hover::before { transform: scaleX(1); }
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.35s ease; }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .modal-header { padding: 28px 32px 0; display: flex; justify-content: space-between; align-items: flex-start; }
+    .modal-header h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
+    .modal-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 1rem; cursor: none; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+    .modal-close:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+    .modal-body { padding: 24px 32px 32px; }
+    .modal-steps { display: flex; align-items: center; gap: 0; margin-bottom: 28px; }
+    .modal-step-item { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); flex: 1; }
+    .modal-step-item.active { color: var(--accent); }
+    .modal-step-item.done { color: var(--accent2); }
+    .modal-step-num { width: 22px; height: 22px; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
+    .modal-step-line { flex: 1; height: 1px; background: var(--border); margin: 0 8px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+    .form-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: rgba(200,242,59,0.4); }
+    .form-input::placeholder { color: var(--muted); }
+    .pix-container { text-align: center; }
+    .pix-qr-wrapper { background: #fff; border-radius: 16px; padding: 20px; display: inline-block; margin: 20px 0 16px; }
+    .pix-qr-wrapper canvas { display: block; width: 180px; height: 180px; }
+    .pix-valor { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--accent); margin-bottom: 4px; }
+    .pix-key-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; }
+    .pix-key-text { font-size: 0.75rem; color: rgba(240,237,230,0.7); word-break: break-all; text-align: left; }
+    .btn-copy { background: rgba(200,242,59,0.1); border: 1px solid rgba(200,242,59,0.2); color: var(--accent); border-radius: 8px; padding: 8px 14px; font-size: 0.78rem; font-family: 'DM Sans', sans-serif; cursor: none; white-space: nowrap; transition: all 0.2s; }
+    .btn-copy:hover { background: rgba(200,242,59,0.18); }
+    .btn-copy.copied { background: rgba(45,255,212,0.15); border-color: rgba(45,255,212,0.3); color: var(--accent2); }
+    .pix-info { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .btn-verificar { display: block; width: 100%; text-align: center; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 14px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; cursor: none; transition: all 0.3s; margin-bottom: 12px; }
+    .btn-verificar:hover { border-color: rgba(200,242,59,0.3); color: var(--accent); }
+    .verification-status { display: none; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 16px; }
+    .verification-status.loading { display: flex; background: rgba(200,242,59,0.05); border: 1px solid rgba(200,242,59,0.15); color: rgba(240,237,230,0.7); }
+    .verification-status.success { display: flex; background: rgba(45,255,212,0.08); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); }
+    .verification-status.error { display: flex; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(200,242,59,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .download-section { text-align: center; padding: 16px 0; }
+    .download-section .success-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+    .download-section h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 8px; color: var(--accent2); }
+    .download-section p { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+    .btn-download { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; padding: 16px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; text-decoration: none; cursor: none; transition: transform 0.2s, box-shadow 0.3s; border: none; }
+    .btn-download:hover { transform: scale(1.04); box-shadow: 0 0 30px rgba(200,242,59,0.3); }
+    .download-warning { margin-top: 14px; font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
-    .service-icon {
-      width: 52px; height: 52px;
-      background: rgba(200,242,59,0.08);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 24px;
-    }
-
-    .service-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: rgba(240,237,230,0.55);
-    }
-
-    .service-card .tag {
-      display: inline-block;
-      margin-top: 20px;
-      background: rgba(200,242,59,0.07);
-      border: 1px solid rgba(200,242,59,0.15);
-      color: var(--accent);
-      font-size: 0.72rem;
-      padding: 4px 12px;
-      border-radius: 100px;
-      letter-spacing: 0.05em;
-    }
-
-    /* HOW I WORK */
-    .how-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      margin-top: 60px;
-    }
-
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 20px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-      cursor: default;
-      transition: background 0.3s;
-    }
-
-    .step:last-child { border-bottom: none; }
-
-    .step-num {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      padding-top: 4px;
-    }
-
-    .step-content h4 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-
-    .step-content p {
-      font-size: 0.88rem;
-      line-height: 1.65;
-      color: rgba(240,237,230,0.5);
-    }
-
-    .how-visual {
-      position: relative;
-    }
-
-    .how-img-stack {
-      position: relative;
-      height: 480px;
-    }
-
-    .how-img-1 {
-      position: absolute;
-      top: 0; left: 0;
-      width: 280px; height: 360px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .how-img-2 {
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 220px; height: 290px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .how-img-1 img, .how-img-2 img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(15%);
-    }
-
-    .how-badge {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--accent);
-      color: #000;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 14px 20px;
-      border-radius: 14px;
-      text-align: center;
-      line-height: 1.3;
-      white-space: nowrap;
-      box-shadow: 0 20px 60px rgba(200,242,59,0.25);
-      z-index: 10;
-    }
-
-    /* PRICING */
-    .pricing {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 60px;
-      align-items: start;
-    }
-
-    .price-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px 32px;
-      position: relative;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .price-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(200,242,59,0.25);
-    }
-
-    .price-card.featured {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #000;
-      transform: scale(1.04);
-    }
-
+    .pricing { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; align-items: start; }
+    .price-card { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; position: relative; transition: transform 0.3s, border-color 0.3s; }
+    .price-card:hover { transform: translateY(-6px); border-color: rgba(200,242,59,0.25); }
+    .price-card.featured { background: var(--accent); border-color: var(--accent); color: #000; transform: scale(1.04); }
     .price-card.featured:hover { transform: scale(1.04) translateY(-6px); }
-
-    .price-badge {
-      display: inline-block;
-      background: rgba(0,0,0,0.15);
-      color: #000;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 100px;
-      margin-bottom: 24px;
-    }
-
-    .price-badge-dark {
-      background: rgba(200,242,59,0.08);
-      color: var(--accent);
-      border: 1px solid rgba(200,242,59,0.15);
-    }
-
-    .price-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-    }
-
+    .price-badge { display: inline-block; background: rgba(0,0,0,0.15); color: #000; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 24px; }
+    .price-badge-dark { background: rgba(200,242,59,0.08); color: var(--accent); border: 1px solid rgba(200,242,59,0.15); }
+    .price-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin-bottom: 12px; }
     .price-card.featured .price-name { color: #000; }
-
-    .price-desc {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      opacity: 0.65;
-      margin-bottom: 28px;
-    }
-
+    .price-desc { font-size: 0.88rem; line-height: 1.6; opacity: 0.65; margin-bottom: 28px; }
     .price-card.featured .price-desc { opacity: 0.7; color: #000; }
-
-    .price-amount {
-      margin-bottom: 32px;
-    }
-
-    .price-amount .value {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 2.8rem;
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-
+    .price-amount { margin-bottom: 32px; }
+    .price-amount .value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.8rem; letter-spacing: -0.04em; line-height: 1; }
     .price-card.featured .value { color: #000; }
-
-    .price-amount .currency {
-      font-size: 1.2rem;
-      font-weight: 400;
-      vertical-align: super;
-      opacity: 0.7;
-    }
-
-    .price-amount .period {
-      font-size: 0.85rem;
-      opacity: 0.5;
-      margin-left: 4px;
-    }
-
-    .price-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 36px;
-    }
-
-    .price-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
-
-    .price-features li::before {
-      content: '✓';
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
+    .price-amount .currency { font-size: 1.2rem; font-weight: 400; vertical-align: super; opacity: 0.7; }
+    .price-amount .period { font-size: 0.85rem; opacity: 0.5; margin-left: 4px; }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; line-height: 1.5; }
+    .price-features li::before { content: '✓'; font-weight: 700; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
     .price-card.featured .price-features li::before { color: #000; }
     .price-card.featured .price-features li { color: rgba(0,0,0,0.8); }
+    .btn-price { display: block; text-align: center; padding: 14px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; cursor: none; }
+    .btn-price-dark { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-price-dark:hover { background: var(--accent); border-color: var(--accent); color: #000; }
+    .btn-price-light { background: #000; border: 1px solid #000; color: var(--accent); }
+    .btn-price-light:hover { background: #1a1a1a; }
 
-    .btn-price {
-      display: block;
-      text-align: center;
-      padding: 14px;
-      border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: none;
-    }
+    .insta-link-bar { text-align: center; padding: 60px 40px; border-top: 1px solid var(--border); }
+    .insta-pill { display: inline-flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 14px 28px; text-decoration: none; color: var(--text); font-size: 0.9rem; transition: all 0.3s; }
+    .insta-pill:hover { border-color: rgba(200,242,59,0.4); background: rgba(200,242,59,0.05); }
+    .insta-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
 
-    .btn-price-dark {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
-    .btn-price-dark:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #000;
-    }
-
-    .btn-price-light {
-      background: #000;
-      border: 1px solid #000;
-      color: var(--accent);
-    }
-
-    .btn-price-light:hover {
-      background: #1a1a1a;
-    }
-
-    /* PORTFOLIO PHOTOS */
-    .portfolio {
-      padding-top: 100px;
-      padding-bottom: 0;
-    }
-
-    .photos-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 48px;
-    }
-
-    .photos-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
-      gap: 16px;
-    }
-
-    .photo-item {
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 3/4;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      cursor: none;
-    }
-
-    .photo-item:nth-child(1) { grid-row: span 2; aspect-ratio: unset; }
-    .photo-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
-
-    .photo-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(15%) brightness(0.85);
-      transition: filter 0.4s, transform 0.5s;
-    }
-
-    .photo-item:hover img {
-      filter: grayscale(0%) brightness(1);
-      transform: scale(1.04);
-    }
-
-    .photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-    }
-
-    .photo-item:hover .photo-overlay { opacity: 1; }
-
-    .photo-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    /* PLACEHOLDER IMG */
-    .img-placeholder {
-      width: 100%; height: 100%;
-      background: var(--surface2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .img-placeholder .icon { font-size: 2rem; opacity: 0.3; }
-    .img-placeholder .tip { font-size: 0.72rem; opacity: 0.6; line-height: 1.5; }
-
-    /* INSTAGRAM LINK */
-    .insta-link-bar {
-      text-align: center;
-      padding: 60px 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .insta-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 14px 28px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-
-    .insta-pill:hover {
-      border-color: rgba(200,242,59,0.4);
-      background: rgba(200,242,59,0.05);
-    }
-
-    .insta-icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    /* FAQ */
-    .faq-list {
-      max-width: 700px;
-      margin-top: 60px;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
-    }
-
-    .faq-q {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: none;
-      color: var(--text);
-    }
-
-    .faq-toggle {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: var(--accent);
-      transition: transform 0.3s;
-      flex-shrink: 0;
-    }
-
+    .faq-list { max-width: 700px; margin-top: 60px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
+    .faq-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; cursor: none; color: var(--text); }
+    .faq-toggle { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
     .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a { font-size: 0.9rem; line-height: 1.7; color: rgba(240,237,230,0.55); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 14px; }
 
-    .faq-a {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: rgba(240,237,230,0.55);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s;
-    }
+    .cta-section { padding: 100px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(200,242,59,0.06) 0%, transparent 70%); }
+    .cta-section .section-title { font-size: clamp(2.5rem, 5vw, 4rem); }
+    .cta-section p { color: rgba(240,237,230,0.55); max-width: 480px; margin: 0 auto 40px; font-size: 1rem; line-height: 1.7; }
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-whatsapp { background: #25d366; color: #000; border: none; padding: 16px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500; cursor: none; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(37,211,102,0.3); }
 
-    .faq-item.open .faq-a {
-      max-height: 300px;
-      padding-top: 14px;
-    }
-
-    /* CTA SECTION */
-    .cta-section {
-      padding: 100px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 50%, rgba(200,242,59,0.06) 0%, transparent 70%);
-    }
-
-    .cta-section .section-title {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-    }
-
-    .cta-section p {
-      color: rgba(240,237,230,0.55);
-      max-width: 480px;
-      margin: 0 auto 40px;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .cta-actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-whatsapp {
-      background: #25d366;
-      color: #000;
-      border: none;
-      padding: 16px 32px;
-      border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: none;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.3s;
-    }
-
-    .btn-whatsapp:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(37,211,102,0.3);
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-
+    footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.82rem; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); }
     .footer-logo span { color: var(--accent); }
 
-    /* SCROLL ANIMATIONS */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; }
@@ -958,13 +304,12 @@
       section { padding: 70px 24px; }
       .services-grid { grid-template-columns: 1fr; }
       .how-wrap { grid-template-columns: 1fr; }
-      .how-visual { display: none; }
+      .mentoria-inner { grid-template-columns: 1fr; gap: 40px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .price-card.featured { transform: none; }
-      .photos-grid { grid-template-columns: 1fr 1fr; }
-      .photo-item:nth-child(1) { grid-row: unset; }
-      .photo-item:nth-child(5) { grid-column: unset; aspect-ratio: 3/4; }
       footer { flex-direction: column; gap: 16px; text-align: center; }
+      .modal-box { max-width: 100%; border-radius: 20px; }
+      .modal-header, .modal-body { padding-left: 24px; padding-right: 24px; }
     }
   </style>
 </head>
@@ -973,15 +318,122 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalPix" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box" id="modalBox">
+
+      <!-- Step 1: Dados -->
+      <div id="stepEmail">
+        <div class="modal-header">
+          <div>
+            <h3 id="modal-title">Garantir Mentoria</h3>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Acesso imediato após o pagamento</p>
+          </div>
+          <button class="modal-close" id="btnFechar" aria-label="Fechar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-steps">
+            <div class="modal-step-item active"><div class="modal-step-num">1</div><span>Dados</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item"><div class="modal-step-num">2</div><span>Pagamento</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item"><div class="modal-step-num">3</div><span>Acesso</span></div>
+          </div>
+          <div class="form-group">
+            <label for="inputNome">Seu nome</label>
+            <input type="text" id="inputNome" class="form-input" placeholder="Seu nome completo" autocomplete="name" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Seu e-mail</label>
+            <input type="email" id="inputEmail" class="form-input" placeholder="seu@email.com" autocomplete="email" maxlength="120" />
+          </div>
+          <div id="erroEmail" style="display:none;color:#f87171;font-size:0.82rem;margin-bottom:14px;padding:10px 14px;background:rgba(239,68,68,0.08);border-radius:8px;border:1px solid rgba(239,68,68,0.2);"></div>
+          <button class="btn-comprar-mentoria" id="btnIrParaPix" style="margin-top:8px;">Continuar → Gerar PIX</button>
+          <p style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:12px;">🔒 Seus dados são usados apenas para liberar seu acesso</p>
+        </div>
+      </div>
+
+      <!-- Step 2: PIX -->
+      <div id="stepPix" style="display:none;">
+        <div class="modal-header">
+          <div>
+            <h3>Pague via PIX</h3>
+            <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Copie o código ou escaneie o QR</p>
+          </div>
+          <button class="modal-close" id="btnFechar2" aria-label="Fechar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-steps">
+            <div class="modal-step-item done"><div class="modal-step-num">✓</div><span>Dados</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item active"><div class="modal-step-num">2</div><span>Pagamento</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item"><div class="modal-step-num">3</div><span>Acesso</span></div>
+          </div>
+          <div class="pix-container">
+            <div class="pix-valor">R$ 29,99</div>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:4px;">Mentoria · Renda Extra com IA</p>
+            <div class="pix-qr-wrapper">
+              <canvas id="qrCanvas" width="180" height="180"></canvas>
+            </div>
+            <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">Ou copie o código PIX Copia e Cola:</p>
+            <div class="pix-key-box">
+              <span class="pix-key-text" id="pixCopiaCola">Gerando código PIX...</span>
+              <button class="btn-copy" id="btnCopiar">Copiar</button>
+            </div>
+            <p class="pix-info">⏱ Após o pagamento, clique em <strong style="color:var(--text)">"Já paguei"</strong> para verificarmos e liberar seu acesso imediatamente.</p>
+          </div>
+          <div class="verification-status" id="statusVerificacao">
+            <div class="spinner"></div>
+            <span id="statusMsg">Verificando pagamento...</span>
+          </div>
+          <button class="btn-verificar" id="btnJaPaguei">✅ Já paguei — Verificar agora</button>
+          <p style="text-align:center;font-size:0.72rem;color:var(--muted);">🔒 Verificação segura via Mercado Pago</p>
+        </div>
+      </div>
+
+      <!-- Step 3: Acesso -->
+      <div id="stepDownload" style="display:none;">
+        <div class="modal-header">
+          <div>
+            <h3>Pagamento confirmado! 🎉</h3>
+            <p style="font-size:0.82rem;color:var(--accent2);margin-top:4px;">Acesso liberado com sucesso</p>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-steps">
+            <div class="modal-step-item done"><div class="modal-step-num">✓</div><span>Dados</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item done"><div class="modal-step-num">✓</div><span>Pagamento</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item active"><div class="modal-step-num">3</div><span>Acesso</span></div>
+          </div>
+          <div class="download-section">
+            <span class="success-icon">🎓</span>
+            <h4>Seu material está pronto!</h4>
+            <p id="downloadSaudacao">Seu acesso foi liberado. Baixe agora o PDF da mentoria.</p>
+            <button class="btn-download" id="btnDownloadPdf">⬇ Baixar Mentoria em PDF</button>
+            <div class="download-warning">
+              ⚠ Este link é de uso único e expira em <span id="timerDisplay">10:00</span>.<br>
+              Salve o arquivo imediatamente após o download.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav>
     <div class="nav-logo">rafael<span>.</span>dev</div>
     <ul class="nav-links">
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#como-trabalho">Como Trabalho</a></li>
+      <li><a href="#mentoria">Mentoria</a></li>
       <li><a href="#precos">Preços</a></li>
       <li><a href="#contato">Contato</a></li>
-      <li><a href="https://wa.me/5547999410049" target="_blank" class="nav-cta">Falar Agora →</a></li>
+      <li><a href="https://wa.me/5547999410049" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar Agora →</a></li>
     </ul>
   </nav>
 
@@ -989,25 +441,14 @@
   <section class="hero">
     <div class="hero-left">
       <div class="hero-eyebrow">Disponível para novos projetos</div>
-      <h1>
-        Sites que<br>
-        <em>convertem</em>
-        de verdade.
-      </h1>
-      <p class="hero-desc">
-        Sou Rafael, dev front-end especialista em HTML e CSS. Crio sites rápidos, bonitos e que representam sua marca com profissionalismo — do zero ao ar.
-      </p>
+      <h1>Sites que<br><em>convertem</em>de verdade.</h1>
+      <p class="hero-desc">Sou Rafael, dev front-end especialista em HTML e CSS. Crio sites rápidos, bonitos e que representam sua marca com profissionalismo — do zero ao ar.</p>
       <div class="hero-actions">
         <a href="#precos" class="btn-primary">Ver planos e preços →</a>
         <a href="#como-trabalho" class="btn-ghost">Como trabalho ↓</a>
       </div>
     </div>
-    <div class="hero-visual">
-   
-      
-      
-      
-    </div>
+    <div class="hero-visual"></div>
   </section>
 
   <!-- MARQUEE -->
@@ -1040,42 +481,12 @@
       <p class="section-desc">Cada projeto é desenvolvido sob medida, com atenção aos detalhes que fazem a diferença na experiência do usuário.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">🚀</div>
-        <h3>Landing Page</h3>
-        <p>Página de conversão focada em transformar visitantes em clientes. Estrutura persuasiva, visual impactante e carregamento ultrarrápido.</p>
-        <span class="tag">Mais popular</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🏢</div>
-        <h3>Site Institucional</h3>
-        <p>Presença digital completa para sua empresa ou negócio. Página inicial, sobre, serviços e contato — tudo integrado e profissional.</p>
-        <span class="tag">Completo</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🎨</div>
-        <h3>Portfólio Pessoal</h3>
-        <p>Site autoral para profissionais criativos, fotógrafos, designers e freelancers. Mostra seu trabalho com elegância e personalidade.</p>
-        <span class="tag">Criativo</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">📱</div>
-        <h3>Design Responsivo</h3>
-        <p>Todo site que entrego funciona perfeitamente em celular, tablet e desktop. Nenhum pixel fica fora do lugar em nenhuma tela.</p>
-        <span class="tag">Incluído em tudo</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">⚡</div>
-        <h3>Otimização de Sites</h3>
-        <p>Seu site está lento ou desatualizado? Reformulo o código para atingir alta performance no Google PageSpeed e melhorar o SEO.</p>
-        <span class="tag">Melhoria</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🔧</div>
-        <h3>Manutenção Mensal</h3>
-        <p>Suporte contínuo para updates de conteúdo, ajustes visuais e pequenas melhorias. Seu site sempre atualizado sem dor de cabeça.</p>
-        <span class="tag">Recorrente</span>
-      </div>
+      <div class="service-card reveal"><div class="service-icon">🚀</div><h3>Landing Page</h3><p>Página de conversão focada em transformar visitantes em clientes. Estrutura persuasiva, visual impactante e carregamento ultrarrápido.</p><span class="tag">Mais popular</span></div>
+      <div class="service-card reveal"><div class="service-icon">🏢</div><h3>Site Institucional</h3><p>Presença digital completa para sua empresa ou negócio. Página inicial, sobre, serviços e contato — tudo integrado e profissional.</p><span class="tag">Completo</span></div>
+      <div class="service-card reveal"><div class="service-icon">🎨</div><h3>Portfólio Pessoal</h3><p>Site autoral para profissionais criativos, fotógrafos, designers e freelancers. Mostra seu trabalho com elegância e personalidade.</p><span class="tag">Criativo</span></div>
+      <div class="service-card reveal"><div class="service-icon">📱</div><h3>Design Responsivo</h3><p>Todo site que entrego funciona perfeitamente em celular, tablet e desktop. Nenhum pixel fica fora do lugar em nenhuma tela.</p><span class="tag">Incluído em tudo</span></div>
+      <div class="service-card reveal"><div class="service-icon">⚡</div><h3>Otimização de Sites</h3><p>Seu site está lento ou desatualizado? Reformulo o código para atingir alta performance no Google PageSpeed e melhorar o SEO.</p><span class="tag">Melhoria</span></div>
+      <div class="service-card reveal"><div class="service-icon">🔧</div><h3>Manutenção Mensal</h3><p>Suporte contínuo para updates de conteúdo, ajustes visuais e pequenas melhorias. Seu site sempre atualizado sem dor de cabeça.</p><span class="tag">Recorrente</span></div>
     </div>
   </section>
 
@@ -1088,49 +499,52 @@
     </div>
     <div class="how-wrap">
       <div class="step-list">
-        <div class="step reveal">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Briefing & Entendimento</h4>
-            <p>Conversamos sobre seu negócio, objetivos, público-alvo e referências visuais. Nessa etapa entendo tudo que você precisa antes de escrever uma linha de código.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>Proposta & Orçamento</h4>
-            <p>Com base no briefing, apresento um orçamento detalhado com o que está incluso, prazo de entrega e formas de pagamento. Sem surpresas.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Desenvolvimento</h4>
-            <p>Mão no código. Desenvolvo o site com HTML e CSS semântico, responsivo e otimizado. Você acompanha o progresso e pode sugerir ajustes.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h4>Revisão & Aprovação</h4>
-            <p>Apresento o site completo para você revisar. Incluímos até 2 rodadas de ajustes no preço. Só publicamos quando você estiver 100% satisfeito.</p>
-          </div>
-        </div>
-        <div class="step reveal">
-          <div class="step-num">05</div>
-          <div class="step-content">
-            <h4>Entrega & Publicação</h4>
-            <p>Coloco o site no ar, configuro o domínio e entrego todos os arquivos para você. Suporte pós-entrega por 15 dias incluso em todos os planos.</p>
-          </div>
+        <div class="step reveal"><div class="step-num">01</div><div class="step-content"><h4>Briefing & Entendimento</h4><p>Conversamos sobre seu negócio, objetivos, público-alvo e referências visuais. Nessa etapa entendo tudo que você precisa antes de escrever uma linha de código.</p></div></div>
+        <div class="step reveal"><div class="step-num">02</div><div class="step-content"><h4>Proposta & Orçamento</h4><p>Com base no briefing, apresento um orçamento detalhado com o que está incluso, prazo de entrega e formas de pagamento. Sem surpresas.</p></div></div>
+        <div class="step reveal"><div class="step-num">03</div><div class="step-content"><h4>Desenvolvimento</h4><p>Mão no código. Desenvolvo o site com HTML e CSS semântico, responsivo e otimizado. Você acompanha o progresso e pode sugerir ajustes.</p></div></div>
+        <div class="step reveal"><div class="step-num">04</div><div class="step-content"><h4>Revisão & Aprovação</h4><p>Apresento o site completo para você revisar. Incluímos até 2 rodadas de ajustes no preço. Só publicamos quando você estiver 100% satisfeito.</p></div></div>
+        <div class="step reveal"><div class="step-num">05</div><div class="step-content"><h4>Entrega & Publicação</h4><p>Coloco o site no ar, configuro o domínio e entrego todos os arquivos para você. Suporte pós-entrega por 15 dias incluso em todos os planos.</p></div></div>
+      </div>
+      <div class="how-visual reveal"></div>
+    </div>
+  </section>
+
+  <!-- MENTORIA -->
+  <section id="mentoria">
+    <div class="mentoria-inner">
+      <div>
+        <div class="mentoria-badge reveal">Nova mentoria</div>
+        <h2 class="mentoria-title reveal">Ganhe <em>renda extra</em><br>com programação<br>usando só IA</h2>
+        <p class="mentoria-desc reveal">Você não precisa de anos de faculdade nem de ser um dev experiente. Eu vou te mostrar, na prática, como usar inteligência artificial para criar sites, automatizar tarefas e cobrar por isso — mesmo começando do zero.</p>
+        <ul class="mentoria-bullets reveal">
+          <li><span class="check">✓</span> Do zero ao primeiro cliente: o caminho mais direto</li>
+          <li><span class="check">✓</span> Como usar IA para criar sites profissionais sem saber tudo</li>
+          <li><span class="check">✓</span> Precificação: quanto cobrar e como apresentar seu trabalho</li>
+          <li><span class="check">✓</span> Ferramentas de IA que eu uso todo dia no meu negócio</li>
+          <li><span class="check">✓</span> Script para captar clientes no WhatsApp e Instagram</li>
+          <li><span class="check">✓</span> Material em PDF — leia quando e onde quiser</li>
+        </ul>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;" class="reveal">
+          <span style="font-size:0.82rem;color:var(--muted);">+47 pessoas já garantiram acesso</span>
         </div>
       </div>
-      <div class="how-visual reveal">
-        <div class="how-img-stack">
-          
-  
-</div>
-         
+      <div class="mentoria-price-card reveal">
+        <div class="mentoria-preco-label">Acesso completo — pagamento único</div>
+        <div class="mentoria-preco-valor">
+          <span class="currency">R$</span>
+          <span class="amount">29</span>
+          <span style="font-family:'Syne';font-size:1.5rem;font-weight:800;color:var(--text)">,99</span>
         </div>
+        <p class="mentoria-preco-desc">Uma vez só. Sem mensalidade. Seu para sempre.</p>
+        <div class="mentoria-includes">
+          <div class="inc-item"><span>📄</span><span>PDF completo com método passo a passo</span></div>
+          <div class="inc-item"><span>🤖</span><span>Lista de ferramentas de IA gratuitas e pagas</span></div>
+          <div class="inc-item"><span>💬</span><span>Scripts de abordagem para clientes</span></div>
+          <div class="inc-item"><span>💰</span><span>Tabela de precificação para freelancers</span></div>
+          <div class="inc-item"><span>♾️</span><span>Acesso vitalício ao material</span></div>
+        </div>
+        <button class="btn-comprar-mentoria" id="btnAbrirModal">Garantir meu acesso por R$ 29,99 →</button>
+        <div class="mentoria-garantia">🔒 Pagamento 100% seguro via PIX · Mercado Pago</div>
       </div>
     </div>
   </section>
@@ -1143,93 +557,46 @@
       <p class="section-desc">Escolha o plano ideal para o seu momento. Todos os preços em reais, pagamento por PIX ou cartão.</p>
     </div>
     <div class="pricing-grid">
-
-      <!-- BÁSICO -->
       <div class="price-card reveal">
         <span class="price-badge price-badge-dark">Essencial</span>
         <div class="price-name">Starter</div>
         <p class="price-desc">Para quem precisa de uma presença digital rápida e profissional.</p>
-        <div class="price-amount">
-          <span class="value"><span class="currency">R$</span> 497</span>
-          <span class="period">/ projeto</span>
-        </div>
+        <div class="price-amount"><span class="value"><span class="currency">R$</span> 497</span><span class="period">/ projeto</span></div>
         <ul class="price-features">
-          <li>Landing page de 1 página</li>
-          <li>Design responsivo (mobile)</li>
-          <li>Formulário de contato</li>
-          <li>Integração com WhatsApp</li>
-          <li>1 rodada de revisão</li>
-          <li>Entrega em 5–7 dias úteis</li>
-          <li>Suporte por 7 dias</li>
+          <li>Landing page de 1 página</li><li>Design responsivo (mobile)</li><li>Formulário de contato</li>
+          <li>Integração com WhatsApp</li><li>1 rodada de revisão</li><li>Entrega em 5–7 dias úteis</li><li>Suporte por 7 dias</li>
         </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Starter" target="_blank" class="btn-price btn-price-dark">Quero esse plano →</a>
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Starter" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a>
       </div>
-
-      <!-- PROFISSIONAL (DESTAQUE) -->
       <div class="price-card featured reveal">
         <span class="price-badge">Mais escolhido</span>
         <div class="price-name">Profissional</div>
         <p class="price-desc">Para negócios que querem um site completo e impactante.</p>
-        <div class="price-amount">
-          <span class="value"><span class="currency">R$</span> 997</span>
-          <span class="period">/ projeto</span>
-        </div>
+        <div class="price-amount"><span class="value"><span class="currency">R$</span> 997</span><span class="period">/ projeto</span></div>
         <ul class="price-features">
-          <li>Site com até 4 seções</li>
-          <li>Design exclusivo sob medida</li>
-          <li>Responsivo em todos os devices</li>
-          <li>Animações e micro-interações CSS</li>
-          <li>SEO básico configurado</li>
-          <li>2 rodadas de revisão</li>
-          <li>Entrega em 10–15 dias úteis</li>
-          <li>Suporte por 15 dias</li>
+          <li>Site com até 4 seções</li><li>Design exclusivo sob medida</li><li>Responsivo em todos os devices</li>
+          <li>Animações e micro-interações CSS</li><li>SEO básico configurado</li><li>2 rodadas de revisão</li>
+          <li>Entrega em 10–15 dias úteis</li><li>Suporte por 15 dias</li>
         </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Profissional" target="_blank" class="btn-price btn-price-light">Quero esse plano →</a>
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Profissional" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-light">Quero esse plano →</a>
       </div>
-
-      <!-- PREMIUM -->
       <div class="price-card reveal">
         <span class="price-badge price-badge-dark">Completo</span>
         <div class="price-name">Premium</div>
         <p class="price-desc">Para quem quer o máximo em qualidade e não abre mão de nada.</p>
-        <div class="price-amount">
-          <span class="value"><span class="currency">R$</span> 1.897</span>
-          <span class="period">/ projeto</span>
-        </div>
+        <div class="price-amount"><span class="value"><span class="currency">R$</span> 1.897</span><span class="period">/ projeto</span></div>
         <ul class="price-features">
-          <li>Site com até 8 seções</li>
-          <li>Design premium personalizado</li>
-          <li>Animações avançadas</li>
-          <li>Integração com Instagram feed</li>
-          <li>SEO completo otimizado</li>
-          <li>Blog / galeria de projetos</li>
-          <li>Rodadas de revisão ilimitadas</li>
-          <li>Entrega em 15–20 dias úteis</li>
-          <li>Suporte por 30 dias</li>
+          <li>Site com até 8 seções</li><li>Design premium personalizado</li><li>Animações avançadas</li>
+          <li>Integração com Instagram feed</li><li>SEO completo otimizado</li><li>Blog / galeria de projetos</li>
+          <li>Rodadas de revisão ilimitadas</li><li>Entrega em 15–20 dias úteis</li><li>Suporte por 30 dias</li>
         </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Premium" target="_blank" class="btn-price btn-price-dark">Quero esse plano →</a>
-      </div>
-
-    </div>
-
-    <!-- ADICIONAL -->
-    <div style="margin-top: 48px; padding: 28px 32px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); display: flex; align-items: center; gap: 20px; flex-wrap: wrap;" class="reveal">
-      <span style="font-size: 1.5rem;">➕</span>
-      <div>
-        <div style="font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 4px;">Serviços adicionais</div>
-        <div style="font-size: 0.88rem; color: rgba(240,237,230,0.55);">Manutenção mensal a partir de <strong style="color: var(--accent)">R$ 97/mês</strong> · Otimização de site existente a partir de <strong style="color: var(--accent)">R$ 297</strong> · Domínio e hospedagem orientados sem custo extra</div>
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Premium" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a>
       </div>
     </div>
-  </section>
-
-  <!-- FOTOS DO INSTAGRAM -->
-  <section class="portfolio" id="fotos">
-    <div class="photos-header reveal">
-     
   </section>
 
   <div class="insta-link-bar">
-    <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" class="insta-pill">
+    <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" class="insta-pill">
       <div class="insta-icon">📷</div>
       Siga no Instagram · <strong>@rafaelub.sk</strong> para ver mais projetos e bastidores
     </a>
@@ -1242,34 +609,16 @@
       <h2 class="section-title">Perguntas<br>frequentes</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item reveal">
-        <div class="faq-q">Você faz apenas HTML e CSS, ou usa outros recursos?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Sou especialista em HTML5 e CSS3, que já permitem criar sites incríveis e modernos. Para interatividade simples uso JavaScript puro. Não trabalho com WordPress ou construtores visuais — tudo é código limpo e otimizado.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Como funciona o processo de pagamento?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Para projetos novos, cobra-se 50% no início e 50% na entrega aprovada. Aceito PIX, transferência bancária ou cartão de crédito em até 3x. Emito comprovante para todos os pagamentos.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">O site vai funcionar bem no celular?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Sim, 100%. Todo site que entrego é responsivo e testado em múltiplos dispositivos e navegadores. Hoje mais de 60% dos acessos vêm do celular, então isso é prioridade, não opcional.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Você cuida da hospedagem e domínio?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Oriento você na escolha da melhor hospedagem e domínio, e cuido da configuração e publicação do site sem custo adicional. Os valores de hospedagem são pagos diretamente ao provedor (geralmente R$ 15–50/mês).</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Posso pedir alterações depois da entrega?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Sim! Cada plano inclui rodadas de revisão durante o desenvolvimento. Após a entrega, ofereço suporte por 7 a 30 dias (dependendo do plano). Para alterações além desse período, cobro por hora ou mensalidade de manutenção.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Quanto tempo leva para meu site ficar pronto?<div class="faq-toggle">+</div></div>
-        <div class="faq-a">Depende do plano: Starter leva 5–7 dias úteis, Profissional 10–15 dias e Premium 15–20 dias. O prazo começa a contar após o briefing completo e o pagamento inicial confirmado.</div>
-      </div>
+      <div class="faq-item reveal"><div class="faq-q">Você faz apenas HTML e CSS, ou usa outros recursos?<div class="faq-toggle">+</div></div><div class="faq-a">Sou especialista em HTML5 e CSS3, que já permitem criar sites incríveis e modernos. Para interatividade simples uso JavaScript puro. Não trabalho com WordPress ou construtores visuais — tudo é código limpo e otimizado.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Como funciona o processo de pagamento?<div class="faq-toggle">+</div></div><div class="faq-a">Para projetos novos, cobra-se 50% no início e 50% na entrega aprovada. Aceito PIX, transferência bancária ou cartão de crédito em até 3x. Emito comprovante para todos os pagamentos.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">O site vai funcionar bem no celular?<div class="faq-toggle">+</div></div><div class="faq-a">Sim, 100%. Todo site que entrego é responsivo e testado em múltiplos dispositivos e navegadores. Hoje mais de 60% dos acessos vêm do celular, então isso é prioridade, não opcional.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Você cuida da hospedagem e domínio?<div class="faq-toggle">+</div></div><div class="faq-a">Oriento você na escolha da melhor hospedagem e domínio, e cuido da configuração e publicação do site sem custo adicional. Os valores de hospedagem são pagos diretamente ao provedor (geralmente R$ 15–50/mês).</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Posso pedir alterações depois da entrega?<div class="faq-toggle">+</div></div><div class="faq-a">Sim! Cada plano inclui rodadas de revisão durante o desenvolvimento. Após a entrega, ofereço suporte por 7 a 30 dias (dependendo do plano). Para alterações além desse período, cobro por hora ou mensalidade de manutenção.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Quanto tempo leva para meu site ficar pronto?<div class="faq-toggle">+</div></div><div class="faq-a">Depende do plano: Starter leva 5–7 dias úteis, Profissional 10–15 dias e Premium 15–20 dias. O prazo começa a contar após o briefing completo e o pagamento inicial confirmado.</div></div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- CTA -->
   <section class="cta-section" id="contato">
     <div class="cta-bg"></div>
     <div style="position: relative; z-index: 1;">
@@ -1277,76 +626,408 @@
       <h2 class="section-title reveal">Seu site novo<br>a um clique de distância.</h2>
       <p class="reveal">Me chame agora pelo WhatsApp ou Instagram. Respondo em até 24h e fazemos um briefing gratuito para entender o que você precisa.</p>
       <div class="cta-actions reveal">
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Quero+um+site" target="_blank" class="btn-whatsapp">
-          💬 Falar no WhatsApp
-        </a>
-        <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" class="btn-primary" style="background: linear-gradient(135deg, #f09433, #cc2366);">
-          📷 Instagram
-        </a>
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Quero+um+site" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">💬 Falar no WhatsApp</a>
+        <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(135deg, #f09433, #cc2366);">📷 Instagram</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">rafael<span>.</span>dev</div>
     <div style="font-size: 0.8rem;">© 2026 Rafael · Dev Front-End · HTML & CSS</div>
-    <div>
-      <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" style="color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s;" onmouseover="this.style.color='#c8f23b'" onmouseout="this.style.color='#666'">@rafaelub.sk</a>
-    </div>
+    <div><a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" style="color: var(--muted); text-decoration: none; font-size: 0.82rem;" onmouseover="this.style.color='#c8f23b'" onmouseout="this.style.color='#666'">@rafaelub.sk</a></div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <script>
-    // CURSOR
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
+    /* ----------------------------------------------------------
+       CONFIGURAÇÕES — altere só aqui se precisar
+    ---------------------------------------------------------- */
+    const CONFIG = {
+      CHAVE_PIX:         '11629324906',
+      NOME_BENEFICIARIO: 'Rafael Roberto Ubinski',
+      CIDADE:            'Guaramirim',
+      VALOR:             '29.99',
+      TXID:              'MENTORIA2026',
+      MP_ACCESS_TOKEN:   'APP_USR-6953041847224450-033019-14b64a3e732eac02f35114bc7a44f507-374069302',
+      TEMPO_SEGUNDOS:    600,
+    };
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top = my + 'px';
-    });
+    /* ----------------------------------------------------------
+       CONTEÚDO DA MENTORIA (gerado em PDF no browser)
+    ---------------------------------------------------------- */
+    const MENTORIA_CONTEUDO = [
+      { tipo: 'titulo', texto: 'Mentoria Pro: Renda Extra com Desenvolvimento de Sites e Inteligência Artificial' },
+      { tipo: 'subtitulo', texto: 'Introdução: O Novo Mercado de Web Design' },
+      { tipo: 'paragrafo', texto: 'O mercado de criação de sites passou por uma transformação radical com a democratização da Inteligência Artificial (IA). O que antes levava semanas de codificação manual agora pode ser executado em horas. Esta mentoria foi desenhada para transformar você em um desenvolvedor estratégico, capaz de entregar sites profissionais, otimizados e de alto valor agregado, utilizando a IA como seu principal motor de produtividade.' },
+      { tipo: 'subtitulo', texto: 'Módulo 1: Mentalidade e Posicionamento de Mercado' },
+      { tipo: 'paragrafo', texto: 'Para faturar com sites, você não deve se vender como um "programador", mas como um "gerador de soluções de negócios".' },
+      { tipo: 'item', texto: 'Identificação de Nichos: Foque em mercados carentes, como clínicas médicas, escritórios de advocacia, artesãos locais e infoprodutores.' },
+      { tipo: 'item', texto: 'Diferenciação: Enquanto agências cobram caro por processos lentos, você entregará velocidade e personalização através da IA.' },
+      { tipo: 'subtitulo', texto: 'Módulo 2: O Stack Tecnológico Essencial' },
+      { tipo: 'paragrafo', texto: 'Você não precisa dominar todas as linguagens, mas deve saber operar as ferramentas certas:' },
+      { tipo: 'item', texto: 'ChatGPT/Claude: Para geração de estrutura de pastas, lógica de negócios e copywriting.' },
+      { tipo: 'item', texto: 'v0.dev / Screenshot-to-Code: Para transformar ideias visuais ou prints em código React/Tailwind instantaneamente.' },
+      { tipo: 'item', texto: 'Midjourney/DALL-E 3: Para criação de imagens exclusivas e profissionais para os clientes.' },
+      { tipo: 'item', texto: 'Relume.io: Para wireframes rápidos baseados em IA.' },
+      { tipo: 'subtitulo', texto: 'Módulo 3: Passo a Passo da Execução Técnica' },
+      { tipo: 'paragrafo', texto: 'Fase 1 — Levantamento e Briefing Assistido: Utilize o ChatGPT para criar um questionário de briefing dinâmico. Insira as respostas do cliente na IA para gerar um "Mapa do Site" completo, definindo as seções necessárias (Home, Sobre, Serviços, Depoimentos, Contato).' },
+      { tipo: 'paragrafo', texto: 'Fase 2 — Design e Interface (UI/UX): Use ferramentas de IA generativa de interface. Peça para a IA criar o esquema de cores baseado na psicologia do nicho do cliente. Gere o código CSS/Tailwind diretamente, garantindo que o site seja responsivo (funcione em celulares e desktops).' },
+      { tipo: 'paragrafo', texto: 'Fase 3 — Desenvolvimento de Conteúdo: Nunca use "Lorem Ipsum". Utilize a IA para escrever textos de vendas (copywriting) focados em conversão. Peça para a IA otimizar os textos com palavras-chave de SEO local para que o cliente apareça no Google.' },
+      { tipo: 'paragrafo', texto: 'Fase 4 — Integrações Inteligentes: Agregue valor instalando Chatbots de atendimento automático (usando Typebot ou ferramentas similares integradas à API da OpenAI) que qualificam leads para o seu cliente 24h por dia.' },
+      { tipo: 'subtitulo', texto: 'Módulo 4: Estratégia de Vendas e Precificação' },
+      { tipo: 'item', texto: 'Modelo de Entrada: Sites One-Page (Landing Pages) — R$ 800,00 a R$ 1.500,00.' },
+      { tipo: 'item', texto: 'Modelo Profissional: Sites Institucionais completos — R$ 2.500,00 a R$ 5.000,00.' },
+      { tipo: 'item', texto: 'Recorrência: Ofereça manutenção, hospedagem e atualizações de SEO por uma mensalidade (R$ 150,00 a R$ 300,00). Isso garante sua estabilidade financeira.' },
+      { tipo: 'subtitulo', texto: 'Módulo 5: Prospecção Ativa de Clientes' },
+      { tipo: 'item', texto: 'Google Maps: Procure empresas com sites antigos ou sem site e envie uma proposta personalizada com um mockup (protótipo) já criado por IA.' },
+      { tipo: 'item', texto: 'Instagram/LinkedIn: Publique o processo de criação de um site em "Time-lapse" para demonstrar autoridade.' },
+      { tipo: 'item', texto: 'Parcerias: Procure gestores de tráfego que precisam de Landing Pages rápidas para seus clientes de anúncios.' },
+      { tipo: 'subtitulo', texto: 'Módulo 6: Entrega e Pós-Venda' },
+      { tipo: 'paragrafo', texto: 'A entrega deve ser um evento. Faça uma reunião de 15 minutos explicando como o cliente pode editar textos simples e como a IA foi usada para garantir que o site seja o mais moderno do nicho dele. Peça depoimentos em vídeo; eles serão sua maior ferramenta de vendas para o próximo cliente.' },
+      { tipo: 'subtitulo', texto: 'Conclusão: O Ciclo de Escala' },
+      { tipo: 'paragrafo', texto: 'O segredo da renda extra consistente é a velocidade. Com a IA, você reduz seu tempo de produção em 80%, permitindo que você atenda 4 ou 5 clientes por mês no seu tempo livre. Comece hoje, escolha um nicho e crie seu primeiro portfólio usando as ferramentas mencionadas. O mercado está faminto por digitalização, e você agora tem o mapa para suprir essa demanda.' },
+    ];
 
-    function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
+    /* ----------------------------------------------------------
+       GERAR PDF COM JSPDF
+    ---------------------------------------------------------- */
+    function gerarPDF(nomeComprador) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      const W = 210, margem = 18, largura = W - margem * 2;
+      let y = 20;
 
-    document.querySelectorAll('a, button, .faq-q, .service-card, .photo-item').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        ring.style.width = '60px';
-        ring.style.height = '60px';
-        ring.style.opacity = '0.8';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.width = '12px';
-        cursor.style.height = '12px';
-        ring.style.width = '40px';
-        ring.style.height = '40px';
-        ring.style.opacity = '0.5';
-      });
-    });
+      // Cabeçalho
+      doc.setFillColor(10, 10, 10);
+      doc.rect(0, 0, 210, 30, 'F');
+      doc.setTextColor(200, 242, 59);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.text('MENTORIA PRO · RAFAEL ROBERTO UBINSKI', margem, 14);
+      doc.setTextColor(120, 120, 120);
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      doc.text('rafael.dev · Material exclusivo para: ' + (nomeComprador || 'Aluno'), margem, 22);
+      y = 40;
 
-    // SCROLL REVEAL
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
-          obs.unobserve(e.target);
+      MENTORIA_CONTEUDO.forEach(bloco => {
+        if (y > 270) { doc.addPage(); y = 20; }
+
+        if (bloco.tipo === 'titulo') {
+          doc.setFillColor(200, 242, 59);
+          doc.rect(margem, y, largura, 14, 'F');
+          doc.setTextColor(0, 0, 0);
+          doc.setFontSize(11);
+          doc.setFont('helvetica', 'bold');
+          const linhas = doc.splitTextToSize(bloco.texto, largura - 6);
+          doc.text(linhas, margem + 3, y + 9);
+          y += 14 + linhas.length * 5 + 6;
+
+        } else if (bloco.tipo === 'subtitulo') {
+          if (y > 250) { doc.addPage(); y = 20; }
+          doc.setDrawColor(200, 242, 59);
+          doc.setLineWidth(0.5);
+          doc.line(margem, y + 5, margem + 8, y + 5);
+          doc.setTextColor(200, 242, 59);
+          doc.setFontSize(10);
+          doc.setFont('helvetica', 'bold');
+          doc.text(bloco.texto, margem + 11, y + 6);
+          y += 14;
+
+        } else if (bloco.tipo === 'paragrafo') {
+          doc.setTextColor(50, 50, 50);
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'normal');
+          const linhas = doc.splitTextToSize(bloco.texto, largura);
+          if (y + linhas.length * 5 > 275) { doc.addPage(); y = 20; }
+          doc.text(linhas, margem, y);
+          y += linhas.length * 5 + 5;
+
+        } else if (bloco.tipo === 'item') {
+          doc.setTextColor(50, 50, 50);
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'normal');
+          doc.setFillColor(200, 242, 59);
+          doc.circle(margem + 2, y - 1, 1, 'F');
+          const linhas = doc.splitTextToSize(bloco.texto, largura - 8);
+          if (y + linhas.length * 5 > 275) { doc.addPage(); y = 20; }
+          doc.text(linhas, margem + 6, y);
+          y += linhas.length * 5 + 4;
         }
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => obs.observe(el));
 
-    // FAQ
+      // Rodapé última página
+      const totalPags = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= totalPags; i++) {
+        doc.setPage(i);
+        doc.setFillColor(10, 10, 10);
+        doc.rect(0, 285, 210, 12, 'F');
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(7);
+        doc.setFont('helvetica', 'normal');
+        doc.text('© 2026 Rafael Roberto Ubinski · Material protegido por direitos autorais · Página ' + i + ' de ' + totalPags, margem, 292);
+      }
+
+      return doc;
+    }
+
+    /* ----------------------------------------------------------
+       PIX PAYLOAD (padrão EMV / Banco Central)
+    ---------------------------------------------------------- */
+    function gerarPixPayload(chave, nome, cidade, valor, txid) {
+      function campo(id, val) { const v = String(val); return id + v.length.toString().padStart(2,'0') + v; }
+      function crc16(str) {
+        let crc = 0xFFFF;
+        for (let i = 0; i < str.length; i++) { crc ^= str.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1; }
+        return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4,'0');
+      }
+      const gui = campo('00','BR.GOV.BCB.PIX') + campo('01', chave);
+      const merchantAccountInfo = campo('26', gui);
+      const additionalDataField = campo('62', campo('05', txid));
+      const nomeF = nome.normalize('NFD').replace(/[\u0300-\u036f]/g,'').substring(0,25).toUpperCase();
+      const cidadeF = cidade.normalize('NFD').replace(/[\u0300-\u036f]/g,'').substring(0,15).toUpperCase();
+      let payload = campo('00','01') + merchantAccountInfo + campo('52','0000') + campo('53','986') + campo('54', parseFloat(valor).toFixed(2)) + campo('58','BR') + campo('59', nomeF) + campo('60', cidadeF) + additionalDataField + '6304';
+      return payload + crc16(payload);
+    }
+
+    /* ----------------------------------------------------------
+       QR CODE
+    ---------------------------------------------------------- */
+    function desenharQR(canvas, texto) {
+      if (window.QRCode) { _renderQR(canvas, texto); return; }
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+      s.onload = () => _renderQR(canvas, texto);
+      s.onerror = () => {
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,180,180);
+        ctx.fillStyle='#000'; ctx.font='11px monospace'; ctx.textAlign='center';
+        ctx.fillText('Use o código abaixo', 90, 90);
+      };
+      document.head.appendChild(s);
+    }
+    function _renderQR(canvas, texto) {
+      try { canvas.width=180; canvas.height=180; new QRCode(canvas,{text:texto,width:180,height:180,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M}); }
+      catch(e) { console.warn(e); }
+    }
+
+    /* ----------------------------------------------------------
+       VALIDAÇÃO
+    ---------------------------------------------------------- */
+    function sanitize(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;').trim(); }
+    function validarEmail(e) { return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e) && e.length <= 120; }
+    function validarNome(n) { return n.trim().length >= 2 && n.trim().length <= 80; }
+
+    /* ----------------------------------------------------------
+       CONTROLE DO MODAL
+    ---------------------------------------------------------- */
+    const modalOverlay = document.getElementById('modalPix');
+    const stepEmail    = document.getElementById('stepEmail');
+    const stepPix      = document.getElementById('stepPix');
+    const stepDownload = document.getElementById('stepDownload');
+    let dadosComprador = { nome: '', email: '' };
+    let pagamentoId    = null;
+    let timerInterval  = null;
+
+    function abrirModal() { modalOverlay.classList.add('open'); document.body.style.overflow='hidden'; mostrarStep(stepEmail); document.getElementById('inputNome').focus(); }
+    function fecharModal() { modalOverlay.classList.remove('open'); document.body.style.overflow=''; if(timerInterval) clearInterval(timerInterval); }
+    function mostrarStep(s) { [stepEmail,stepPix,stepDownload].forEach(x => x.style.display='none'); s.style.display='block'; }
+
+    document.getElementById('btnAbrirModal').addEventListener('click', abrirModal);
+    document.getElementById('btnFechar').addEventListener('click', fecharModal);
+    document.getElementById('btnFechar2').addEventListener('click', fecharModal);
+    modalOverlay.addEventListener('click', e => { if(e.target===modalOverlay) fecharModal(); });
+    document.addEventListener('keydown', e => { if(e.key==='Escape') fecharModal(); });
+
+    /* ----------------------------------------------------------
+       STEP 1 → STEP 2: criar cobrança Mercado Pago
+    ---------------------------------------------------------- */
+    document.getElementById('btnIrParaPix').addEventListener('click', async function() {
+      const nome  = document.getElementById('inputNome').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const erroEl = document.getElementById('erroEmail');
+      erroEl.style.display = 'none';
+
+      if (!validarNome(nome))  { erroEl.textContent='Por favor, informe seu nome completo.'; erroEl.style.display='block'; return; }
+      if (!validarEmail(email)) { erroEl.textContent='Informe um e-mail válido.'; erroEl.style.display='block'; return; }
+
+      dadosComprador.nome  = sanitize(nome);
+      dadosComprador.email = sanitize(email);
+      this.textContent = 'Gerando PIX...';
+      this.disabled = true;
+
+      try {
+        /* Criar preferência/cobrança PIX no Mercado Pago */
+        const resp = await fetch('https://api.mercadopago.com/v1/payments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN,
+            'X-Idempotency-Key': 'mentoria-' + Date.now()
+          },
+          body: JSON.stringify({
+            transaction_amount: parseFloat(CONFIG.VALOR),
+            description: 'Mentoria Pro: Renda Extra com IA',
+            payment_method_id: 'pix',
+            payer: { email: dadosComprador.email }
+          })
+        });
+
+        if (resp.ok) {
+          const dados = await resp.json();
+          pagamentoId = dados.id;
+          const pixCopiaECola = dados?.point_of_interaction?.transaction_data?.qr_code || gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID);
+          exibirStepPix(pixCopiaECola);
+        } else {
+          throw new Error('MP API error');
+        }
+      } catch(err) {
+        console.warn('Fallback PIX local:', err);
+        const pixLocal = gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID);
+        exibirStepPix(pixLocal);
+      }
+
+      this.textContent = 'Continuar → Gerar PIX';
+      this.disabled = false;
+    });
+
+    function exibirStepPix(pixCopiaECola) {
+      mostrarStep(stepPix);
+      document.getElementById('pixCopiaCola').textContent = pixCopiaECola;
+      desenharQR(document.getElementById('qrCanvas'), pixCopiaECola);
+    }
+
+    /* ----------------------------------------------------------
+       COPIAR PIX
+    ---------------------------------------------------------- */
+    document.getElementById('btnCopiar').addEventListener('click', function() {
+      const txt = document.getElementById('pixCopiaCola').textContent;
+      if (!txt || txt === 'Gerando código PIX...') return;
+      navigator.clipboard.writeText(txt).then(() => {
+        this.textContent='✓ Copiado!'; this.classList.add('copied');
+        setTimeout(() => { this.textContent='Copiar'; this.classList.remove('copied'); }, 3000);
+      }).catch(() => {
+        const el = document.createElement('textarea');
+        el.value=txt; el.style.cssText='position:fixed;opacity:0'; document.body.appendChild(el);
+        el.select(); document.execCommand('copy'); document.body.removeChild(el);
+        this.textContent='✓ Copiado!'; this.classList.add('copied');
+        setTimeout(() => { this.textContent='Copiar'; this.classList.remove('copied'); }, 3000);
+      });
+    });
+
+    /* ----------------------------------------------------------
+       VERIFICAR PAGAMENTO — Mercado Pago
+    ---------------------------------------------------------- */
+    document.getElementById('btnJaPaguei').addEventListener('click', async function() {
+      const statusEl  = document.getElementById('statusVerificacao');
+      const statusMsg = document.getElementById('statusMsg');
+      this.disabled = true;
+      this.textContent = 'Verificando...';
+      statusEl.className = 'verification-status loading';
+      statusEl.style.display = 'flex';
+      statusMsg.textContent = 'Verificando pagamento no Mercado Pago...';
+
+      try {
+        let pago = false;
+
+        if (pagamentoId) {
+          const resp = await fetch('https://api.mercadopago.com/v1/payments/' + pagamentoId, {
+            headers: { 'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN }
+          });
+          if (resp.ok) {
+            const dados = await resp.json();
+            pago = dados.status === 'approved';
+          }
+        }
+
+        if (pago) {
+          statusEl.className = 'verification-status success';
+          statusMsg.textContent = '✓ Pagamento confirmado! Liberando acesso...';
+          setTimeout(() => liberarDownload(), 1200);
+        } else {
+          statusEl.className = 'verification-status error';
+          statusMsg.textContent = 'Pagamento ainda não identificado. Aguarde alguns segundos e tente novamente.';
+          this.disabled = false;
+          this.textContent = '✅ Já paguei — Verificar novamente';
+        }
+      } catch(err) {
+        console.error(err);
+        statusEl.className = 'verification-status error';
+        statusMsg.textContent = 'Erro na verificação. Verifique sua conexão e tente novamente.';
+        this.disabled = false;
+        this.textContent = '✅ Já paguei — Tentar novamente';
+      }
+    });
+
+    /* ----------------------------------------------------------
+       LIBERAR DOWNLOAD — gera PDF no browser
+    ---------------------------------------------------------- */
+    function liberarDownload() {
+      mostrarStep(stepDownload);
+      document.getElementById('downloadSaudacao').textContent =
+        'Olá, ' + (dadosComprador.nome || 'bem-vindo(a)') + '! Seu pagamento foi confirmado. Baixe seu material abaixo.';
+
+      let seg = CONFIG.TEMPO_SEGUNDOS;
+      let baixouUmaVez = false;
+
+      function atualizarTimer() {
+        const m = String(Math.floor(seg/60)).padStart(2,'0');
+        const s = String(seg%60).padStart(2,'0');
+        document.getElementById('timerDisplay').textContent = m+':'+s;
+      }
+      atualizarTimer();
+      timerInterval = setInterval(() => {
+        seg--;
+        atualizarTimer();
+        if (seg <= 0) {
+          clearInterval(timerInterval);
+          const btn = document.getElementById('btnDownloadPdf');
+          btn.disabled=true; btn.style.opacity='0.4'; btn.textContent='⏱ Link expirado';
+        }
+      }, 1000);
+
+      document.getElementById('btnDownloadPdf').addEventListener('click', function() {
+        if (seg <= 0 || baixouUmaVez) return;
+        baixouUmaVez = true;
+        try {
+          const doc = gerarPDF(dadosComprador.nome);
+          doc.save('Mentoria-Pro-Renda-Extra-com-IA.pdf');
+          this.textContent = '✓ Download iniciado!';
+          this.style.background = 'linear-gradient(135deg, #2dffd4, #c8f23b)';
+        } catch(e) {
+          console.error(e);
+          this.textContent = '⚠ Erro — tente novamente';
+          baixouUmaVez = false;
+        }
+      });
+    }
+
+    /* ----------------------------------------------------------
+       CURSOR
+    ---------------------------------------------------------- */
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+    (function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+    document.querySelectorAll('a,button,.faq-q,.service-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='0.8'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='40px'; ring.style.height='40px'; ring.style.opacity='0.5'; });
+    });
+
+    /* ----------------------------------------------------------
+       SCROLL REVEAL
+    ---------------------------------------------------------- */
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*80); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* ----------------------------------------------------------
+       FAQ
+    ---------------------------------------------------------- */
     document.querySelectorAll('.faq-item').forEach(item => {
       item.querySelector('.faq-q').addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
@@ -1355,15 +1036,10 @@
       });
     });
 
-    // HERO entrada
-    document.querySelector('.hero-left').style.opacity = '0';
-    document.querySelector('.hero-left').style.transform = 'translateY(40px)';
-    setTimeout(() => {
-      const el = document.querySelector('.hero-left');
-      el.style.transition = 'opacity 1s ease, transform 1s ease';
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, 100);
+    /* Hero entrada */
+    const heroLeft = document.querySelector('.hero-left');
+    heroLeft.style.cssText = 'opacity:0;transform:translateY(40px)';
+    setTimeout(() => { heroLeft.style.transition='opacity 1s ease,transform 1s ease'; heroLeft.style.opacity='1'; heroLeft.style.transform='translateY(0)'; }, 100);
   </script>
 </body>
 </html>
