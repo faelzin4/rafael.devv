@@ -908,3 +908,55 @@
   </script>
 </body>
 </html>
+<!-- ACESSO ADMIN OCULTO -->
+<a href="admin.html" style="
+position:fixed;
+bottom:5px;
+right:5px;
+width:18px;
+height:18px;
+opacity:0;
+z-index:99999;
+"></a>
+
+<script>
+let clicks = 0;
+
+document.addEventListener("click", () => {
+  clicks++;
+
+  if (clicks === 7) {
+    window.location.href = "admin.html";
+  }
+
+  setTimeout(() => {
+    clicks = 0;
+  }, 2000);
+});
+
+let sequence = "";
+
+document.addEventListener("keydown", (e) => {
+  sequence += e.key.toLowerCase();
+
+  if (sequence.includes("admin")) {
+    window.location.href = "admin.html";
+  }
+
+  if (sequence.length > 10) {
+    sequence = "";
+  }
+});
+</script>
+let timer;
+
+document.addEventListener("touchstart", () => {
+  timer = setTimeout(() => {
+    window.location.href = "admin.html";
+  }, 1200); // segura 1.2s
+});
+
+document.addEventListener("touchend", () => {
+  clearTimeout(timer);
+});
+</script>
