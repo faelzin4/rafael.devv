@@ -31,53 +31,12 @@
       cursor: none;
     }
 
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
-      mix-blend-mode: exclusion;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 40px; height: 40px;
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
-      opacity: 0.5;
-      mix-blend-mode: exclusion;
-    }
+    .cursor { position: fixed; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s; mix-blend-mode: exclusion; }
+    .cursor-ring { position: fixed; width: 40px; height: 40px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s; opacity: 0.5; mix-blend-mode: exclusion; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9000;
-      opacity: 0.35;
-    }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9000; opacity: 0.35; }
 
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,10,10,0.6);
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); background: rgba(10,10,10,0.6); }
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -86,36 +45,10 @@
     .nav-cta { background: var(--accent); color: #000 !important; padding: 10px 22px; border-radius: 100px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s !important; }
     .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(200,242,59,0.4); }
 
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 120px 40px 80px;
-      gap: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(200,242,59,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--surface2); border: 1px solid var(--border);
-      padding: 6px 14px; border-radius: 100px;
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
-    }
-    .hero-eyebrow::before {
-      content: ''; width: 6px; height: 6px;
-      background: var(--accent); border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 40px 80px; gap: 60px; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,242,59,0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
     .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; letter-spacing: -0.04em; margin-bottom: 28px; }
     .hero h1 em { font-style: normal; color: var(--accent); display: block; }
@@ -150,27 +83,14 @@
 
     .how-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
     .step-list { display: flex; flex-direction: column; gap: 4px; }
-    .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start; cursor: default; transition: background 0.3s; }
+    .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: start; cursor: default; }
     .step:last-child { border-bottom: none; }
     .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.05em; padding-top: 4px; }
     .step-content h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
     .step-content p { font-size: 0.88rem; line-height: 1.65; color: rgba(240,237,230,0.5); }
 
-    #mentoria {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    #mentoria::before {
-      content: '';
-      position: absolute;
-      bottom: -150px; left: -150px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(45,255,212,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    #mentoria { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    #mentoria::before { content: ''; position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45,255,212,0.05) 0%, transparent 70%); pointer-events: none; }
     .mentoria-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .mentoria-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(45,255,212,0.08); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); padding: 6px 14px; border-radius: 100px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; }
     .mentoria-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 1.5s infinite; }
@@ -194,7 +114,7 @@
     .mentoria-garantia { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 16px; font-size: 0.78rem; color: var(--muted); }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; cursor: none; }
     .modal-overlay.open { display: flex; }
     .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.35s ease; }
     @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
@@ -211,12 +131,13 @@
     .modal-step-line { flex: 1; height: 1px; background: var(--border); margin: 0 8px; }
     .form-group { margin-bottom: 20px; }
     .form-group label { display: block; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
-    .form-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .form-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; cursor: none; }
     .form-input:focus { border-color: rgba(200,242,59,0.4); }
     .form-input::placeholder { color: var(--muted); }
     .pix-container { text-align: center; }
     .pix-qr-wrapper { background: #fff; border-radius: 16px; padding: 20px; display: inline-block; margin: 20px 0 16px; }
-    .pix-qr-wrapper canvas { display: block; width: 180px; height: 180px; }
+    #qrContainer { width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; }
+    #qrContainer img, #qrContainer canvas { display: block; width: 180px !important; height: 180px !important; }
     .pix-valor { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--accent); margin-bottom: 4px; }
     .pix-key-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; }
     .pix-key-text { font-size: 0.75rem; color: rgba(240,237,230,0.7); word-break: break-all; text-align: left; }
@@ -232,13 +153,61 @@
     .verification-status.error { display: flex; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #f87171; }
     .spinner { width: 16px; height: 16px; border: 2px solid rgba(200,242,59,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .download-section { text-align: center; padding: 16px 0; }
-    .download-section .success-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
-    .download-section h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 8px; color: var(--accent2); }
-    .download-section p { font-size: 0.88rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
-    .btn-download { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; padding: 16px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; text-decoration: none; cursor: none; transition: transform 0.2s, box-shadow 0.3s; border: none; }
-    .btn-download:hover { transform: scale(1.04); box-shadow: 0 0 30px rgba(200,242,59,0.3); }
-    .download-warning { margin-top: 14px; font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+
+    /* Step de redirecionamento */
+    .redirect-section { text-align: center; padding: 24px 0; }
+    .redirect-section .success-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; animation: bounceIn 0.5s ease; }
+    @keyframes bounceIn { 0% { transform: scale(0); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    .redirect-section h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 8px; color: var(--accent2); }
+    .redirect-section p { font-size: 0.88rem; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+    .redirect-bar { height: 4px; background: var(--surface2); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+    .redirect-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 10px; width: 0%; transition: width 3s linear; }
+    .btn-acessar { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; padding: 16px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; text-decoration: none; cursor: none; transition: transform 0.2s, box-shadow 0.3s; border: none; }
+    .btn-acessar:hover { transform: scale(1.04); box-shadow: 0 0 30px rgba(200,242,59,0.3); }
+
+    /* ORDER BUMPS */
+    .ob-header { margin-bottom: 16px; }
+    .ob-urgency-bar { display: flex; align-items: center; gap: 10px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #f87171; }
+    .ob-urgency-bar .ob-timer-icon { font-size: 1rem; flex-shrink: 0; animation: pulse 1.2s infinite; }
+    .ob-urgency-bar strong { color: #fca5a5; }
+    .ob-social-proof { display: flex; align-items: center; gap: 10px; background: rgba(45,255,212,0.05); border: 1px solid rgba(45,255,212,0.15); border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.8rem; color: rgba(240,237,230,0.7); }
+    .ob-avatars { display: flex; }
+    .ob-avatar { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--surface); margin-left: -6px; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ob-avatar:first-child { margin-left: 0; }
+    .ob-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 18px 18px 16px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.25s, background 0.25s; cursor: none; position: relative; overflow: hidden; }
+    .ob-card:hover { border-color: rgba(200,242,59,0.25); background: rgba(200,242,59,0.03); }
+    .ob-card.selected { border-color: var(--accent); background: rgba(200,242,59,0.06); }
+    .ob-card.selected::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .ob-checkbox { width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
+    .ob-card.selected .ob-checkbox { background: var(--accent); border-color: var(--accent); }
+    .ob-checkmark { font-size: 0.75rem; color: #000; font-weight: 800; display: none; }
+    .ob-card.selected .ob-checkmark { display: block; }
+    .ob-content { flex: 1; }
+    .ob-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .ob-badge { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(45,255,212,0.1); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); padding: 2px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+    .ob-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1.3; margin-bottom: 6px; }
+    .ob-desc { font-size: 0.82rem; color: rgba(240,237,230,0.55); line-height: 1.55; margin-bottom: 10px; }
+    .ob-price-row { display: flex; align-items: center; gap: 8px; }
+    .ob-price-old { font-size: 0.78rem; color: var(--muted); text-decoration: line-through; }
+    .ob-price-new { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--accent); }
+    .ob-items { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .ob-item-tag { font-size: 0.7rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; padding: 3px 10px; color: rgba(240,237,230,0.6); }
+    .ob-total-box { background: var(--surface2); border: 1px solid rgba(200,242,59,0.15); border-radius: 14px; padding: 0; margin-top: 6px; margin-bottom: 14px; overflow: hidden; }
+    .ob-total-main { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; }
+    .ob-total-label { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+    .ob-total-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--accent); transition: all 0.3s; }
+    .ob-savings-bar { display: none; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; background: linear-gradient(90deg, rgba(200,242,59,0.12), rgba(45,255,212,0.12)); border-top: 1px solid rgba(200,242,59,0.12); font-size: 0.8rem; color: var(--accent); font-weight: 500; animation: savingsPulse 2s ease-in-out infinite; }
+    .ob-savings-bar.visible { display: flex; }
+    .ob-savings-bar strong { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--accent2); }
+    @keyframes savingsPulse { 0%, 100% { background: linear-gradient(90deg, rgba(200,242,59,0.12), rgba(45,255,212,0.12)); } 50% { background: linear-gradient(90deg, rgba(200,242,59,0.18), rgba(45,255,212,0.18)); } }
+    .ob-loss-nudge { display: none; align-items: center; gap: 8px; padding: 10px 14px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; font-size: 0.79rem; color: #fca5a5; margin-bottom: 12px; animation: fadeInNudge 0.4s ease; }
+    .ob-loss-nudge.visible { display: flex; }
+    @keyframes fadeInNudge { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .ob-skip { display: block; text-align: center; font-size: 0.78rem; color: var(--muted); cursor: none; margin-top: 10px; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; background: none; border: none; width: 100%; }
+    .ob-skip:hover { color: var(--text); }
+    .btn-ob-cta { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; border: none; padding: 18px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; cursor: none; letter-spacing: -0.01em; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-ob-cta:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(200,242,59,0.3); }
+    .btn-ob-cta .cta-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 400; opacity: 0.75; margin-top: 2px; letter-spacing: 0; }
 
     .pricing { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; align-items: start; }
@@ -318,17 +287,16 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- MODAL -->
+  <!-- ══════════════════════════════════════════════════════════
+       MODAL
+  ══════════════════════════════════════════════════════════ -->
   <div class="modal-overlay" id="modalPix" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box" id="modalBox">
 
       <!-- Step 1: Dados -->
       <div id="stepEmail">
         <div class="modal-header">
-          <div>
-            <h3 id="modal-title">Garantir Mentoria</h3>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Acesso imediato após o pagamento</p>
-          </div>
+          <div><h3 id="modal-title">Garantir Mentoria</h3><p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Acesso imediato após o pagamento</p></div>
           <button class="modal-close" id="btnFechar" aria-label="Fechar">✕</button>
         </div>
         <div class="modal-body">
@@ -339,27 +307,90 @@
             <div class="modal-step-line"></div>
             <div class="modal-step-item"><div class="modal-step-num">3</div><span>Acesso</span></div>
           </div>
-          <div class="form-group">
-            <label for="inputNome">Seu nome</label>
-            <input type="text" id="inputNome" class="form-input" placeholder="Seu nome completo" autocomplete="name" maxlength="80" />
-          </div>
-          <div class="form-group">
-            <label for="inputEmail">Seu e-mail</label>
-            <input type="email" id="inputEmail" class="form-input" placeholder="seu@email.com" autocomplete="email" maxlength="120" />
-          </div>
+          <div class="form-group"><label for="inputNome">Seu nome</label><input type="text" id="inputNome" class="form-input" placeholder="Seu nome completo" autocomplete="name" maxlength="80" /></div>
+          <div class="form-group"><label for="inputEmail">Seu e-mail</label><input type="email" id="inputEmail" class="form-input" placeholder="seu@email.com" autocomplete="email" maxlength="120" /></div>
           <div id="erroEmail" style="display:none;color:#f87171;font-size:0.82rem;margin-bottom:14px;padding:10px 14px;background:rgba(239,68,68,0.08);border-radius:8px;border:1px solid rgba(239,68,68,0.2);"></div>
           <button class="btn-comprar-mentoria" id="btnIrParaPix" style="margin-top:8px;">Continuar → Gerar PIX</button>
           <p style="text-align:center;font-size:0.75rem;color:var(--muted);margin-top:12px;">🔒 Seus dados são usados apenas para liberar seu acesso</p>
         </div>
       </div>
 
+      <!-- Step OB: Order Bumps -->
+      <div id="stepOrderBumps" style="display:none;">
+        <div class="modal-header">
+          <div><h3>Turbine seu pedido 🚀</h3><p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Ofertas exclusivas — só aparecem aqui</p></div>
+          <button class="modal-close" id="btnFecharOB" aria-label="Fechar">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-steps">
+            <div class="modal-step-item done"><div class="modal-step-num">✓</div><span>Dados</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item active"><div class="modal-step-num">2</div><span>Extras</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item"><div class="modal-step-num">3</div><span>Pagamento</span></div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step-item"><div class="modal-step-num">4</div><span>Acesso</span></div>
+          </div>
+          <div class="ob-urgency-bar"><span class="ob-timer-icon">⚡</span><span>Oferta relâmpago · disponível por <strong id="obCountdown">08:47</strong> — só nesta tela</span></div>
+          <div class="ob-social-proof">
+            <div class="ob-avatars">
+              <div class="ob-avatar" style="background:#3b82f6;">😊</div>
+              <div class="ob-avatar" style="background:#8b5cf6;">😎</div>
+              <div class="ob-avatar" style="background:#ec4899;">🙂</div>
+              <div class="ob-avatar" style="background:#f59e0b;">😄</div>
+            </div>
+            <span><strong style="color:var(--accent2);">23 pessoas</strong> adicionaram extras hoje</span>
+          </div>
+
+          <div class="ob-card" id="ob1" onclick="toggleOB(this, 1)">
+            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
+            <div class="ob-content">
+              <div class="ob-top"><p class="ob-title">Pack de Templates HTML Prontos</p><span class="ob-badge">+vendido</span></div>
+              <p class="ob-desc">10 templates de landing pages prontos para copiar, personalizar e entregar. Economize horas em cada projeto.</p>
+              <div class="ob-items"><span class="ob-item-tag">10 templates</span><span class="ob-item-tag">Responsivos</span><span class="ob-item-tag">Entrega imediata</span></div>
+              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 97,00</span><span class="ob-price-new">+ R$ 19,90</span></div>
+            </div>
+          </div>
+
+          <div class="ob-card" id="ob2" onclick="toggleOB(this, 2)">
+            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
+            <div class="ob-content">
+              <div class="ob-top"><p class="ob-title">Planilha de Gestão de Clientes & Projetos</p><span class="ob-badge">Exclusivo</span></div>
+              <p class="ob-desc">Controle clientes, prazos, pagamentos e projetos — tudo em um lugar com dashboard visual.</p>
+              <div class="ob-items"><span class="ob-item-tag">Controle financeiro</span><span class="ob-item-tag">Dashboard visual</span></div>
+              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 47,00</span><span class="ob-price-new">+ R$ 9,90</span></div>
+            </div>
+          </div>
+
+          <div class="ob-card" id="ob3" onclick="toggleOB(this, 3)">
+            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
+            <div class="ob-content">
+              <div class="ob-top"><p class="ob-title">E-book: Prompts de IA para Devs</p><span class="ob-badge">Novidade</span></div>
+              <p class="ob-desc">50+ prompts testados para gerar código, layouts e textos de vendas com ChatGPT e Claude.</p>
+              <div class="ob-items"><span class="ob-item-tag">50+ prompts</span><span class="ob-item-tag">PDF imediato</span></div>
+              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 37,00</span><span class="ob-price-new">+ R$ 9,90</span></div>
+            </div>
+          </div>
+
+          <div class="ob-loss-nudge" id="obLossNudge">⚠️ Você está deixando <strong id="obLossAmount" style="color:#fca5a5;">R$ 0,00</strong> de desconto na mesa — esses preços não voltam.</div>
+
+          <div class="ob-total-box">
+            <div class="ob-total-main">
+              <div><div class="ob-total-label">Total do pedido</div><div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">Mentoria + extras selecionados</div></div>
+              <div class="ob-total-value" id="obTotalValor">R$ 29,99</div>
+            </div>
+            <div class="ob-savings-bar" id="obSavingsBar"><span>🎉</span><span>Você está economizando <strong id="obSavingsValue">R$ 0,00</strong> neste pedido!</span></div>
+          </div>
+
+          <button class="btn-ob-cta" id="btnOBContinuar">Continuar → Gerar PIX<span class="cta-sub" id="btnOBSubtitle">Mentoria · R$ 29,99</span></button>
+          <button class="ob-skip" id="btnOBSkip">Não, obrigado — seguir sem extras</button>
+        </div>
+      </div>
+
       <!-- Step 2: PIX -->
       <div id="stepPix" style="display:none;">
         <div class="modal-header">
-          <div>
-            <h3>Pague via PIX</h3>
-            <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Copie o código ou escaneie o QR</p>
-          </div>
+          <div><h3>Pague via PIX</h3><p style="font-size:0.82rem;color:var(--muted);margin-top:4px;">Copie o código ou escaneie o QR</p></div>
           <button class="modal-close" id="btnFechar2" aria-label="Fechar">✕</button>
         </div>
         <div class="modal-body">
@@ -371,34 +402,23 @@
             <div class="modal-step-item"><div class="modal-step-num">3</div><span>Acesso</span></div>
           </div>
           <div class="pix-container">
-            <div class="pix-valor">R$ 29,99</div>
-            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:4px;">Mentoria · Renda Extra com IA</p>
-            <div class="pix-qr-wrapper">
-              <canvas id="qrCanvas" width="180" height="180"></canvas>
-            </div>
+            <div class="pix-valor" id="pixValorDisplay">R$ 29,99</div>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:4px;">Mentoria Pro · Renda Extra com IA</p>
+            <div class="pix-qr-wrapper"><div id="qrContainer"></div></div>
             <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">Ou copie o código PIX Copia e Cola:</p>
-            <div class="pix-key-box">
-              <span class="pix-key-text" id="pixCopiaCola">Gerando código PIX...</span>
-              <button class="btn-copy" id="btnCopiar">Copiar</button>
-            </div>
-            <p class="pix-info">⏱ Após o pagamento, clique em <strong style="color:var(--text)">"Já paguei"</strong> para verificarmos e liberar seu acesso imediatamente.</p>
+            <div class="pix-key-box"><span class="pix-key-text" id="pixCopiaCola">Gerando código PIX...</span><button class="btn-copy" id="btnCopiar">Copiar</button></div>
+            <p class="pix-info">⏱ Após o pagamento, clique em <strong style="color:var(--text)">"Já paguei"</strong> para verificarmos e liberar seu acesso.</p>
           </div>
-          <div class="verification-status" id="statusVerificacao">
-            <div class="spinner"></div>
-            <span id="statusMsg">Verificando pagamento...</span>
-          </div>
+          <div class="verification-status" id="statusVerificacao"><div class="spinner"></div><span id="statusMsg">Verificando pagamento...</span></div>
           <button class="btn-verificar" id="btnJaPaguei">✅ Já paguei — Verificar agora</button>
           <p style="text-align:center;font-size:0.72rem;color:var(--muted);">🔒 Verificação segura via Mercado Pago</p>
         </div>
       </div>
 
-      <!-- Step 3: Acesso -->
-      <div id="stepDownload" style="display:none;">
+      <!-- Step 3: Redirecionamento -->
+      <div id="stepRedirect" style="display:none;">
         <div class="modal-header">
-          <div>
-            <h3>Pagamento confirmado! 🎉</h3>
-            <p style="font-size:0.82rem;color:var(--accent2);margin-top:4px;">Acesso liberado com sucesso</p>
-          </div>
+          <div><h3>Pagamento confirmado! 🎉</h3><p style="font-size:0.82rem;color:var(--accent2);margin-top:4px;">Preparando seu acesso...</p></div>
         </div>
         <div class="modal-body">
           <div class="modal-steps">
@@ -408,15 +428,13 @@
             <div class="modal-step-line"></div>
             <div class="modal-step-item active"><div class="modal-step-num">3</div><span>Acesso</span></div>
           </div>
-          <div class="download-section">
-            <span class="success-icon">🎓</span>
-            <h4>Seu material está pronto!</h4>
-            <p id="downloadSaudacao">Seu acesso foi liberado. Baixe agora o PDF da mentoria.</p>
-            <button class="btn-download" id="btnDownloadPdf">⬇ Baixar Mentoria em PDF</button>
-            <div class="download-warning">
-              ⚠ Este link é de uso único e expira em <span id="timerDisplay">10:00</span>.<br>
-              Salve o arquivo imediatamente após o download.
-            </div>
+          <div class="redirect-section">
+            <span class="success-icon">🚀</span>
+            <h4>Acesso liberado!</h4>
+            <p id="redirectMsg">Olá! Seu pagamento foi confirmado. Redirecionando para sua área de membros...</p>
+            <div class="redirect-bar"><div class="redirect-bar-fill" id="redirectBarFill"></div></div>
+            <button class="btn-acessar" id="btnAcessarMentoria" onclick="acessarMentoria()">🎓 Acessar Mentoria Agora →</button>
+            <p style="margin-top:12px;font-size:0.72rem;color:var(--muted);">Redirecionamento automático em <span id="redirectCount">3</span>s</p>
           </div>
         </div>
       </div>
@@ -454,22 +472,8 @@
   <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>HTML5</span><span class="accent">·</span>
-      <span>CSS3</span><span class="accent">·</span>
-      <span>Design Responsivo</span><span class="accent">·</span>
-      <span>Landing Pages</span><span class="accent">·</span>
-      <span>Sites Institucionais</span><span class="accent">·</span>
-      <span>Performance</span><span class="accent">·</span>
-      <span>SEO Técnico</span><span class="accent">·</span>
-      <span>Animações CSS</span><span class="accent">·</span>
-      <span>HTML5</span><span class="accent">·</span>
-      <span>CSS3</span><span class="accent">·</span>
-      <span>Design Responsivo</span><span class="accent">·</span>
-      <span>Landing Pages</span><span class="accent">·</span>
-      <span>Sites Institucionais</span><span class="accent">·</span>
-      <span>Performance</span><span class="accent">·</span>
-      <span>SEO Técnico</span><span class="accent">·</span>
-      <span>Animações CSS</span><span class="accent">·</span>
+      <span>HTML5</span><span class="accent">·</span><span>CSS3</span><span class="accent">·</span><span>Design Responsivo</span><span class="accent">·</span><span>Landing Pages</span><span class="accent">·</span><span>Sites Institucionais</span><span class="accent">·</span><span>Performance</span><span class="accent">·</span><span>SEO Técnico</span><span class="accent">·</span><span>Animações CSS</span><span class="accent">·</span>
+      <span>HTML5</span><span class="accent">·</span><span>CSS3</span><span class="accent">·</span><span>Design Responsivo</span><span class="accent">·</span><span>Landing Pages</span><span class="accent">·</span><span>Sites Institucionais</span><span class="accent">·</span><span>Performance</span><span class="accent">·</span><span>SEO Técnico</span><span class="accent">·</span><span>Animações CSS</span><span class="accent">·</span>
     </div>
   </div>
 
@@ -492,18 +496,14 @@
 
   <!-- COMO TRABALHO -->
   <section id="como-trabalho" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="reveal">
-      <div class="section-label">Processo</div>
-      <h2 class="section-title">Como eu trabalho</h2>
-      <p class="section-desc">Um processo simples e transparente para você saber exatamente o que esperar em cada etapa.</p>
-    </div>
+    <div class="reveal"><div class="section-label">Processo</div><h2 class="section-title">Como eu trabalho</h2><p class="section-desc">Um processo simples e transparente para você saber exatamente o que esperar em cada etapa.</p></div>
     <div class="how-wrap">
       <div class="step-list">
-        <div class="step reveal"><div class="step-num">01</div><div class="step-content"><h4>Briefing & Entendimento</h4><p>Conversamos sobre seu negócio, objetivos, público-alvo e referências visuais. Nessa etapa entendo tudo que você precisa antes de escrever uma linha de código.</p></div></div>
-        <div class="step reveal"><div class="step-num">02</div><div class="step-content"><h4>Proposta & Orçamento</h4><p>Com base no briefing, apresento um orçamento detalhado com o que está incluso, prazo de entrega e formas de pagamento. Sem surpresas.</p></div></div>
-        <div class="step reveal"><div class="step-num">03</div><div class="step-content"><h4>Desenvolvimento</h4><p>Mão no código. Desenvolvo o site com HTML e CSS semântico, responsivo e otimizado. Você acompanha o progresso e pode sugerir ajustes.</p></div></div>
-        <div class="step reveal"><div class="step-num">04</div><div class="step-content"><h4>Revisão & Aprovação</h4><p>Apresento o site completo para você revisar. Incluímos até 2 rodadas de ajustes no preço. Só publicamos quando você estiver 100% satisfeito.</p></div></div>
-        <div class="step reveal"><div class="step-num">05</div><div class="step-content"><h4>Entrega & Publicação</h4><p>Coloco o site no ar, configuro o domínio e entrego todos os arquivos para você. Suporte pós-entrega por 15 dias incluso em todos os planos.</p></div></div>
+        <div class="step reveal"><div class="step-num">01</div><div class="step-content"><h4>Briefing & Entendimento</h4><p>Conversamos sobre seu negócio, objetivos, público-alvo e referências visuais.</p></div></div>
+        <div class="step reveal"><div class="step-num">02</div><div class="step-content"><h4>Proposta & Orçamento</h4><p>Apresento um orçamento detalhado com o que está incluso, prazo e formas de pagamento.</p></div></div>
+        <div class="step reveal"><div class="step-num">03</div><div class="step-content"><h4>Desenvolvimento</h4><p>Desenvolvo o site com HTML e CSS semântico, responsivo e otimizado. Você acompanha o progresso.</p></div></div>
+        <div class="step reveal"><div class="step-num">04</div><div class="step-content"><h4>Revisão & Aprovação</h4><p>Apresento o site completo para revisão. Até 2 rodadas de ajustes incluídas. Só publicamos quando você aprovar.</p></div></div>
+        <div class="step reveal"><div class="step-num">05</div><div class="step-content"><h4>Entrega & Publicação</h4><p>Coloco o site no ar e entrego todos os arquivos. Suporte pós-entrega por 15 dias incluso.</p></div></div>
       </div>
       <div class="how-visual reveal"></div>
     </div>
@@ -521,8 +521,8 @@
           <li><span class="check">✓</span> Como usar IA para criar sites profissionais sem saber tudo</li>
           <li><span class="check">✓</span> Precificação: quanto cobrar e como apresentar seu trabalho</li>
           <li><span class="check">✓</span> Ferramentas de IA que eu uso todo dia no meu negócio</li>
-          <li><span class="check">✓</span> Script para captar clientes no WhatsApp e Instagram</li>
-          <li><span class="check">✓</span> Material em PDF — leia quando e onde quiser</li>
+          <li><span class="check">✓</span> Scripts para captar clientes no WhatsApp e Instagram</li>
+          <li><span class="check">✓</span> Área de membros exclusiva — acesse quando e onde quiser</li>
         </ul>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;" class="reveal">
           <span style="font-size:0.82rem;color:var(--muted);">+47 pessoas já garantiram acesso</span>
@@ -530,18 +530,14 @@
       </div>
       <div class="mentoria-price-card reveal">
         <div class="mentoria-preco-label">Acesso completo — pagamento único</div>
-        <div class="mentoria-preco-valor">
-          <span class="currency">R$</span>
-          <span class="amount">29</span>
-          <span style="font-family:'Syne';font-size:1.5rem;font-weight:800;color:var(--text)">,99</span>
-        </div>
+        <div class="mentoria-preco-valor"><span class="currency">R$</span><span class="amount">29</span><span style="font-family:'Syne';font-size:1.5rem;font-weight:800;color:var(--text)">,99</span></div>
         <p class="mentoria-preco-desc">Uma vez só. Sem mensalidade. Seu para sempre.</p>
         <div class="mentoria-includes">
-          <div class="inc-item"><span>📄</span><span>PDF completo com método passo a passo</span></div>
+          <div class="inc-item"><span>🎓</span><span>Área de membros com 6 módulos completos</span></div>
           <div class="inc-item"><span>🤖</span><span>Lista de ferramentas de IA gratuitas e pagas</span></div>
           <div class="inc-item"><span>💬</span><span>Scripts de abordagem para clientes</span></div>
           <div class="inc-item"><span>💰</span><span>Tabela de precificação para freelancers</span></div>
-          <div class="inc-item"><span>♾️</span><span>Acesso vitalício ao material</span></div>
+          <div class="inc-item"><span>♾️</span><span>Acesso vitalício — progresso salvo</span></div>
         </div>
         <button class="btn-comprar-mentoria" id="btnAbrirModal">Garantir meu acesso por R$ 29,99 →</button>
         <div class="mentoria-garantia">🔒 Pagamento 100% seguro via PIX · Mercado Pago</div>
@@ -551,70 +547,29 @@
 
   <!-- PREÇOS -->
   <section id="precos" class="pricing">
-    <div class="reveal">
-      <div class="section-label">Investimento</div>
-      <h2 class="section-title">Preços claros,<br>sem surpresas</h2>
-      <p class="section-desc">Escolha o plano ideal para o seu momento. Todos os preços em reais, pagamento por PIX ou cartão.</p>
-    </div>
+    <div class="reveal"><div class="section-label">Investimento</div><h2 class="section-title">Preços claros,<br>sem surpresas</h2><p class="section-desc">Escolha o plano ideal para o seu momento.</p></div>
     <div class="pricing-grid">
-      <div class="price-card reveal">
-        <span class="price-badge price-badge-dark">Essencial</span>
-        <div class="price-name">Starter</div>
-        <p class="price-desc">Para quem precisa de uma presença digital rápida e profissional.</p>
-        <div class="price-amount"><span class="value"><span class="currency">R$</span> 497</span><span class="period">/ projeto</span></div>
-        <ul class="price-features">
-          <li>Landing page de 1 página</li><li>Design responsivo (mobile)</li><li>Formulário de contato</li>
-          <li>Integração com WhatsApp</li><li>1 rodada de revisão</li><li>Entrega em 5–7 dias úteis</li><li>Suporte por 7 dias</li>
-        </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Starter" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a>
-      </div>
-      <div class="price-card featured reveal">
-        <span class="price-badge">Mais escolhido</span>
-        <div class="price-name">Profissional</div>
-        <p class="price-desc">Para negócios que querem um site completo e impactante.</p>
-        <div class="price-amount"><span class="value"><span class="currency">R$</span> 997</span><span class="period">/ projeto</span></div>
-        <ul class="price-features">
-          <li>Site com até 4 seções</li><li>Design exclusivo sob medida</li><li>Responsivo em todos os devices</li>
-          <li>Animações e micro-interações CSS</li><li>SEO básico configurado</li><li>2 rodadas de revisão</li>
-          <li>Entrega em 10–15 dias úteis</li><li>Suporte por 15 dias</li>
-        </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Profissional" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-light">Quero esse plano →</a>
-      </div>
-      <div class="price-card reveal">
-        <span class="price-badge price-badge-dark">Completo</span>
-        <div class="price-name">Premium</div>
-        <p class="price-desc">Para quem quer o máximo em qualidade e não abre mão de nada.</p>
-        <div class="price-amount"><span class="value"><span class="currency">R$</span> 1.897</span><span class="period">/ projeto</span></div>
-        <ul class="price-features">
-          <li>Site com até 8 seções</li><li>Design premium personalizado</li><li>Animações avançadas</li>
-          <li>Integração com Instagram feed</li><li>SEO completo otimizado</li><li>Blog / galeria de projetos</li>
-          <li>Rodadas de revisão ilimitadas</li><li>Entrega em 15–20 dias úteis</li><li>Suporte por 30 dias</li>
-        </ul>
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Premium" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a>
-      </div>
+      <div class="price-card reveal"><span class="price-badge price-badge-dark">Essencial</span><div class="price-name">Starter</div><p class="price-desc">Para quem precisa de uma presença digital rápida e profissional.</p><div class="price-amount"><span class="value"><span class="currency">R$</span> 497</span><span class="period">/ projeto</span></div><ul class="price-features"><li>Landing page de 1 página</li><li>Design responsivo</li><li>Formulário de contato</li><li>Integração com WhatsApp</li><li>Entrega em 5–7 dias úteis</li></ul><a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Starter" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a></div>
+      <div class="price-card featured reveal"><span class="price-badge">Mais escolhido</span><div class="price-name">Profissional</div><p class="price-desc">Para negócios que querem um site completo e impactante.</p><div class="price-amount"><span class="value"><span class="currency">R$</span> 997</span><span class="period">/ projeto</span></div><ul class="price-features"><li>Site com até 4 seções</li><li>Design exclusivo sob medida</li><li>Animações e micro-interações</li><li>SEO básico configurado</li><li>Entrega em 10–15 dias úteis</li></ul><a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Profissional" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-light">Quero esse plano →</a></div>
+      <div class="price-card reveal"><span class="price-badge price-badge-dark">Completo</span><div class="price-name">Premium</div><p class="price-desc">Para quem quer o máximo em qualidade e não abre mão de nada.</p><div class="price-amount"><span class="value"><span class="currency">R$</span> 1.897</span><span class="period">/ projeto</span></div><ul class="price-features"><li>Site com até 8 seções</li><li>Design premium personalizado</li><li>Animações avançadas</li><li>SEO completo otimizado</li><li>Entrega em 15–20 dias úteis</li></ul><a href="https://wa.me/5547999410049?text=Olá+Rafael!+Tenho+interesse+no+plano+Premium" target="_blank" rel="noopener noreferrer" class="btn-price btn-price-dark">Quero esse plano →</a></div>
     </div>
   </section>
 
   <div class="insta-link-bar">
     <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" class="insta-pill">
-      <div class="insta-icon">📷</div>
-      Siga no Instagram · <strong>@rafaelub.sk</strong> para ver mais projetos e bastidores
+      <div class="insta-icon">📷</div>Siga no Instagram · <strong>@rafaelub.sk</strong> para ver mais projetos
     </a>
   </div>
 
   <!-- FAQ -->
   <section id="faq" style="max-width: 1100px; margin: 0 auto;">
-    <div class="reveal">
-      <div class="section-label">Dúvidas</div>
-      <h2 class="section-title">Perguntas<br>frequentes</h2>
-    </div>
+    <div class="reveal"><div class="section-label">Dúvidas</div><h2 class="section-title">Perguntas frequentes</h2></div>
     <div class="faq-list">
-      <div class="faq-item reveal"><div class="faq-q">Você faz apenas HTML e CSS, ou usa outros recursos?<div class="faq-toggle">+</div></div><div class="faq-a">Sou especialista em HTML5 e CSS3, que já permitem criar sites incríveis e modernos. Para interatividade simples uso JavaScript puro. Não trabalho com WordPress ou construtores visuais — tudo é código limpo e otimizado.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">Como funciona o processo de pagamento?<div class="faq-toggle">+</div></div><div class="faq-a">Para projetos novos, cobra-se 50% no início e 50% na entrega aprovada. Aceito PIX, transferência bancária ou cartão de crédito em até 3x. Emito comprovante para todos os pagamentos.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">O site vai funcionar bem no celular?<div class="faq-toggle">+</div></div><div class="faq-a">Sim, 100%. Todo site que entrego é responsivo e testado em múltiplos dispositivos e navegadores. Hoje mais de 60% dos acessos vêm do celular, então isso é prioridade, não opcional.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">Você cuida da hospedagem e domínio?<div class="faq-toggle">+</div></div><div class="faq-a">Oriento você na escolha da melhor hospedagem e domínio, e cuido da configuração e publicação do site sem custo adicional. Os valores de hospedagem são pagos diretamente ao provedor (geralmente R$ 15–50/mês).</div></div>
-      <div class="faq-item reveal"><div class="faq-q">Posso pedir alterações depois da entrega?<div class="faq-toggle">+</div></div><div class="faq-a">Sim! Cada plano inclui rodadas de revisão durante o desenvolvimento. Após a entrega, ofereço suporte por 7 a 30 dias (dependendo do plano). Para alterações além desse período, cobro por hora ou mensalidade de manutenção.</div></div>
-      <div class="faq-item reveal"><div class="faq-q">Quanto tempo leva para meu site ficar pronto?<div class="faq-toggle">+</div></div><div class="faq-a">Depende do plano: Starter leva 5–7 dias úteis, Profissional 10–15 dias e Premium 15–20 dias. O prazo começa a contar após o briefing completo e o pagamento inicial confirmado.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Você faz apenas HTML e CSS, ou usa outros recursos?<div class="faq-toggle">+</div></div><div class="faq-a">Sou especialista em HTML5 e CSS3. Para interatividade simples uso JavaScript puro. Não trabalho com WordPress — tudo é código limpo e otimizado.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Como funciona o processo de pagamento?<div class="faq-toggle">+</div></div><div class="faq-a">Para projetos: 50% no início e 50% na entrega aprovada. Aceito PIX, transferência ou cartão em até 3x.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">O site vai funcionar bem no celular?<div class="faq-toggle">+</div></div><div class="faq-a">Sim, 100%. Todo site que entrego é responsivo e testado em múltiplos dispositivos e navegadores.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Você cuida da hospedagem e domínio?<div class="faq-toggle">+</div></div><div class="faq-a">Oriento na escolha da melhor hospedagem e cuido da configuração sem custo adicional. Hospedagem é paga diretamente ao provedor (R$ 15–50/mês).</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Quanto tempo leva para meu site ficar pronto?<div class="faq-toggle">+</div></div><div class="faq-a">Starter: 5–7 dias. Profissional: 10–15 dias. Premium: 15–20 dias. O prazo começa após briefing e pagamento inicial.</div></div>
     </div>
   </section>
 
@@ -624,7 +579,7 @@
     <div style="position: relative; z-index: 1;">
       <div class="section-label reveal">Vamos começar</div>
       <h2 class="section-title reveal">Seu site novo<br>a um clique de distância.</h2>
-      <p class="reveal">Me chame agora pelo WhatsApp ou Instagram. Respondo em até 24h e fazemos um briefing gratuito para entender o que você precisa.</p>
+      <p class="reveal">Me chame agora pelo WhatsApp ou Instagram. Respondo em até 24h.</p>
       <div class="cta-actions reveal">
         <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Quero+um+site" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">💬 Falar no WhatsApp</a>
         <a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: linear-gradient(135deg, #f09433, #cc2366);">📷 Instagram</a>
@@ -638,151 +593,22 @@
     <div><a href="https://www.instagram.com/rafaelub.sk/" target="_blank" rel="noopener noreferrer" style="color: var(--muted); text-decoration: none; font-size: 0.82rem;" onmouseover="this.style.color='#c8f23b'" onmouseout="this.style.color='#666'">@rafaelub.sk</a></div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
   <script>
-    /* ----------------------------------------------------------
-       CONFIGURAÇÕES — altere só aqui se precisar
-    ---------------------------------------------------------- */
+    /* ============================================================
+       CONFIGURAÇÕES
+    ============================================================ */
     const CONFIG = {
-      CHAVE_PIX:         '11629324906',
-      NOME_BENEFICIARIO: 'Rafael Roberto Ubinski',
-      CIDADE:            'Guaramirim',
-      VALOR:             '29.99',
-      TXID:              'MENTORIA2026',
-      MP_ACCESS_TOKEN:   'APP_USR-6953041847224450-033019-14b64a3e732eac02f35114bc7a44f507-374069302',
-      TEMPO_SEGUNDOS:    600,
+      CHAVE_PIX: '11629324906', NOME_BENEFICIARIO: 'Rafael Roberto Ubinski',
+      CIDADE: 'Guaramirim', VALOR: '29.99', TXID: 'MENTORIA2026',
+      MP_ACCESS_TOKEN: 'APP_USR-6953041847224450-033019-14b64a3e732eac02f35114bc7a44f507-374069302',
     };
 
-    /* ----------------------------------------------------------
-       CONTEÚDO DA MENTORIA (gerado em PDF no browser)
-    ---------------------------------------------------------- */
-    const MENTORIA_CONTEUDO = [
-      { tipo: 'titulo', texto: 'Mentoria Pro: Renda Extra com Desenvolvimento de Sites e Inteligência Artificial' },
-      { tipo: 'subtitulo', texto: 'Introdução: O Novo Mercado de Web Design' },
-      { tipo: 'paragrafo', texto: 'O mercado de criação de sites passou por uma transformação radical com a democratização da Inteligência Artificial (IA). O que antes levava semanas de codificação manual agora pode ser executado em horas. Esta mentoria foi desenhada para transformar você em um desenvolvedor estratégico, capaz de entregar sites profissionais, otimizados e de alto valor agregado, utilizando a IA como seu principal motor de produtividade.' },
-      { tipo: 'subtitulo', texto: 'Módulo 1: Mentalidade e Posicionamento de Mercado' },
-      { tipo: 'paragrafo', texto: 'Para faturar com sites, você não deve se vender como um "programador", mas como um "gerador de soluções de negócios".' },
-      { tipo: 'item', texto: 'Identificação de Nichos: Foque em mercados carentes, como clínicas médicas, escritórios de advocacia, artesãos locais e infoprodutores.' },
-      { tipo: 'item', texto: 'Diferenciação: Enquanto agências cobram caro por processos lentos, você entregará velocidade e personalização através da IA.' },
-      { tipo: 'subtitulo', texto: 'Módulo 2: O Stack Tecnológico Essencial' },
-      { tipo: 'paragrafo', texto: 'Você não precisa dominar todas as linguagens, mas deve saber operar as ferramentas certas:' },
-      { tipo: 'item', texto: 'ChatGPT/Claude: Para geração de estrutura de pastas, lógica de negócios e copywriting.' },
-      { tipo: 'item', texto: 'v0.dev / Screenshot-to-Code: Para transformar ideias visuais ou prints em código React/Tailwind instantaneamente.' },
-      { tipo: 'item', texto: 'Midjourney/DALL-E 3: Para criação de imagens exclusivas e profissionais para os clientes.' },
-      { tipo: 'item', texto: 'Relume.io: Para wireframes rápidos baseados em IA.' },
-      { tipo: 'subtitulo', texto: 'Módulo 3: Passo a Passo da Execução Técnica' },
-      { tipo: 'paragrafo', texto: 'Fase 1 — Levantamento e Briefing Assistido: Utilize o ChatGPT para criar um questionário de briefing dinâmico. Insira as respostas do cliente na IA para gerar um "Mapa do Site" completo, definindo as seções necessárias (Home, Sobre, Serviços, Depoimentos, Contato).' },
-      { tipo: 'paragrafo', texto: 'Fase 2 — Design e Interface (UI/UX): Use ferramentas de IA generativa de interface. Peça para a IA criar o esquema de cores baseado na psicologia do nicho do cliente. Gere o código CSS/Tailwind diretamente, garantindo que o site seja responsivo (funcione em celulares e desktops).' },
-      { tipo: 'paragrafo', texto: 'Fase 3 — Desenvolvimento de Conteúdo: Nunca use "Lorem Ipsum". Utilize a IA para escrever textos de vendas (copywriting) focados em conversão. Peça para a IA otimizar os textos com palavras-chave de SEO local para que o cliente apareça no Google.' },
-      { tipo: 'paragrafo', texto: 'Fase 4 — Integrações Inteligentes: Agregue valor instalando Chatbots de atendimento automático (usando Typebot ou ferramentas similares integradas à API da OpenAI) que qualificam leads para o seu cliente 24h por dia.' },
-      { tipo: 'subtitulo', texto: 'Módulo 4: Estratégia de Vendas e Precificação' },
-      { tipo: 'item', texto: 'Modelo de Entrada: Sites One-Page (Landing Pages) — R$ 800,00 a R$ 1.500,00.' },
-      { tipo: 'item', texto: 'Modelo Profissional: Sites Institucionais completos — R$ 2.500,00 a R$ 5.000,00.' },
-      { tipo: 'item', texto: 'Recorrência: Ofereça manutenção, hospedagem e atualizações de SEO por uma mensalidade (R$ 150,00 a R$ 300,00). Isso garante sua estabilidade financeira.' },
-      { tipo: 'subtitulo', texto: 'Módulo 5: Prospecção Ativa de Clientes' },
-      { tipo: 'item', texto: 'Google Maps: Procure empresas com sites antigos ou sem site e envie uma proposta personalizada com um mockup (protótipo) já criado por IA.' },
-      { tipo: 'item', texto: 'Instagram/LinkedIn: Publique o processo de criação de um site em "Time-lapse" para demonstrar autoridade.' },
-      { tipo: 'item', texto: 'Parcerias: Procure gestores de tráfego que precisam de Landing Pages rápidas para seus clientes de anúncios.' },
-      { tipo: 'subtitulo', texto: 'Módulo 6: Entrega e Pós-Venda' },
-      { tipo: 'paragrafo', texto: 'A entrega deve ser um evento. Faça uma reunião de 15 minutos explicando como o cliente pode editar textos simples e como a IA foi usada para garantir que o site seja o mais moderno do nicho dele. Peça depoimentos em vídeo; eles serão sua maior ferramenta de vendas para o próximo cliente.' },
-      { tipo: 'subtitulo', texto: 'Conclusão: O Ciclo de Escala' },
-      { tipo: 'paragrafo', texto: 'O segredo da renda extra consistente é a velocidade. Com a IA, você reduz seu tempo de produção em 80%, permitindo que você atenda 4 ou 5 clientes por mês no seu tempo livre. Comece hoje, escolha um nicho e crie seu primeiro portfólio usando as ferramentas mencionadas. O mercado está faminto por digitalização, e você agora tem o mapa para suprir essa demanda.' },
-    ];
-
-    /* ----------------------------------------------------------
-       GERAR PDF COM JSPDF
-    ---------------------------------------------------------- */
-    function gerarPDF(nomeComprador) {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-      const W = 210, margem = 18, largura = W - margem * 2;
-      let y = 20;
-
-      // Cabeçalho
-      doc.setFillColor(10, 10, 10);
-      doc.rect(0, 0, 210, 30, 'F');
-      doc.setTextColor(200, 242, 59);
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'bold');
-      doc.text('MENTORIA PRO · RAFAEL ROBERTO UBINSKI', margem, 14);
-      doc.setTextColor(120, 120, 120);
-      doc.setFontSize(8);
-      doc.setFont('helvetica', 'normal');
-      doc.text('rafael.dev · Material exclusivo para: ' + (nomeComprador || 'Aluno'), margem, 22);
-      y = 40;
-
-      MENTORIA_CONTEUDO.forEach(bloco => {
-        if (y > 270) { doc.addPage(); y = 20; }
-
-        if (bloco.tipo === 'titulo') {
-          doc.setFillColor(200, 242, 59);
-          doc.rect(margem, y, largura, 14, 'F');
-          doc.setTextColor(0, 0, 0);
-          doc.setFontSize(11);
-          doc.setFont('helvetica', 'bold');
-          const linhas = doc.splitTextToSize(bloco.texto, largura - 6);
-          doc.text(linhas, margem + 3, y + 9);
-          y += 14 + linhas.length * 5 + 6;
-
-        } else if (bloco.tipo === 'subtitulo') {
-          if (y > 250) { doc.addPage(); y = 20; }
-          doc.setDrawColor(200, 242, 59);
-          doc.setLineWidth(0.5);
-          doc.line(margem, y + 5, margem + 8, y + 5);
-          doc.setTextColor(200, 242, 59);
-          doc.setFontSize(10);
-          doc.setFont('helvetica', 'bold');
-          doc.text(bloco.texto, margem + 11, y + 6);
-          y += 14;
-
-        } else if (bloco.tipo === 'paragrafo') {
-          doc.setTextColor(50, 50, 50);
-          doc.setFontSize(9);
-          doc.setFont('helvetica', 'normal');
-          const linhas = doc.splitTextToSize(bloco.texto, largura);
-          if (y + linhas.length * 5 > 275) { doc.addPage(); y = 20; }
-          doc.text(linhas, margem, y);
-          y += linhas.length * 5 + 5;
-
-        } else if (bloco.tipo === 'item') {
-          doc.setTextColor(50, 50, 50);
-          doc.setFontSize(9);
-          doc.setFont('helvetica', 'normal');
-          doc.setFillColor(200, 242, 59);
-          doc.circle(margem + 2, y - 1, 1, 'F');
-          const linhas = doc.splitTextToSize(bloco.texto, largura - 8);
-          if (y + linhas.length * 5 > 275) { doc.addPage(); y = 20; }
-          doc.text(linhas, margem + 6, y);
-          y += linhas.length * 5 + 4;
-        }
-      });
-
-      // Rodapé última página
-      const totalPags = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= totalPags; i++) {
-        doc.setPage(i);
-        doc.setFillColor(10, 10, 10);
-        doc.rect(0, 285, 210, 12, 'F');
-        doc.setTextColor(100, 100, 100);
-        doc.setFontSize(7);
-        doc.setFont('helvetica', 'normal');
-        doc.text('© 2026 Rafael Roberto Ubinski · Material protegido por direitos autorais · Página ' + i + ' de ' + totalPags, margem, 292);
-      }
-
-      return doc;
-    }
-
-    /* ----------------------------------------------------------
-       PIX PAYLOAD (padrão EMV / Banco Central)
-    ---------------------------------------------------------- */
+    /* ============================================================
+       PIX PAYLOAD
+    ============================================================ */
     function gerarPixPayload(chave, nome, cidade, valor, txid) {
       function campo(id, val) { const v = String(val); return id + v.length.toString().padStart(2,'0') + v; }
-      function crc16(str) {
-        let crc = 0xFFFF;
-        for (let i = 0; i < str.length; i++) { crc ^= str.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1; }
-        return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4,'0');
-      }
+      function crc16(str) { let crc = 0xFFFF; for (let i = 0; i < str.length; i++) { crc ^= str.charCodeAt(i) << 8; for (let j = 0; j < 8; j++) crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1; } return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4,'0'); }
       const gui = campo('00','BR.GOV.BCB.PIX') + campo('01', chave);
       const merchantAccountInfo = campo('26', gui);
       const additionalDataField = campo('62', campo('05', txid));
@@ -792,254 +618,293 @@
       return payload + crc16(payload);
     }
 
-    /* ----------------------------------------------------------
+    /* ============================================================
        QR CODE
-    ---------------------------------------------------------- */
-    function desenharQR(canvas, texto) {
-      if (window.QRCode) { _renderQR(canvas, texto); return; }
-      const s = document.createElement('script');
-      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-      s.onload = () => _renderQR(canvas, texto);
-      s.onerror = () => {
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle='#fff'; ctx.fillRect(0,0,180,180);
-        ctx.fillStyle='#000'; ctx.font='11px monospace'; ctx.textAlign='center';
-        ctx.fillText('Use o código abaixo', 90, 90);
-      };
-      document.head.appendChild(s);
+    ============================================================ */
+    function desenharQR(container, texto) {
+      container.innerHTML = '';
+      if (window.QRCode) { _renderQR(container, texto); return; }
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+      script.onload = () => _renderQR(container, texto);
+      script.onerror = () => { container.innerHTML = '<p style="font-size:11px;text-align:center;color:#666;padding-top:60px;">Use o código Copia e Cola abaixo</p>'; };
+      document.head.appendChild(script);
     }
-    function _renderQR(canvas, texto) {
-      try { canvas.width=180; canvas.height=180; new QRCode(canvas,{text:texto,width:180,height:180,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M}); }
-      catch(e) { console.warn(e); }
+    function _renderQR(container, texto) {
+      try { new QRCode(container, { text: texto, width: 180, height: 180, colorDark: '#000000', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); }
+      catch(e) { container.innerHTML = '<p style="font-size:11px;text-align:center;color:#666;padding-top:60px;">Use o código Copia e Cola abaixo</p>'; }
     }
 
-    /* ----------------------------------------------------------
+    /* ============================================================
        VALIDAÇÃO
-    ---------------------------------------------------------- */
+    ============================================================ */
     function sanitize(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;').trim(); }
     function validarEmail(e) { return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(e) && e.length <= 120; }
     function validarNome(n) { return n.trim().length >= 2 && n.trim().length <= 80; }
 
-    /* ----------------------------------------------------------
-       CONTROLE DO MODAL
-    ---------------------------------------------------------- */
-    const modalOverlay = document.getElementById('modalPix');
-    const stepEmail    = document.getElementById('stepEmail');
-    const stepPix      = document.getElementById('stepPix');
-    const stepDownload = document.getElementById('stepDownload');
-    let dadosComprador = { nome: '', email: '' };
-    let pagamentoId    = null;
-    let timerInterval  = null;
+    /* ============================================================
+       GERAR TOKEN DE ACESSO
+    ============================================================ */
+    function gerarTokenAcesso(nome, email, extras) {
+      const token = Math.random().toString(36).substring(2, 18) + Date.now().toString(36);
+      const expiry = Date.now() + (24 * 60 * 60 * 1000); // 24h
+      const hash = btoa(token + ':rafael2026');
+      const accessData = { token, expiry, hash, nome, email, extras, compradoEm: new Date().toISOString() };
+      sessionStorage.setItem('mentoria_access', JSON.stringify(accessData));
+      return accessData;
+    }
 
-    function abrirModal() { modalOverlay.classList.add('open'); document.body.style.overflow='hidden'; mostrarStep(stepEmail); document.getElementById('inputNome').focus(); }
-    function fecharModal() { modalOverlay.classList.remove('open'); document.body.style.overflow=''; if(timerInterval) clearInterval(timerInterval); }
-    function mostrarStep(s) { [stepEmail,stepPix,stepDownload].forEach(x => x.style.display='none'); s.style.display='block'; }
+    function acessarMentoria() {
+      window.location.href = 'mentoria.html';
+    }
+
+    /* ============================================================
+       CONTROLE DO MODAL
+    ============================================================ */
+    const modalOverlay   = document.getElementById('modalPix');
+    const stepEmail      = document.getElementById('stepEmail');
+    const stepOrderBumps = document.getElementById('stepOrderBumps');
+    const stepPix        = document.getElementById('stepPix');
+    const stepRedirect   = document.getElementById('stepRedirect');
+    let dadosComprador   = { nome: '', email: '' };
+    let pagamentoId      = null;
+    let obCountdownInterval = null;
+    let extrasComprados  = { ob1: false, ob2: false, ob3: false };
+
+    /* OB STATE */
+    const OB_PRECOS_CHEIO = { 1: 97.00, 2: 47.00, 3: 37.00 };
+    const OB_PRECOS       = { 1: 19.90, 2:  9.90, 3:  9.90 };
+    const OB_NOMES        = { 1: 'Pack de Templates HTML', 2: 'Planilha de Gestão', 3: 'E-book Prompts de IA' };
+    const obSelecionados  = { 1: false, 2: false, 3: false };
+    const BASE_VALOR      = 29.99;
+
+    function calcularEconomia() {
+      let e = 0;
+      Object.keys(obSelecionados).forEach(k => { if (obSelecionados[k]) e += OB_PRECOS_CHEIO[k] - OB_PRECOS[k]; });
+      return e;
+    }
+    function getTotalOB() {
+      let t = BASE_VALOR;
+      Object.keys(obSelecionados).forEach(k => { if (obSelecionados[k]) t += OB_PRECOS[k]; });
+      return t;
+    }
+    function fmtBRL(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+    function toggleOB(card, id) {
+      obSelecionados[id] = !obSelecionados[id];
+      card.classList.toggle('selected', obSelecionados[id]);
+      atualizarTotalOB();
+    }
+
+    function atualizarTotalOB() {
+      const total = getTotalOB(), economia = calcularEconomia();
+      document.getElementById('obTotalValor').textContent = fmtBRL(total);
+      CONFIG.VALOR = total.toFixed(2);
+      const bar = document.getElementById('obSavingsBar'), val = document.getElementById('obSavingsValue');
+      if (economia > 0) { val.textContent = fmtBRL(economia); bar.classList.add('visible'); }
+      else { bar.classList.remove('visible'); }
+      const lossNudge = document.getElementById('obLossNudge');
+      const algum = Object.values(obSelecionados).some(v => v);
+      const hadAny = lossNudge.dataset.wasSelected === '1';
+      if (!algum && hadAny) {
+        const maxEco = Object.keys(OB_PRECOS_CHEIO).reduce((acc, k) => acc + (OB_PRECOS_CHEIO[k] - OB_PRECOS[k]), 0);
+        document.getElementById('obLossAmount').textContent = fmtBRL(maxEco);
+        lossNudge.classList.add('visible');
+      } else { lossNudge.classList.remove('visible'); }
+      if (algum) lossNudge.dataset.wasSelected = '1';
+      const ctaSub = document.getElementById('btnOBSubtitle');
+      if (economia > 0) ctaSub.textContent = `Você economiza ${fmtBRL(economia)} — paga só ${fmtBRL(total)}`;
+      else ctaSub.textContent = `Mentoria · ${fmtBRL(BASE_VALOR)}`;
+      const pixValorEl = document.getElementById('pixValorDisplay');
+      if (pixValorEl) pixValorEl.textContent = fmtBRL(total);
+    }
+
+    function getDescricaoPedido() {
+      const extras = Object.keys(obSelecionados).filter(k => obSelecionados[k]).map(k => OB_NOMES[k]);
+      return extras.length ? 'Mentoria Pro + ' + extras.join(' + ') : 'Mentoria Pro: Renda Extra com IA';
+    }
+
+    function iniciarCountdownOB() {
+      let seg = 8 * 60 + 47;
+      if (obCountdownInterval) clearInterval(obCountdownInterval);
+      const el = document.getElementById('obCountdown');
+      obCountdownInterval = setInterval(() => {
+        seg--;
+        if (seg <= 0) { clearInterval(obCountdownInterval); seg = 0; }
+        el.textContent = `${String(Math.floor(seg/60)).padStart(2,'0')}:${String(seg%60).padStart(2,'0')}`;
+      }, 1000);
+    }
+
+    function abrirModal() {
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      mostrarStep(stepEmail);
+      document.getElementById('inputNome').focus();
+    }
+
+    function fecharModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (obCountdownInterval) clearInterval(obCountdownInterval);
+    }
+
+    function mostrarStep(s) {
+      [stepEmail, stepOrderBumps, stepPix, stepRedirect].forEach(x => x.style.display = 'none');
+      s.style.display = 'block';
+    }
 
     document.getElementById('btnAbrirModal').addEventListener('click', abrirModal);
     document.getElementById('btnFechar').addEventListener('click', fecharModal);
     document.getElementById('btnFechar2').addEventListener('click', fecharModal);
-    modalOverlay.addEventListener('click', e => { if(e.target===modalOverlay) fecharModal(); });
-    document.addEventListener('keydown', e => { if(e.key==='Escape') fecharModal(); });
+    document.getElementById('btnFecharOB').addEventListener('click', fecharModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) fecharModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
 
-    /* ----------------------------------------------------------
-       STEP 1 → STEP 2: criar cobrança Mercado Pago
-    ---------------------------------------------------------- */
-    document.getElementById('btnIrParaPix').addEventListener('click', async function() {
-      const nome  = document.getElementById('inputNome').value.trim();
+    /* STEP 1 → OB */
+    document.getElementById('btnIrParaPix').addEventListener('click', function () {
+      const nome = document.getElementById('inputNome').value.trim();
       const email = document.getElementById('inputEmail').value.trim();
       const erroEl = document.getElementById('erroEmail');
       erroEl.style.display = 'none';
+      if (!validarNome(nome)) { erroEl.textContent = 'Por favor, informe seu nome completo.'; erroEl.style.display = 'block'; return; }
+      if (!validarEmail(email)) { erroEl.textContent = 'Informe um e-mail válido.'; erroEl.style.display = 'block'; return; }
+      dadosComprador.nome = sanitize(nome); dadosComprador.email = sanitize(email);
+      [1, 2, 3].forEach(id => { obSelecionados[id] = false; document.getElementById('ob' + id).classList.remove('selected'); });
+      CONFIG.VALOR = BASE_VALOR.toFixed(2);
+      document.getElementById('obLossNudge').dataset.wasSelected = '0';
+      atualizarTotalOB();
+      mostrarStep(stepOrderBumps);
+      iniciarCountdownOB();
+      setTimeout(() => registrarCursorEm(document.getElementById('stepOrderBumps')), 50);
+    });
 
-      if (!validarNome(nome))  { erroEl.textContent='Por favor, informe seu nome completo.'; erroEl.style.display='block'; return; }
-      if (!validarEmail(email)) { erroEl.textContent='Informe um e-mail válido.'; erroEl.style.display='block'; return; }
+    document.getElementById('btnOBSkip').addEventListener('click', async () => await gerarEExibirPix());
+    document.getElementById('btnOBContinuar').addEventListener('click', async () => await gerarEExibirPix());
 
-      dadosComprador.nome  = sanitize(nome);
-      dadosComprador.email = sanitize(email);
-      this.textContent = 'Gerando PIX...';
-      this.disabled = true;
-
+    /* GERAR PIX */
+    async function gerarEExibirPix() {
+      const btn = document.getElementById('btnOBContinuar');
+      const btnSkip = document.getElementById('btnOBSkip');
+      btn.textContent = 'Gerando PIX...'; btn.disabled = true; btnSkip.disabled = true;
+      const valorFinal = getTotalOB();
+      CONFIG.VALOR = valorFinal.toFixed(2);
+      document.getElementById('pixValorDisplay').textContent = fmtBRL(valorFinal);
+      // Captura extras selecionados
+      extrasComprados = { ob1: obSelecionados[1], ob2: obSelecionados[2], ob3: obSelecionados[3] };
       try {
-        /* Criar preferência/cobrança PIX no Mercado Pago */
         const resp = await fetch('https://api.mercadopago.com/v1/payments', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN,
-            'X-Idempotency-Key': 'mentoria-' + Date.now()
-          },
-          body: JSON.stringify({
-            transaction_amount: parseFloat(CONFIG.VALOR),
-            description: 'Mentoria Pro: Renda Extra com IA',
-            payment_method_id: 'pix',
-            payer: { email: dadosComprador.email }
-          })
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN, 'X-Idempotency-Key': 'mentoria-' + Date.now() },
+          body: JSON.stringify({ transaction_amount: valorFinal, description: getDescricaoPedido(), payment_method_id: 'pix', payer: { email: dadosComprador.email } })
         });
-
         if (resp.ok) {
           const dados = await resp.json();
           pagamentoId = dados.id;
-          const pixCopiaECola = dados?.point_of_interaction?.transaction_data?.qr_code || gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID);
-          exibirStepPix(pixCopiaECola);
-        } else {
-          throw new Error('MP API error');
-        }
-      } catch(err) {
+          const pixCode = dados?.point_of_interaction?.transaction_data?.qr_code || gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID);
+          exibirStepPix(pixCode);
+        } else throw new Error('API error');
+      } catch (err) {
         console.warn('Fallback PIX local:', err);
-        const pixLocal = gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID);
-        exibirStepPix(pixLocal);
+        exibirStepPix(gerarPixPayload(CONFIG.CHAVE_PIX, CONFIG.NOME_BENEFICIARIO, CONFIG.CIDADE, CONFIG.VALOR, CONFIG.TXID));
       }
-
-      this.textContent = 'Continuar → Gerar PIX';
-      this.disabled = false;
-    });
-
-    function exibirStepPix(pixCopiaECola) {
-      mostrarStep(stepPix);
-      document.getElementById('pixCopiaCola').textContent = pixCopiaECola;
-      desenharQR(document.getElementById('qrCanvas'), pixCopiaECola);
+      btn.innerHTML = 'Continuar → Gerar PIX<span class="cta-sub" id="btnOBSubtitle">Mentoria · R$ 29,99</span>';
+      btn.disabled = false; btnSkip.disabled = false;
     }
 
-    /* ----------------------------------------------------------
-       COPIAR PIX
-    ---------------------------------------------------------- */
-    document.getElementById('btnCopiar').addEventListener('click', function() {
+    function exibirStepPix(pixCode) {
+      mostrarStep(stepPix);
+      document.getElementById('pixCopiaCola').textContent = pixCode;
+      desenharQR(document.getElementById('qrContainer'), pixCode);
+    }
+
+    /* COPIAR */
+    document.getElementById('btnCopiar').addEventListener('click', function () {
       const txt = document.getElementById('pixCopiaCola').textContent;
       if (!txt || txt === 'Gerando código PIX...') return;
-      navigator.clipboard.writeText(txt).then(() => {
-        this.textContent='✓ Copiado!'; this.classList.add('copied');
-        setTimeout(() => { this.textContent='Copiar'; this.classList.remove('copied'); }, 3000);
-      }).catch(() => {
-        const el = document.createElement('textarea');
-        el.value=txt; el.style.cssText='position:fixed;opacity:0'; document.body.appendChild(el);
-        el.select(); document.execCommand('copy'); document.body.removeChild(el);
-        this.textContent='✓ Copiado!'; this.classList.add('copied');
-        setTimeout(() => { this.textContent='Copiar'; this.classList.remove('copied'); }, 3000);
-      });
+      navigator.clipboard.writeText(txt).then(() => { this.textContent = '✓ Copiado!'; this.classList.add('copied'); setTimeout(() => { this.textContent = 'Copiar'; this.classList.remove('copied'); }, 3000); }).catch(() => { const el = document.createElement('textarea'); el.value = txt; el.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); this.textContent = '✓ Copiado!'; this.classList.add('copied'); setTimeout(() => { this.textContent = 'Copiar'; this.classList.remove('copied'); }, 3000); });
     });
 
-    /* ----------------------------------------------------------
-       VERIFICAR PAGAMENTO — Mercado Pago
-    ---------------------------------------------------------- */
-    document.getElementById('btnJaPaguei').addEventListener('click', async function() {
-      const statusEl  = document.getElementById('statusVerificacao');
-      const statusMsg = document.getElementById('statusMsg');
-      this.disabled = true;
-      this.textContent = 'Verificando...';
-      statusEl.className = 'verification-status loading';
-      statusEl.style.display = 'flex';
+    /* VERIFICAR PAGAMENTO → gera token e redireciona */
+    document.getElementById('btnJaPaguei').addEventListener('click', async function () {
+      const statusEl = document.getElementById('statusVerificacao'), statusMsg = document.getElementById('statusMsg');
+      this.disabled = true; this.textContent = 'Verificando...';
+      statusEl.className = 'verification-status loading'; statusEl.style.display = 'flex';
       statusMsg.textContent = 'Verificando pagamento no Mercado Pago...';
-
       try {
         let pago = false;
-
         if (pagamentoId) {
-          const resp = await fetch('https://api.mercadopago.com/v1/payments/' + pagamentoId, {
-            headers: { 'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN }
-          });
-          if (resp.ok) {
-            const dados = await resp.json();
-            pago = dados.status === 'approved';
-          }
+          const resp = await fetch('https://api.mercadopago.com/v1/payments/' + pagamentoId, { headers: { 'Authorization': 'Bearer ' + CONFIG.MP_ACCESS_TOKEN } });
+          if (resp.ok) { const dados = await resp.json(); pago = dados.status === 'approved'; }
         }
-
         if (pago) {
           statusEl.className = 'verification-status success';
-          statusMsg.textContent = '✓ Pagamento confirmado! Liberando acesso...';
-          setTimeout(() => liberarDownload(), 1200);
+          statusMsg.textContent = '✓ Pagamento confirmado! Preparando acesso...';
+          setTimeout(() => liberarAcesso(), 1000);
         } else {
           statusEl.className = 'verification-status error';
-          statusMsg.textContent = 'Pagamento ainda não identificado. Aguarde alguns segundos e tente novamente.';
-          this.disabled = false;
-          this.textContent = '✅ Já paguei — Verificar novamente';
+          statusMsg.textContent = 'Pagamento ainda não identificado. Aguarde e tente novamente.';
+          this.disabled = false; this.textContent = '✅ Já paguei — Verificar novamente';
         }
-      } catch(err) {
+      } catch (err) {
         console.error(err);
         statusEl.className = 'verification-status error';
-        statusMsg.textContent = 'Erro na verificação. Verifique sua conexão e tente novamente.';
-        this.disabled = false;
-        this.textContent = '✅ Já paguei — Tentar novamente';
+        statusMsg.textContent = 'Erro na verificação. Tente novamente.';
+        this.disabled = false; this.textContent = '✅ Já paguei — Tentar novamente';
       }
     });
 
-    /* ----------------------------------------------------------
-       LIBERAR DOWNLOAD — gera PDF no browser
-    ---------------------------------------------------------- */
-    function liberarDownload() {
-      mostrarStep(stepDownload);
-      document.getElementById('downloadSaudacao').textContent =
-        'Olá, ' + (dadosComprador.nome || 'bem-vindo(a)') + '! Seu pagamento foi confirmado. Baixe seu material abaixo.';
+    /* LIBERAR ACESSO: gera token + mostra tela de redirect */
+    function liberarAcesso() {
+      // Gera token com dados do comprador e extras
+      gerarTokenAcesso(dadosComprador.nome, dadosComprador.email, extrasComprados);
 
-      let seg = CONFIG.TEMPO_SEGUNDOS;
-      let baixouUmaVez = false;
+      mostrarStep(stepRedirect);
+      document.getElementById('redirectMsg').textContent =
+        'Olá, ' + (dadosComprador.nome.split(' ')[0] || 'bem-vindo(a)') + '! Pagamento confirmado. Sua área de membros está pronta.';
 
-      function atualizarTimer() {
-        const m = String(Math.floor(seg/60)).padStart(2,'0');
-        const s = String(seg%60).padStart(2,'0');
-        document.getElementById('timerDisplay').textContent = m+':'+s;
-      }
-      atualizarTimer();
-      timerInterval = setInterval(() => {
-        seg--;
-        atualizarTimer();
-        if (seg <= 0) {
-          clearInterval(timerInterval);
-          const btn = document.getElementById('btnDownloadPdf');
-          btn.disabled=true; btn.style.opacity='0.4'; btn.textContent='⏱ Link expirado';
-        }
+      // Barra de progresso animada
+      setTimeout(() => { document.getElementById('redirectBarFill').style.width = '100%'; }, 100);
+
+      // Countdown e redirect automático
+      let count = 3;
+      const countEl = document.getElementById('redirectCount');
+      const interval = setInterval(() => {
+        count--;
+        countEl.textContent = count;
+        if (count <= 0) { clearInterval(interval); acessarMentoria(); }
       }, 1000);
-
-      document.getElementById('btnDownloadPdf').addEventListener('click', function() {
-        if (seg <= 0 || baixouUmaVez) return;
-        baixouUmaVez = true;
-        try {
-          const doc = gerarPDF(dadosComprador.nome);
-          doc.save('Mentoria-Pro-Renda-Extra-com-IA.pdf');
-          this.textContent = '✓ Download iniciado!';
-          this.style.background = 'linear-gradient(135deg, #2dffd4, #c8f23b)';
-        } catch(e) {
-          console.error(e);
-          this.textContent = '⚠ Erro — tente novamente';
-          baixouUmaVez = false;
-        }
-      });
     }
 
-    /* ----------------------------------------------------------
-       CURSOR
-    ---------------------------------------------------------- */
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursorRing');
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
-    (function animRing(){ rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
-    document.querySelectorAll('a,button,.faq-q,.service-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; ring.style.width='60px'; ring.style.height='60px'; ring.style.opacity='0.8'; });
-      el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='40px'; ring.style.height='40px'; ring.style.opacity='0.5'; });
-    });
+    /* ============================================================
+       CURSOR CUSTOMIZADO
+    ============================================================ */
+    const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    (function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
 
-    /* ----------------------------------------------------------
-       SCROLL REVEAL
-    ---------------------------------------------------------- */
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*80); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    /* ----------------------------------------------------------
-       FAQ
-    ---------------------------------------------------------- */
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.querySelector('.faq-q').addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+    function registrarCursorEm(root) {
+      root.querySelectorAll('a, button, input, textarea, select, .faq-q, .service-card, .btn-copy, .btn-verificar, .btn-comprar-mentoria, .modal-close, .ob-card').forEach(el => {
+        if (el.dataset.cursorBound) return;
+        el.dataset.cursorBound = '1';
+        el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = '0.8'; });
+        el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '40px'; ring.style.height = '40px'; ring.style.opacity = '0.5'; });
       });
-    });
+    }
+    registrarCursorEm(document);
+    document.getElementById('btnAbrirModal').addEventListener('click', () => setTimeout(() => registrarCursorEm(document.getElementById('modalBox')), 50));
 
-    /* Hero entrada */
+    /* ============================================================
+       SCROLL REVEAL & FAQ
+    ============================================================ */
+    const obs = new IntersectionObserver((entries) => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.querySelectorAll('.faq-item').forEach(item => { item.querySelector('.faq-q').addEventListener('click', () => { const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); }); });
+
+    /* HERO ENTRADA */
     const heroLeft = document.querySelector('.hero-left');
     heroLeft.style.cssText = 'opacity:0;transform:translateY(40px)';
-    setTimeout(() => { heroLeft.style.transition='opacity 1s ease,transform 1s ease'; heroLeft.style.opacity='1'; heroLeft.style.transform='translateY(0)'; }, 100);
+    setTimeout(() => { heroLeft.style.transition = 'opacity 1s ease, transform 1s ease'; heroLeft.style.opacity = '1'; heroLeft.style.transform = 'translateY(0)'; }, 100);
   </script>
 </body>
 </html>
