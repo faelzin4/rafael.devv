@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentoria Pro · Renda Extra com IA</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #101010;
+      --surface2: #181818;
+      --surface3: #202020;
+      --accent: #c8f23b;
+      --accent2: #2dffd4;
+      --accent3: #ff6b6b;
+      --text: #f0ede6;
+      --text2: rgba(240,237,230,0.65);
+      --muted: #555;
+      --border: rgba(255,255,255,0.07);
+      --sidebar-w: 280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* ── TELA DE BLOQUEIO ── */
+    #accessGate {
+      display: none;
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 9999;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      text-align: center; padding: 40px;
+    }
+    #accessGate.visible { display: flex; }
+    .gate-icon { font-size: 4rem; margin-bottom: 8px; }
+    .gate-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: -0.04em; }
+    .gate-desc { color: var(--text2); font-size: 1rem; max-width: 400px; line-height: 1.6; }
+    .gate-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; padding: 14px 28px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s; }
+    .gate-btn:hover { transform: scale(1.04); }
+
+    /* ── CONTEÚDO PRINCIPAL ── */
+    #mainContent { display: none; }
+    #mainContent.visible { display: flex; min-height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; bottom: 0;
+      overflow-y: auto; z-index: 50;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .sidebar-logo {
+      padding: 24px 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.03em; }
+    .sidebar-logo .logo-text span { color: var(--accent); }
+    .sidebar-logo .logo-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Progresso geral */
+    .sidebar-progress { padding: 16px 24px; border-bottom: 1px solid var(--border); }
+    .progress-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .progress-bar { height: 3px; background: var(--surface3); border-radius: 10px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 10px; transition: width 0.4s ease; width: 0%; }
+
+    /* Nav */
+    .sidebar-nav { padding: 12px 0; flex: 1; }
+    .nav-section-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 12px 24px 6px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 24px; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-left: 2px solid transparent;
+      font-size: 0.88rem; color: var(--text2);
+      text-decoration: none;
+    }
+    .nav-item:hover { background: rgba(200,242,59,0.04); color: var(--text); }
+    .nav-item.active { background: rgba(200,242,59,0.07); border-left-color: var(--accent); color: var(--accent); }
+    .nav-item.completed { color: var(--accent2); }
+    .nav-item.completed .nav-check { opacity: 1; }
+    .nav-icon { font-size: 1rem; width: 20px; flex-shrink: 0; text-align: center; }
+    .nav-text { flex: 1; line-height: 1.3; }
+    .nav-text small { display: block; font-size: 0.68rem; color: var(--muted); margin-top: 1px; }
+    .nav-check { width: 16px; height: 16px; border-radius: 50%; background: var(--accent2); display: flex; align-items: center; justify-content: center; font-size: 0.55rem; color: #000; font-weight: 800; opacity: 0; transition: opacity 0.3s; flex-shrink: 0; }
+    .nav-item.ob-locked { opacity: 0.35; cursor: not-allowed; }
+    .nav-item.ob-locked::after { content: '🔒'; font-size: 0.7rem; }
+
+    /* Badge OB */
+    .nav-ob-badge { font-size: 0.6rem; background: rgba(45,255,212,0.15); border: 1px solid rgba(45,255,212,0.25); color: var(--accent2); padding: 1px 6px; border-radius: 100px; flex-shrink: 0; }
+
+    /* Sidebar bottom */
+    .sidebar-bottom { padding: 16px 24px; border-top: 1px solid var(--border); }
+    .user-pill { display: flex; align-items: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+    .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #000; font-weight: 700; flex-shrink: 0; }
+    .user-name { font-size: 0.82rem; font-weight: 500; }
+    .user-status { font-size: 0.68rem; color: var(--accent2); margin-top: 1px; }
+
+    /* ── MAIN ── */
+    .main-area { margin-left: var(--sidebar-w); flex: 1; min-height: 100vh; }
+
+    /* Top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px;
+    }
+    .topbar-breadcrumb { font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .topbar-breadcrumb span { color: var(--text2); }
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .btn-mark { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); padding: 7px 16px; border-radius: 100px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .btn-mark:hover { border-color: rgba(200,242,59,0.3); color: var(--accent); }
+    .btn-mark.done { background: rgba(45,255,212,0.1); border-color: rgba(45,255,212,0.25); color: var(--accent2); }
+    .hamburger { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; cursor: pointer; color: var(--text2); font-size: 1rem; }
+
+    /* ── MÓDULOS ── */
+    .module-page { display: none; padding: 56px 48px 80px; max-width: 860px; }
+    .module-page.active { display: block; }
+
+    .module-hero { margin-bottom: 48px; }
+    .module-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.15); color: var(--accent); padding: 5px 14px; border-radius: 100px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .module-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 16px; }
+    .module-title em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .module-lead { font-size: 1.05rem; line-height: 1.75; color: var(--text2); max-width: 640px; }
+
+    /* Divisor */
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+    /* Cards de conteúdo */
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    .content-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color 0.3s, transform 0.2s; }
+    .content-card:hover { border-color: rgba(200,242,59,0.2); transform: translateY(-2px); }
+    .content-card .card-icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
+    .content-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .content-card p { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
+
+    /* Highlight box */
+    .highlight-box { background: linear-gradient(135deg, rgba(200,242,59,0.06), rgba(45,255,212,0.04)); border: 1px solid rgba(200,242,59,0.15); border-radius: 14px; padding: 24px 28px; margin: 28px 0; }
+    .highlight-box .hb-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .highlight-box p { font-size: 0.9rem; color: var(--text2); line-height: 1.7; }
+
+    /* Warning box */
+    .warning-box { background: rgba(255,107,107,0.05); border: 1px solid rgba(255,107,107,0.2); border-radius: 14px; padding: 20px 24px; margin: 24px 0; }
+    .warning-box .wb-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--accent3); margin-bottom: 8px; }
+    .warning-box p { font-size: 0.87rem; color: rgba(255,107,107,0.75); line-height: 1.6; }
+
+    /* Steps numerados */
+    .steps-list { display: flex; flex-direction: column; gap: 0; margin: 28px 0; }
+    .step-row { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .step-row:last-child { border-bottom: none; }
+    .step-num-badge { width: 36px; height: 36px; border-radius: 10px; background: rgba(200,242,59,0.1); border: 1px solid rgba(200,242,59,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--accent); flex-shrink: 0; }
+    .step-row-content h5 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.97rem; margin-bottom: 6px; }
+    .step-row-content p { font-size: 0.87rem; color: var(--text2); line-height: 1.65; }
+
+    /* Lista de bullets estilizados */
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; line-height: 1.6; color: var(--text2); }
+    .bullet-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+    .bullet-list li strong { color: var(--text); }
+
+    /* Tabela de preços / precificação */
+    .price-table { width: 100%; border-collapse: collapse; margin: 24px 0; border-radius: 12px; overflow: hidden; }
+    .price-table th { background: var(--surface2); padding: 12px 16px; text-align: left; font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+    .price-table td { padding: 12px 16px; font-size: 0.88rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+    .price-table tr:last-child td { border-bottom: none; }
+    .price-table tr:hover td { background: rgba(200,242,59,0.03); }
+    .price-table .price-val { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); }
+
+    /* Prompt box */
+    .prompt-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 20px 0; position: relative; }
+    .prompt-box .prompt-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .prompt-box .prompt-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
+    .prompt-box .prompt-text { font-size: 0.88rem; line-height: 1.7; color: var(--text2); font-style: italic; }
+    .btn-copy-prompt { position: absolute; top: 16px; right: 16px; background: rgba(45,255,212,0.08); border: 1px solid rgba(45,255,212,0.18); color: var(--accent2); border-radius: 6px; padding: 5px 10px; font-size: 0.7rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .btn-copy-prompt:hover { background: rgba(45,255,212,0.15); }
+
+    /* Tool cards */
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 24px 0; }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.25s; }
+    .tool-card:hover { border-color: rgba(200,242,59,0.25); }
+    .tool-card .tool-emoji { font-size: 1.5rem; }
+    .tool-card .tool-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; }
+    .tool-card .tool-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+    .tool-card .tool-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
+    .tool-card .tool-price { font-size: 0.75rem; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.12); color: var(--accent); padding: 2px 8px; border-radius: 100px; display: inline-block; margin-top: 4px; }
+
+    /* Script de vendas */
+    .script-box { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 20px 0; }
+    .script-box .script-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; }
+    .script-box .script-text { font-size: 0.9rem; line-height: 1.75; color: var(--text2); }
+    .script-box .script-text strong { color: var(--text); }
+
+    /* ── SEÇÃO DE OB EXTRAS ── */
+    .ob-section { background: linear-gradient(135deg, rgba(45,255,212,0.04), rgba(200,242,59,0.04)); border: 1px solid rgba(45,255,212,0.15); border-radius: 16px; padding: 32px; margin: 40px 0; }
+    .ob-section-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(45,255,212,0.1); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .ob-section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 8px; }
+    .ob-section-desc { font-size: 0.9rem; color: var(--text2); margin-bottom: 24px; }
+
+    /* ── MÓDULO BLOQUEADO (OB não comprado) ── */
+    .locked-module { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 40px; }
+    .locked-icon { font-size: 3.5rem; margin-bottom: 24px; }
+    .locked-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 12px; }
+    .locked-desc { color: var(--text2); max-width: 380px; line-height: 1.6; margin-bottom: 28px; }
+    .locked-back { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: 0.9rem; }
+
+    /* ── NAVEGAÇÃO BOTTOM ── */
+    .nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .nav-bottom-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); background: var(--surface); color: var(--text2); }
+    .nav-bottom-btn:hover { border-color: rgba(200,242,59,0.3); color: var(--accent); }
+    .nav-bottom-btn.primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 500; }
+    .nav-bottom-btn.primary:hover { box-shadow: 0 0 20px rgba(200,242,59,0.3); }
+
+    /* ── BOAS-VINDAS / HOME ── */
+    .welcome-header { text-align: center; padding: 60px 0 40px; }
+    .welcome-emoji { font-size: 4rem; margin-bottom: 20px; display: block; }
+    .welcome-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; letter-spacing: -0.04em; margin-bottom: 12px; }
+    .welcome-sub { color: var(--text2); font-size: 1rem; max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .module-cards-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 40px; }
+    .module-nav-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; cursor: pointer; transition: all 0.25s; }
+    .module-nav-card:hover { border-color: rgba(200,242,59,0.3); transform: translateY(-3px); }
+    .module-nav-card .mnc-num { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .module-nav-card .mnc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; }
+    .module-nav-card .mnc-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+    .module-nav-card .mnc-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      :root { --sidebar-w: 0px; }
+      .sidebar { transform: translateX(-280px); width: 280px; }
+      .sidebar.open { transform: translateX(0); }
+      .main-area { margin-left: 0; }
+      .topbar { padding: 14px 20px; }
+      .hamburger { display: block; }
+      .module-page { padding: 32px 20px 60px; }
+      .content-grid { grid-template-columns: 1fr; }
+      .module-cards-grid { grid-template-columns: 1fr 1fr; }
+      .tool-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .module-cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TELA DE ACESSO NEGADO ── -->
+<div id="accessGate" class="visible">
+  <div class="gate-icon">🔒</div>
+  <h1 class="gate-title">Acesso Restrito</h1>
+  <p class="gate-desc">Esta página é exclusiva para alunos da Mentoria Pro. Adquira seu acesso para liberar todo o conteúdo.</p>
+  <a href="index.html" class="gate-btn">Quero garantir meu acesso →</a>
+</div>
+
+<!-- ── CONTEÚDO PRINCIPAL ── -->
+<div id="mainContent">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-text">rafael<span>.</span>dev</div>
+      <div class="logo-sub">Mentoria Pro · Área de Membros</div>
+    </div>
+    <div class="sidebar-progress">
+      <div class="progress-label"><span>Seu progresso</span><span id="progressText">0%</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Início</div>
+      <a class="nav-item active" onclick="goTo('home')" data-module="home">
+        <span class="nav-icon">🏠</span>
+        <div class="nav-text">Boas-vindas<small>Visão geral do curso</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+
+      <div class="nav-section-label">Módulos</div>
+      <a class="nav-item" onclick="goTo('mod1')" data-module="mod1">
+        <span class="nav-icon">🧠</span>
+        <div class="nav-text">Módulo 1 — Mentalidade<small>Posicionamento de mercado</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('mod2')" data-module="mod2">
+        <span class="nav-icon">🛠️</span>
+        <div class="nav-text">Módulo 2 — Stack de IA<small>Ferramentas essenciais</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('mod3')" data-module="mod3">
+        <span class="nav-icon">⚙️</span>
+        <div class="nav-text">Módulo 3 — Execução<small>Do briefing ao código</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('mod4')" data-module="mod4">
+        <span class="nav-icon">💰</span>
+        <div class="nav-text">Módulo 4 — Precificação<small>Quanto e como cobrar</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('mod5')" data-module="mod5">
+        <span class="nav-icon">🎯</span>
+        <div class="nav-text">Módulo 5 — Captação<small>Encontrar e fechar clientes</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('mod6')" data-module="mod6">
+        <span class="nav-icon">🚀</span>
+        <div class="nav-text">Módulo 6 — Escala<small>Da renda extra ao negócio</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+
+      <!-- OB extras — aparecem condicionalmente -->
+      <div class="nav-section-label" id="navExtrasLabel" style="display:none">Extras</div>
+      <a class="nav-item" id="navOB1" onclick="goTo('ob1')" data-module="ob1" style="display:none">
+        <span class="nav-icon">🗂️</span>
+        <div class="nav-text">Templates HTML<small>10 templates prontos</small></div>
+        <span class="nav-ob-badge">Extra</span>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" id="navOB2" onclick="goTo('ob2')" data-module="ob2" style="display:none">
+        <span class="nav-icon">📊</span>
+        <div class="nav-text">Planilha de Gestão<small>Controle total freelancer</small></div>
+        <span class="nav-ob-badge">Extra</span>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" id="navOB3" onclick="goTo('ob3')" data-module="ob3" style="display:none">
+        <span class="nav-icon">💡</span>
+        <div class="nav-text">Prompts de IA<small>50+ prompts testados</small></div>
+        <span class="nav-ob-badge">Extra</span>
+        <div class="nav-check">✓</div>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-pill">
+        <div class="user-avatar" id="userInitial">?</div>
+        <div>
+          <div class="user-name" id="userName">Carregando...</div>
+          <div class="user-status">✓ Acesso liberado</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-area">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</button>
+        <div class="topbar-breadcrumb">Mentoria Pro <span>›</span> <span id="breadcrumbText">Início</span></div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-mark" id="btnMarkDone" onclick="marcarConcluido()">✓ Marcar como concluído</button>
+      </div>
+    </div>
+
+    <!-- ── HOME ── -->
+    <div class="module-page active" id="page-home">
+      <div class="welcome-header">
+        <span class="welcome-emoji">🎓</span>
+        <h1 class="welcome-title">Bem-vindo(a), <span id="welcomeName">aluno</span>!</h1>
+        <p class="welcome-sub">Você está na Mentoria Pro de Renda Extra com IA. Abaixo estão todos os módulos do curso. Comece pelo Módulo 1 e avance no seu ritmo.</p>
+      </div>
+      <div class="module-cards-grid">
+        <div class="module-nav-card" onclick="goTo('mod1')">
+          <span class="mnc-icon">🧠</span>
+          <div class="mnc-num">Módulo 01</div>
+          <div class="mnc-title">Mentalidade de Mercado</div>
+          <div class="mnc-desc">Como se posicionar e pensar como um negócio, não como um freelancer comum.</div>
+        </div>
+        <div class="module-nav-card" onclick="goTo('mod2')">
+          <span class="mnc-icon">🛠️</span>
+          <div class="mnc-num">Módulo 02</div>
+          <div class="mnc-title">Stack de IA</div>
+          <div class="mnc-desc">As ferramentas certas para criar sites profissionais em horas, não dias.</div>
+        </div>
+        <div class="module-nav-card" onclick="goTo('mod3')">
+          <span class="mnc-icon">⚙️</span>
+          <div class="mnc-num">Módulo 03</div>
+          <div class="mnc-title">Execução Técnica</div>
+          <div class="mnc-desc">Do briefing ao site publicado: o processo passo a passo que eu uso em todos os projetos.</div>
+        </div>
+        <div class="module-nav-card" onclick="goTo('mod4')">
+          <span class="mnc-icon">💰</span>
+          <div class="mnc-num">Módulo 04</div>
+          <div class="mnc-title">Precificação</div>
+          <div class="mnc-desc">Tabelas de preço, como apresentar orçamentos e nunca trabalhar barato de novo.</div>
+        </div>
+        <div class="module-nav-card" onclick="goTo('mod5')">
+          <span class="mnc-icon">🎯</span>
+          <div class="mnc-num">Módulo 05</div>
+          <div class="mnc-title">Captação de Clientes</div>
+          <div class="mnc-desc">Scripts e estratégias para encontrar e fechar os primeiros (e próximos) clientes.</div>
+        </div>
+        <div class="module-nav-card" onclick="goTo('mod6')">
+          <span class="mnc-icon">🚀</span>
+          <div class="mnc-num">Módulo 06</div>
+          <div class="mnc-title">Escala e Recorrência</div>
+          <div class="mnc-desc">De renda extra a negócio: como transformar isso num fluxo de caixa mensal previsível.</div>
+        </div>
+      </div>
+      <div class="nav-bottom" style="justify-content:flex-end">
+        <button class="nav-bottom-btn primary" onclick="goTo('mod1')">Começar pelo Módulo 1 →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 1 — MENTALIDADE ── -->
+    <div class="module-page" id="page-mod1">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 01 · Fundação</div>
+        <h1 class="module-title">A mentalidade que<br>separa quem <em>fatura</em><br>de quem só tenta</h1>
+        <p class="module-lead">A maioria das pessoas que tenta ganhar dinheiro com sites falha não por falta de habilidade técnica, mas por falta de mentalidade de negócio. Este módulo resolve isso de vez.</p>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hb-title">💡 A grande virada de chave</div>
+        <p>Você não é um "programador que aceita freelas". Você é um <strong>especialista em resultados digitais</strong> que usa tecnologia para resolver problemas de negócio. Essa mudança de perspectiva muda tudo: o cliente que você atrai, o preço que você cobra e a forma como você apresenta seu trabalho.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;margin-top:36px;">1.1 — Identificando nichos com alto potencial</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:16px;">Não atenda qualquer cliente. Escolha um nicho onde: (1) há muita demanda reprimida, (2) o ticket médio permite boa remuneração e (3) você pode criar autoridade rapidamente.</p>
+
+      <div class="content-grid">
+        <div class="content-card">
+          <span class="card-icon">🏥</span>
+          <h4>Saúde & Estética</h4>
+          <p>Clínicas, dentistas, psicólogos, nutricionistas. Alta demanda, clientela com poder aquisitivo e quase nenhum com site decente.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">⚖️</span>
+          <h4>Advocacia</h4>
+          <p>Escritórios de advocacia têm obrigação legal de captar clientes sem publicidade agressiva. Um site profissional é essencial.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">🏗️</span>
+          <h4>Construção Civil</h4>
+          <p>Construtoras, arquitetos, reformas. Mercado enorme que ainda opera no boca a boca sem nenhuma presença digital.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">📚</span>
+          <h4>Educação & Cursos</h4>
+          <p>Infoprodutores, professores particulares e escolas de idiomas precisam de landing pages de vendas constantemente.</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">1.2 — Posicionamento que justifica preços altos</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">O erro mais comum: tentar competir por preço. Quem compete por preço sempre perde para alguém disposto a cobrar menos. Veja como se diferenciar:</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num-badge">01</div>
+          <div class="step-row-content">
+            <h5>Especialize-se em um resultado, não em uma tecnologia</h5>
+            <p>Em vez de "faço sites em HTML/CSS", diga "crio páginas de vendas que convertem visitantes em clientes para profissionais de saúde". Um resultado específico vale muito mais.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">02</div>
+          <div class="step-row-content">
+            <h5>Mostre ROI, não código</h5>
+            <p>Seu cliente não quer ver código bonito. Ele quer saber: "se eu pagar R$1.500 no seu site, quanto vou ganhar de volta?". Pense em termos de custo de aquisição de cliente e mostre esse cálculo.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">03</div>
+          <div class="step-row-content">
+            <h5>Crie um portfólio de nicho (mesmo sem clientes reais)</h5>
+            <p>Crie 2–3 sites fictícios do seu nicho escolhido usando IA. Publique no GitHub Pages ou Netlify gratuitamente. Isso é seu portfólio. Você não precisa esperar um cliente para ter cases.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">04</div>
+          <div class="step-row-content">
+            <h5>Construa autoridade antes de prospectar</h5>
+            <p>Poste 1 vídeo ou post por semana mostrando um site que você criou com IA. O Instagram e o LinkedIn se tornam sua máquina de leads orgânicos sem gastar nada em anúncios.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <div class="wb-title">⚠️ Armadilha comum: o "freela barato"</div>
+        <p>Se você aceitar o primeiro cliente por R$200 por desespero, você se posicionou nesse nível. É muito difícil aumentar preços com o mesmo cliente. Prefira esperar 1–2 semanas extras e fechar um cliente pelo valor certo do que entrar pela porta errada.</p>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('home')">← Início</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('mod2'); marcarConcluido()">Módulo 2: Stack de IA →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 2 — STACK DE IA ── -->
+    <div class="module-page" id="page-mod2">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 02 · Ferramentas</div>
+        <h1 class="module-title">O <em>arsenal de IA</em><br>que uso em todos<br>os meus projetos</h1>
+        <p class="module-lead">Você não precisa de todas as ferramentas. Precisa das certas. Aqui estão as que realmente fazem diferença no dia a dia de quem cria sites com IA.</p>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <span class="tool-emoji">🤖</span>
+          <div class="tool-name">ChatGPT / Claude</div>
+          <div class="tool-type">Geração de código & copy</div>
+          <div class="tool-desc">Para gerar estrutura HTML/CSS, textos de vendas, e-mails de prospecção e qualquer texto do site.</div>
+          <span class="tool-price">Gratuito / Pago</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">⚡</span>
+          <div class="tool-name">v0.dev</div>
+          <div class="tool-type">UI gerada por IA</div>
+          <div class="tool-desc">Descreva um componente ou layout e ele gera código React/Tailwind profissional em segundos.</div>
+          <span class="tool-price">Gratuito (limitado)</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">📸</span>
+          <div class="tool-name">Screenshot-to-Code</div>
+          <div class="tool-type">Conversão de imagem</div>
+          <div class="tool-desc">Tire print de qualquer site que você goste e transforma em HTML/CSS automaticamente.</div>
+          <span class="tool-price">Open-source</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">🎨</span>
+          <div class="tool-name">Midjourney / DALL-E</div>
+          <div class="tool-type">Imagens exclusivas</div>
+          <div class="tool-desc">Crie imagens de hero, ícones e visuais únicos para cada cliente sem banco de imagens.</div>
+          <span class="tool-price">Pago / Créditos</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">🖌️</span>
+          <div class="tool-name">Relume.io</div>
+          <div class="tool-type">Wireframes com IA</div>
+          <div class="tool-desc">Gere sitemaps e wireframes completos com IA. Conecta ao Figma e Webflow.</div>
+          <span class="tool-price">Freemium</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">🚀</span>
+          <div class="tool-name">Netlify / GitHub Pages</div>
+          <div class="tool-type">Hospedagem</div>
+          <div class="tool-desc">Hospede sites HTML/CSS gratuitamente em segundos. Use para portfólio e projetos de clientes.</div>
+          <span class="tool-price">Gratuito</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">💬</span>
+          <div class="tool-name">Typebot</div>
+          <div class="tool-type">Chatbot com IA</div>
+          <div class="tool-desc">Crie chatbots de qualificação de leads para seus clientes. Valor agregado enorme.</div>
+          <span class="tool-price">Gratuito / Pago</span>
+        </div>
+        <div class="tool-card">
+          <span class="tool-emoji">📊</span>
+          <div class="tool-name">Hotjar (grátis)</div>
+          <div class="tool-type">Análise de comportamento</div>
+          <div class="tool-desc">Ofereça análise de heatmap como serviço adicional. Clientes adoram ver onde clicam.</div>
+          <span class="tool-price">Gratuito (básico)</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">2.1 — Prompts que realmente funcionam</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">A qualidade do que você pede ao ChatGPT determina 90% do resultado. Use estes prompts como base e adapte para cada projeto:</p>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt: Gerar estrutura de landing page</div>
+        <div class="prompt-text" id="prompt1">Crie o código HTML5 e CSS3 completo de uma landing page para [NICHO], chamada [NOME DA EMPRESA]. O site deve ter: seção hero com headline impactante, seção de serviços (3 cards), depoimentos (2), formulário de contato e rodapé. Design dark mode com cor de destaque [COR]. Mobile-first, sem frameworks externos. Código limpo e comentado.</div>
+        <button class="btn-copy-prompt" onclick="copyPrompt('prompt1', this)">Copiar</button>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt: Copywriting de hero section</div>
+        <div class="prompt-text" id="prompt2">Escreva uma headline e subheadline para a hero section de um site de [NICHO]. O público é [DESCREVA PÚBLICO]. O principal problema que eles têm é [PROBLEMA]. Nossa solução é [SOLUÇÃO]. Use linguagem direta, sem jargões. A headline deve ter no máximo 8 palavras e criar curiosidade ou urgência. Dê 5 opções.</div>
+        <button class="btn-copy-prompt" onclick="copyPrompt('prompt2', this)">Copiar</button>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Prompt: SEO local</div>
+        <div class="prompt-text" id="prompt3">Liste 10 palavras-chave de SEO local para um(a) [NICHO] em [CIDADE]. Depois escreva uma meta description de 155 caracteres usando as 3 palavras-chave mais importantes. Inclua a cidade e um benefício claro para o cliente. Formato: palavra-chave | volume estimado | intenção de busca.</div>
+        <button class="btn-copy-prompt" onclick="copyPrompt('prompt3', this)">Copiar</button>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod1')">← Módulo 1</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('mod3'); marcarConcluido()">Módulo 3: Execução →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 3 — EXECUÇÃO ── -->
+    <div class="module-page" id="page-mod3">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 03 · Técnico</div>
+        <h1 class="module-title">Do briefing ao<br>site publicado em<br><em>menos de 48h</em></h1>
+        <p class="module-lead">Este módulo é o coração da mentoria. O processo completo de como eu crio sites profissionais, do zero ao ar, usando IA como acelerador de cada etapa.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">3.1 — Fase 1: Briefing inteligente (30–60 min)</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Nunca comece a codar sem um briefing completo. Use este checklist de perguntas com cada cliente:</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num-badge">01</div>
+          <div class="step-row-content">
+            <h5>Qual é o objetivo principal do site?</h5>
+            <p>Captar leads via formulário? Vender diretamente? Mostrar portfólio? Cada objetivo muda completamente a estrutura e as seções necessárias.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">02</div>
+          <div class="step-row-content">
+            <h5>Quem é o cliente ideal deles?</h5>
+            <p>Peça detalhes: idade, renda, problema principal, onde eles buscam soluções. Isso alimenta o copywriting gerado por IA com muito mais precisão.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">03</div>
+          <div class="step-row-content">
+            <h5>Me manda 3 sites que você admira (mesmo fora do seu nicho)</h5>
+            <p>Referências visuais valem mais que mil palavras. Com isso você consegue usar o Screenshot-to-Code e adaptar o estilo para o cliente.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">04</div>
+          <div class="step-row-content">
+            <h5>Qual é a ação que você quer que o visitante tome?</h5>
+            <p>Ligar, enviar formulário, ir ao WhatsApp, agendar pelo Calendly? Isso define a CTA principal e o design geral da página.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">3.2 — Fase 2: Geração de estrutura com IA</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Com o briefing em mãos, alimente o ChatGPT ou Claude com todas as informações e gere o site. Estrutura recomendada para landing pages de conversão:</p>
+
+      <div class="content-grid">
+        <div class="content-card">
+          <span class="card-icon">🎯</span>
+          <h4>1. Hero Section</h4>
+          <p>Headline forte, subheadline, CTA principal e prova social (ex: "mais de 200 clientes atendidos"). Primeira impressão é tudo.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">😰</span>
+          <h4>2. Problema & Agitação</h4>
+          <p>Mostre que você entende a dor do cliente. Quanto mais específico, mais o visitante se identifica e continua lendo.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">✨</span>
+          <h4>3. Solução & Benefícios</h4>
+          <p>Apresente o serviço com foco em benefícios, não funcionalidades. "Mais pacientes por mês" vale mais que "site responsivo".</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">⭐</span>
+          <h4>4. Prova Social</h4>
+          <p>Depoimentos reais (ou fictícios no portfólio inicial), logos de empresas atendidas, números e resultados.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">❓</span>
+          <h4>5. FAQ</h4>
+          <p>Responda as 5–6 objeções mais comuns antes que o visitante as tenha. Isso reduz abandono e aumenta conversão.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">📞</span>
+          <h4>6. CTA Final</h4>
+          <p>Repita a ação principal com urgência ou escassez. Formulário simples (nome + telefone + mensagem é suficiente).</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hb-title">🔑 Segredo do código limpo com IA</div>
+        <p>Sempre peça ao ChatGPT para gerar o código em <strong>seções separadas</strong>: primeiro o HTML, depois o CSS. Depois peça: "agora torne este código 100% responsivo para mobile usando CSS Grid e Flexbox". Revisar seção por seção evita bagunça e facilita ajustes.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin:36px 0 20px;">3.3 — Fase 3: Publicação em 5 minutos</h2>
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num-badge">01</div>
+          <div class="step-row-content">
+            <h5>Netlify Drop</h5>
+            <p>Acesse netlify.com/drop e arraste a pasta do projeto. Em 30 segundos o site está no ar com URL pública. Perfeito para aprovação do cliente antes de configurar o domínio.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">02</div>
+          <div class="step-row-content">
+            <h5>Domínio + DNS</h5>
+            <p>Compre o domínio no Registro.br (~R$40/ano). Aponte o DNS para o Netlify seguindo a documentação deles. Processo leva 10 minutos e propaga em até 24h.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">03</div>
+          <div class="step-row-content">
+            <h5>SSL automático</h5>
+            <p>O Netlify ativa o certificado HTTPS automaticamente. Seu cliente já tem o cadeado de segurança sem pagar nada extra.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod2')">← Módulo 2</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('mod4'); marcarConcluido()">Módulo 4: Precificação →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 4 — PRECIFICAÇÃO ── -->
+    <div class="module-page" id="page-mod4">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 04 · Negócio</div>
+        <h1 class="module-title">Quanto cobrar<br>para <em>nunca mais</em><br>trabalhar barato</h1>
+        <p class="module-lead">Precificação é a habilidade mais subestimada do freelancer. Aqui você vai ver os números reais, as tabelas que uso e como apresentar um orçamento que justifica cada centavo.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">4.1 — Tabela de preços por serviço</h2>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>Prazo</th>
+            <th>Preço Mínimo</th>
+            <th>Preço Ideal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Landing Page (1 seção)</td><td>2–3 dias</td><td class="price-val">R$ 600</td><td class="price-val">R$ 1.200</td></tr>
+          <tr><td>Landing Page (completa)</td><td>4–6 dias</td><td class="price-val">R$ 1.200</td><td class="price-val">R$ 2.000</td></tr>
+          <tr><td>Site Institucional (4–6 pgs)</td><td>7–12 dias</td><td class="price-val">R$ 2.500</td><td class="price-val">R$ 5.000</td></tr>
+          <tr><td>Site + Chatbot de leads</td><td>8–14 dias</td><td class="price-val">R$ 3.500</td><td class="price-val">R$ 7.000</td></tr>
+          <tr><td>Manutenção mensal</td><td>Contínuo</td><td class="price-val">R$ 150/mês</td><td class="price-val">R$ 350/mês</td></tr>
+          <tr><td>Otimização de SEO</td><td>3–5 dias</td><td class="price-val">R$ 500</td><td class="price-val">R$ 1.500</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <div class="hb-title">📐 A regra das 3x</div>
+        <p>Calcule quantas horas o projeto vai levar e qual é seu valor/hora desejado. Multiplique por 3. Por quê? 1x cobre seu tempo, 1x cobre revisões e imprevistos, 1x é seu lucro real. Se você quer R$100/hora e o projeto leva 8 horas: 8 × 100 × 3 = R$2.400. Esse é seu preço mínimo.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">4.2 — Como apresentar o orçamento</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Nunca mande um número solto no WhatsApp. Crie uma proposta visual (pode ser um PDF simples) com:</p>
+
+      <ul class="bullet-list">
+        <li><strong>Resumo do problema entendido</strong> — mostra que você ouviu o cliente, não só vendeu um serviço genérico.</li>
+        <li><strong>Solução proposta</strong> — descreva o que vai ser entregue de forma clara e específica, com screenshots de referência.</li>
+        <li><strong>O que está incluído e o que não está</strong> — evita desentendimentos futuros. Seja explícito sobre revisões, copywriting, imagens.</li>
+        <li><strong>Prazo de entrega</strong> — com as etapas: briefing → desenvolvimento → revisão → publicação.</li>
+        <li><strong>Condições de pagamento</strong> — 50% na assinatura, 50% na aprovação final. Nunca entregue sem sinal.</li>
+        <li><strong>Validade da proposta</strong> — coloque 7 dias. Cria urgência e é honesto.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">4.3 — Criando recorrência (o maior segredo)</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Um projeto pago é ótimo. Um contrato mensal é o que muda sua vida financeira. Ofereça sempre:</p>
+
+      <div class="content-grid">
+        <div class="content-card">
+          <span class="card-icon">🔄</span>
+          <h4>Plano de Manutenção</h4>
+          <p>Atualizações de conteúdo, correções, backup e relatório mensal de acessos. R$150–350/mês por cliente.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">📈</span>
+          <h4>SEO Mensal</h4>
+          <p>Otimizações técnicas, novos textos e relatório do Google Search Console. Valor mínimo R$300/mês.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">📣</span>
+          <h4>Landing Pages Sazonais</h4>
+          <p>Para campanhas, datas comemorativas e promoções. Clientes de saúde e varejo sempre precisam.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">🤝</span>
+          <h4>Indicações Comissionadas</h4>
+          <p>Ofereça 10–15% de comissão para cada indicação fechada. Clientes satisfeitos viram vendedores.</p>
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod3')">← Módulo 3</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('mod5'); marcarConcluido()">Módulo 5: Captação →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 5 — CAPTAÇÃO ── -->
+    <div class="module-page" id="page-mod5">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 05 · Vendas</div>
+        <h1 class="module-title">Como encontrar<br>clientes <em>todos os meses</em><br>sem anunciar</h1>
+        <p class="module-lead">Prospecção é a habilidade que mais assusta quem começa. Mas com os scripts certos e as abordagens certas, você vai entender que vender é só ajudar a pessoa certa a encontrar a solução certa.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">5.1 — Google Maps: a mina de ouro esquecida</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Acesse o Google Maps, pesquise o seu nicho + cidade, e filtre por empresas sem site, com sites antigos (dá pra ver na prévia) ou com avaliações ruins. Esses são seus leads.</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num-badge">01</div>
+          <div class="step-row-content">
+            <h5>Pesquise e filtre</h5>
+            <p>Ex: "clínica de estética Joinville". Abra cada resultado, verifique o site. Sem site ou com site horrível = oportunidade. Anote nome, telefone e e-mail de contato.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">02</div>
+          <div class="step-row-content">
+            <h5>Crie um mockup antes de contatar</h5>
+            <p>Use a IA para criar uma versão simplificada de como o site deles poderia ser. Hospede no Netlify. Agora você tem algo concreto para mostrar — isso aumenta a taxa de resposta em 5x.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">03</div>
+          <div class="step-row-content">
+            <h5>Aborde com o mockup pronto</h5>
+            <p>Use o script abaixo para entrar em contato. A pessoa já vê o trabalho, não só a promessa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">5.2 — Scripts de abordagem testados</h2>
+
+      <div class="script-box">
+        <div class="script-label">Script 1: WhatsApp — Abordagem direta com mockup</div>
+        <div class="script-text">
+          Oi, <strong>[NOME]</strong>! Tudo bem?<br><br>
+          Sou o Rafael, dev especializado em sites para <strong>[NICHO]</strong>. Pesquisei alguns negócios da região e fiquei curioso com a presença digital de vocês.<br><br>
+          Criei uma versão rápida de como um site moderno pra <strong>[NOME DA EMPRESA]</strong> poderia parecer: <strong>[LINK DO MOCKUP]</strong><br><br>
+          É só uma ideia, mas quis mostrar o potencial. Se tiver interesse em conversar, sem compromisso, é só responder aqui. 😊
+        </div>
+      </div>
+
+      <div class="script-box">
+        <div class="script-label">Script 2: Instagram DM — Abordagem por conteúdo</div>
+        <div class="script-text">
+          Oi <strong>[NOME]</strong>! Vi seu perfil e adorei o trabalho de vocês em <strong>[MENCIONE ALGO ESPECÍFICO DO PERFIL]</strong>.<br><br>
+          Fico imaginando o quanto a presença digital de vocês poderia ser ainda mais forte com um site que acompanhe a qualidade do que vocês fazem.<br><br>
+          Trabalho criando sites para <strong>[NICHO]</strong> e teria algumas ideias para vocês. Posso te mandar um exemplo?
+        </div>
+      </div>
+
+      <div class="script-box">
+        <div class="script-label">Script 3: E-mail frio — Tom profissional</div>
+        <div class="script-text">
+          <strong>Assunto: Uma ideia para o site de [NOME DA EMPRESA]</strong><br><br>
+          Olá, <strong>[NOME]</strong>,<br><br>
+          Encontrei a [EMPRESA] pesquisando <strong>[NICHO]</strong> em <strong>[CIDADE]</strong> e fiquei impressionado com os depoimentos dos clientes de vocês.<br><br>
+          Sou desenvolvedor especializado em sites para <strong>[NICHO]</strong> e criei uma versão de demonstração de como um site moderno poderia representar melhor o trabalho que vocês fazem: <strong>[LINK]</strong><br><br>
+          Caso tenha interesse em conversar sobre isso (sem compromisso), posso explicar o processo em 15 minutos.<br><br>
+          Abraço,<br>Rafael
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hb-title">🎯 Meta realista de prospecção</div>
+        <p>Contate <strong>10 negócios por semana</strong> com mockup personalizado. Taxa de resposta esperada: 20–30%. Taxa de fechamento após conversa: 30–40%. Resultado: <strong>1–2 clientes por semana</strong> ativamente prospectando.</p>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod4')">← Módulo 4</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('mod6'); marcarConcluido()">Módulo 6: Escala →</button>
+      </div>
+    </div>
+
+    <!-- ── MÓDULO 6 — ESCALA ── -->
+    <div class="module-page" id="page-mod6">
+      <div class="module-hero">
+        <div class="module-eyebrow">Módulo 06 · Crescimento</div>
+        <h1 class="module-title">De <em>renda extra</em><br>a negócio de<br>R$10k/mês</h1>
+        <p class="module-lead">Você já tem o método. Agora veja como transformar isso em algo previsível, escalável e que funciona mesmo quando você não está trabalhando ativamente.</p>
+      </div>
+
+      <div class="highlight-box">
+        <div class="hb-title">🧮 A matemática da escala</div>
+        <p>Com 80% de redução de tempo graças à IA, você consegue fazer <strong>4–6 projetos por mês</strong> no seu tempo livre. A R$1.500 por projeto médio, isso é R$6.000–9.000/mês de renda extra. Adicione 5 clientes de manutenção (R$250/mês cada) e você está em R$7.250–10.250/mês — sem sair do emprego atual.</p>
+      </div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;margin-top:36px;">6.1 — Automatizando a captação com conteúdo</h2>
+      <p style="color:var(--text2);line-height:1.7;margin-bottom:20px;">Em vez de prospectar individualmente, faça o conteúdo trabalhar por você:</p>
+
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num-badge">01</div>
+          <div class="step-row-content">
+            <h5>Crie 1 vídeo por semana</h5>
+            <p>Mostre o processo de criar um site com IA em timelapse. Poste no Instagram Reels, TikTok e YouTube Shorts. O algoritmo distribui de graça — você só precisa de consistência.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">02</div>
+          <div class="step-row-content">
+            <h5>Cases com antes e depois</h5>
+            <p>Todo cliente entregue é um case. Print do site antigo vs o novo. Métricas se tiver (mais ligações, mais formulários). Esse conteúdo converte muito melhor que qualquer anúncio.</p>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-num-badge">03</div>
+          <div class="step-row-content">
+            <h5>LinkedIn para clientes B2B</h5>
+            <p>Gerentes e donos de empresa com budget maior estão no LinkedIn. Poste 2x por semana sobre resultados e processos. Use o ChatGPT para gerar os posts com base nos seus projetos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2 style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:20px;">6.2 — Parcerias estratégicas de alto valor</h2>
+
+      <div class="content-grid">
+        <div class="content-card">
+          <span class="card-icon">📣</span>
+          <h4>Gestores de Tráfego</h4>
+          <p>Eles gerenciam anúncios e precisam de landing pages constantemente. Ofereça parceria: eles indicam clientes, você faz o site e divide uma porcentagem.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">📱</span>
+          <h4>Social Media Managers</h4>
+          <p>Gerenciam redes sociais mas não fazem sites. Parceria natural: eles cuidam das redes, você do site. Indique um ao outro.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">🖼️</span>
+          <h4>Designers Gráficos</h4>
+          <p>Designers criam identidade visual mas não sabem codar. Você faz o site, eles fazem o visual. Juntos atendem clientes maiores.</p>
+        </div>
+        <div class="content-card">
+          <span class="card-icon">🏦</span>
+          <h4>Contadores e Consultores</h4>
+          <p>Atendem empresários que precisam de site. Uma comissão de 10–15% por indicação é excelente para ambos os lados.</p>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <div class="wb-title">🚨 O erro que destrói o crescimento</div>
+        <p>Aceitar qualquer projeto de qualquer cliente. Quanto mais você se especializa, mais rápido você entrega, mais caro você cobra e mais indicações chegam. Dizer não para clientes fora do seu perfil é o que permite crescer de verdade.</p>
+      </div>
+
+      <div class="highlight-box" style="text-align:center;">
+        <div class="hb-title" style="justify-content:center;">🎓 Parabéns! Você concluiu a Mentoria Pro</div>
+        <p>Agora você tem o método completo. O próximo passo é agir: escolha um nicho esta semana, crie 2 mockups e contate 10 empresas. Os resultados vêm com consistência.</p>
+        <br>
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Concluí+a+mentoria+e+tenho+dúvidas+sobre+[ASSUNTO]" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:12px 24px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:800;text-decoration:none;font-size:0.9rem;">💬 Falar com o Rafael no WhatsApp</a>
+      </div>
+
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod5')">← Módulo 5</button>
+        <button class="nav-bottom-btn primary" onclick="goTo('home'); marcarConcluido()">✓ Concluir mentoria</button>
+      </div>
+    </div>
+
+    <!-- ── OB1: TEMPLATES HTML ── -->
+    <div class="module-page" id="page-ob1">
+      <div class="ob-section" style="margin-bottom:0;border-radius:0;border:none;border-bottom:1px solid var(--border);padding:40px 0;background:transparent;">
+        <div class="ob-section-badge">Extra exclusivo</div>
+        <h1 class="module-title">Pack de <em>10 Templates</em><br>HTML Prontos</h1>
+        <p class="module-lead">10 landing pages profissionais para os nichos com maior demanda. Copie, personalize com IA e entregue. Economize horas em cada projeto.</p>
+      </div>
+      <div style="padding-top:48px;">
+        <div class="tool-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+          <div class="tool-card"><span class="tool-emoji">🏥</span><div class="tool-name">Template Clínica de Saúde</div><div class="tool-desc">Hero, serviços, equipe médica, depoimentos, formulário de agendamento.</div></div>
+          <div class="tool-card"><span class="tool-emoji">⚖️</span><div class="tool-name">Template Escritório de Advocacia</div><div class="tool-desc">Áreas de atuação, diferenciais, FAQ jurídico, formulário de consulta.</div></div>
+          <div class="tool-card"><span class="tool-emoji">🏋️</span><div class="tool-name">Template Academia / Personal</div><div class="tool-desc">Planos, galeria de transformações, cronograma, WhatsApp CTA.</div></div>
+          <div class="tool-card"><span class="tool-emoji">🍕</span><div class="tool-name">Template Restaurante / Delivery</div><div class="tool-desc">Cardápio visual, localização, horários, integração iFood/WhatsApp.</div></div>
+          <div class="tool-card"><span class="tool-emoji">🏗️</span><div class="tool-name">Template Construção Civil</div><div class="tool-desc">Portfólio de obras, orçamento online, certificações, depoimentos.</div></div>
+          <div class="tool-card"><span class="tool-emoji">💇</span><div class="tool-name">Template Salão / Estética</div><div class="tool-desc">Serviços, galeria, agendamento online, promoções em destaque.</div></div>
+          <div class="tool-card"><span class="tool-emoji">📚</span><div class="tool-name">Template Curso / Mentoria</div><div class="tool-desc">Módulos, bônus, depoimentos, FAQs e checkout integrado.</div></div>
+          <div class="tool-card"><span class="tool-emoji">🏡</span><div class="tool-name">Template Imobiliária</div><div class="tool-desc">Listagem de imóveis, filtros visuais, contato corretor, tour virtual.</div></div>
+          <div class="tool-card"><span class="tool-emoji">🐾</span><div class="tool-name">Template Pet Shop / Vet</div><div class="tool-desc">Serviços, galeria, agendamento de consultas, dicas de saúde animal.</div></div>
+          <div class="tool-card"><span class="tool-emoji">💼</span><div class="tool-name">Template Portfólio Profissional</div><div class="tool-desc">Sobre, projetos, habilidades, depoimentos, formulário de contato.</div></div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:32px;">
+          <div class="hb-title">📥 Como usar os templates</div>
+          <p>Cada template é um arquivo HTML/CSS autocontido. Abra no VS Code, alimente o ChatGPT com o código e peça para personalizar: cores, textos, imagens e CTA. Em 30–60 minutos você tem um site pronto e exclusivo para o cliente.</p>
+        </div>
+
+        <div class="prompt-box" style="margin-top:24px;">
+          <div class="prompt-label">Prompt: Personalizar template para cliente</div>
+          <div class="prompt-text" id="prompt-tmpl">Tenho este código HTML de uma landing page para [NICHO]. Preciso que você: 1) Substitua todos os textos de exemplo por textos reais e persuasivos para [NOME DA EMPRESA] em [CIDADE]. 2) Mude as cores principais para [COR1] e [COR2] em todo o CSS. 3) Substitua "Empresa Exemplo" pelo nome real em todos os lugares. 4) Torne o formulário de contato redirecionar para o WhatsApp [NÚMERO]. Mantenha toda a estrutura HTML e apenas modifique o necessário. [COLE O CÓDIGO DO TEMPLATE AQUI]</div>
+          <button class="btn-copy-prompt" onclick="copyPrompt('prompt-tmpl', this)">Copiar</button>
+        </div>
+      </div>
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod6')">← Módulo 6</button>
+      </div>
+    </div>
+
+    <!-- ── OB2: PLANILHA DE GESTÃO ── -->
+    <div class="module-page" id="page-ob2">
+      <div class="ob-section" style="margin-bottom:0;border-radius:0;border:none;border-bottom:1px solid var(--border);padding:40px 0;background:transparent;">
+        <div class="ob-section-badge">Extra exclusivo</div>
+        <h1 class="module-title">Planilha de <em>Gestão</em><br>Completa do<br>Freelancer</h1>
+        <p class="module-lead">Nunca mais perca o controle de clientes, prazos, pagamentos e projetos. Uma planilha profissional para gerir seu negócio freelancer do zero.</p>
+      </div>
+      <div style="padding-top:48px;">
+        <div class="content-grid">
+          <div class="content-card"><span class="card-icon">👥</span><h4>Aba Clientes</h4><p>Nome, contato, nicho, status do relacionamento, data de início e histórico de projetos. Filtre e segmente em segundos.</p></div>
+          <div class="content-card"><span class="card-icon">📋</span><h4>Aba Projetos</h4><p>Projeto, cliente, prazo, etapa atual, % concluído, valor total, valor recebido e saldo pendente. Visão completa do pipeline.</p></div>
+          <div class="content-card"><span class="card-icon">💸</span><h4>Aba Financeiro</h4><p>Entradas, saídas, mês a mês, projeção anual e indicador de ticket médio. Saiba exatamente quanto você faturou e vai faturar.</p></div>
+          <div class="content-card"><span class="card-icon">📊</span><h4>Dashboard Visual</h4><p>Gráficos automáticos de faturamento por mês, projetos por status e clientes ativos. Visão executiva do seu negócio.</p></div>
+        </div>
+
+        <div class="steps-list" style="margin-top:32px;">
+          <div class="step-row">
+            <div class="step-num-badge">📌</div>
+            <div class="step-row-content">
+              <h5>Como usar: Registro de novo projeto</h5>
+              <p>Na aba Projetos, preencha: cliente, valor total, sinal recebido (50%), prazo estimado e etapa inicial ("Briefing"). Conforme o projeto avança, atualize a etapa e o % concluído. O Dashboard atualiza automaticamente.</p>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-num-badge">💡</div>
+            <div class="step-row-content">
+              <h5>Dica: Alerta de pagamentos pendentes</h5>
+              <p>A planilha destaca em vermelho projetos entregues sem o saldo final recebido. Nunca mais esqueça de cobrar a segunda parcela do projeto.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <div class="hb-title">📥 Acessando a planilha</div>
+          <p>A planilha está em formato Google Sheets. Acesse o link abaixo, faça uma cópia para sua conta Google e comece a usar. Você pode adaptá-la livremente.</p>
+          <br>
+          <a href="https://docs.google.com/spreadsheets/d/1exemplo" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(200,242,59,0.1);border:1px solid rgba(200,242,59,0.25);color:var(--accent);padding:10px 20px;border-radius:8px;text-decoration:none;font-size:0.88rem;font-weight:500;">📊 Abrir Planilha no Google Sheets →</a>
+        </div>
+      </div>
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod6')">← Módulo 6</button>
+      </div>
+    </div>
+
+    <!-- ── OB3: PROMPTS DE IA ── -->
+    <div class="module-page" id="page-ob3">
+      <div class="ob-section" style="margin-bottom:0;border-radius:0;border:none;border-bottom:1px solid var(--border);padding:40px 0;background:transparent;">
+        <div class="ob-section-badge">Extra exclusivo</div>
+        <h1 class="module-title"><em>50+ Prompts</em><br>de IA testados<br>na prática</h1>
+        <p class="module-lead">Os prompts exatos que uso todo dia para gerar código, copy, imagens e automatizar tarefas. Testados e otimizados para ChatGPT e Claude.</p>
+      </div>
+      <div style="padding-top:48px;">
+
+        <h2 style="font-family:'Syne';font-weight:800;font-size:1.1rem;margin-bottom:16px;color:var(--accent);">🖥️ Geração de Código</h2>
+        <div class="prompt-box"><div class="prompt-label">Seção Hero responsiva</div><div class="prompt-text" id="p1">Crie uma seção hero responsiva em HTML5 e CSS3 puro para [NICHO]. Deve ter: headline impactante em Syne Bold, subheadline em DM Sans Light, botão de CTA para WhatsApp, imagem de fundo com overlay gradiente. Mobile-first. Cor de destaque: [COR]. Sem frameworks externos.</div><button class="btn-copy-prompt" onclick="copyPrompt('p1',this)">Copiar</button></div>
+        <div class="prompt-box"><div class="prompt-label">Grid de serviços animados</div><div class="prompt-text" id="p2">Crie um grid de 3 cards de serviços em HTML/CSS com: ícone emoji grande, título em bold, descrição curta, e animação de hover com sombra colorida. Background dark (#111), borda sutil, border-radius 16px. Responsivo para 1 coluna no mobile. Sem JS.</div><button class="btn-copy-prompt" onclick="copyPrompt('p2',this)">Copiar</button></div>
+        <div class="prompt-box"><div class="prompt-label">Formulário integrado ao WhatsApp</div><div class="prompt-text" id="p3">Crie um formulário HTML com campos: Nome, Telefone, Serviço (select com opções), Mensagem. Ao clicar em Enviar, deve abrir o WhatsApp com uma mensagem pré-formatada contendo os dados preenchidos. Número do WhatsApp: [NÚMERO]. CSS moderno, dark mode, sem backend.</div><button class="btn-copy-prompt" onclick="copyPrompt('p3',this)">Copiar</button></div>
+
+        <h2 style="font-family:'Syne';font-weight:800;font-size:1.1rem;margin:32px 0 16px;color:var(--accent);">✍️ Copywriting</h2>
+        <div class="prompt-box"><div class="prompt-label">5 headlines para A/B teste</div><div class="prompt-text" id="p4">Escreva 5 headlines diferentes para a hero section de [NOME DA EMPRESA], que é um(a) [NICHO] em [CIDADE]. O público são [DESCREVA PÚBLICO] que têm o problema de [PROBLEMA]. Use as fórmulas: 1) Resultado + Tempo, 2) Pergunta que dói, 3) Número + Benefício, 4) Transformação, 5) Ao contrário da concorrência. Máximo 8 palavras cada.</div><button class="btn-copy-prompt" onclick="copyPrompt('p4',this)">Copiar</button></div>
+        <div class="prompt-box"><div class="prompt-label">Seção de depoimentos fictícios (portfólio)</div><div class="prompt-text" id="p5">Crie 3 depoimentos fictícios realistas para um site de portfólio de [NICHO]. Cada depoimento deve ter: nome (brasileiro, plausível), cargo/contexto, texto de 2–3 linhas mencionando um resultado específico e quantificável. Tom: natural, não exagerado. Formato: JSON com keys: nome, cargo, texto, estrelas.</div><button class="btn-copy-prompt" onclick="copyPrompt('p5',this)">Copiar</button></div>
+
+        <h2 style="font-family:'Syne';font-weight:800;font-size:1.1rem;margin:32px 0 16px;color:var(--accent);">📧 Prospecção e E-mails</h2>
+        <div class="prompt-box"><div class="prompt-label">E-mail frio personalizado (em lote)</div><div class="prompt-text" id="p6">Escreva um e-mail frio para prospecção de [NICHO]. Deve ter: 1) Abertura personalizada mencionando algo específico da empresa, 2) Prova de que você pesquisou, 3) Proposta de valor em 1 frase, 4) CTA simples (responder o e-mail ou agendar call de 15 min). Máximo 120 palavras. Tom: direto, sem bajulação, profissional mas humano.</div><button class="btn-copy-prompt" onclick="copyPrompt('p6',this)">Copiar</button></div>
+
+        <h2 style="font-family:'Syne';font-weight:800;font-size:1.1rem;margin:32px 0 16px;color:var(--accent);">🔍 SEO</h2>
+        <div class="prompt-box"><div class="prompt-label">Meta tags completas</div><div class="prompt-text" id="p7">Gere as meta tags HTML completas para SEO de um site de [NICHO] em [CIDADE]. Inclua: title (60 chars), description (155 chars), keywords, Open Graph tags para compartilhamento no WhatsApp/Facebook, e Twitter Card. Use a palavra-chave principal "[PALAVRA-CHAVE]" de forma natural. Retorne somente o código HTML pronto para colar no head.</div><button class="btn-copy-prompt" onclick="copyPrompt('p7',this)">Copiar</button></div>
+
+        <h2 style="font-family:'Syne';font-weight:800;font-size:1.1rem;margin:32px 0 16px;color:var(--accent);">🖼️ Geração de Imagens (Midjourney / DALL-E)</h2>
+        <div class="prompt-box"><div class="prompt-label">Foto profissional de hero para clínica</div><div class="prompt-text" id="p8">Professional photography of a modern, clean medical clinic reception in Brazil. Warm lighting, plants, welcoming ambience. A female doctor in white coat smiling naturally. Shot on Canon 5D, 35mm lens, shallow depth of field. No stock photo look, candid feel. Vertical format, 9:16.</div><button class="btn-copy-prompt" onclick="copyPrompt('p8',this)">Copiar</button></div>
+        <div class="prompt-box"><div class="prompt-label">Ícone minimalista para serviço</div><div class="prompt-text" id="p9">Minimal flat icon of [OBJETO/CONCEITO] for a modern dark-themed website. Single color, lime green (#c8f23b) on transparent background. Clean lines, no gradients, no shadows. SVG-style. 512x512px. Ultra simple, recognizable at small sizes.</div><button class="btn-copy-prompt" onclick="copyPrompt('p9',this)">Copiar</button></div>
+
+        <div class="highlight-box" style="margin-top:32px;">
+          <div class="hb-title">💡 Como usar esses prompts melhor</div>
+          <p>Sempre que usar um prompt, adicione no final: <strong>"Antes de responder, faça perguntas se precisar de mais contexto."</strong> Isso faz a IA pedir detalhes e entregar um resultado muito mais personalizado do que uma resposta genérica.</p>
+        </div>
+      </div>
+      <div class="nav-bottom">
+        <button class="nav-bottom-btn" onclick="goTo('mod6')">← Módulo 6</button>
+      </div>
+    </div>
+
+  </div><!-- /main-area -->
+</div><!-- /mainContent -->
+
+<script>
+/* ============================================================
+   SISTEMA DE ACESSO POR TOKEN
+   Token gerado na index.html, armazenado no sessionStorage
+   Validado aqui antes de exibir qualquer conteúdo
+============================================================ */
+let accessData = null;
+
+function validarAcesso() {
+  try {
+    const raw = sessionStorage.getItem('mentoria_access');
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    // Valida expiração (24h)
+    if (Date.now() > data.expiry) {
+      sessionStorage.removeItem('mentoria_access');
+      return false;
+    }
+    // Valida hash simples (impede adulteração básica)
+    const expectedHash = btoa(data.token + ':rafael2026');
+    if (data.hash !== expectedHash) return false;
+    accessData = data;
+    return true;
+  } catch(e) { return false; }
+}
+
+function inicializar() {
+  if (!validarAcesso()) {
+    document.getElementById('accessGate').classList.add('visible');
+    return;
+  }
+
+  // Mostra conteúdo principal
+  document.getElementById('accessGate').classList.remove('visible');
+  document.getElementById('mainContent').classList.add('visible');
+
+  // Preenche dados do usuário
+  const nome = accessData.nome || 'Aluno';
+  const primeiroNome = nome.split(' ')[0];
+  document.getElementById('welcomeName').textContent = primeiroNome;
+  document.getElementById('userName').textContent = nome;
+  document.getElementById('userInitial').textContent = primeiroNome.charAt(0).toUpperCase();
+
+  // Exibe itens de OB conforme o que foi comprado
+  const extras = accessData.extras || {};
+  if (extras.ob1 || extras.ob2 || extras.ob3) {
+    document.getElementById('navExtrasLabel').style.display = 'block';
+  }
+  if (extras.ob1) document.getElementById('navOB1').style.display = 'flex';
+  if (extras.ob2) document.getElementById('navOB2').style.display = 'flex';
+  if (extras.ob3) document.getElementById('navOB3').style.display = 'flex';
+
+  // Carrega progresso salvo
+  carregarProgresso();
+  atualizarProgressoVisual();
+}
+
+/* ============================================================
+   NAVEGAÇÃO
+============================================================ */
+const MODULOS = ['home','mod1','mod2','mod3','mod4','mod5','mod6','ob1','ob2','ob3'];
+const BREADCRUMBS = {
+  home: 'Início', mod1: 'Módulo 1 — Mentalidade', mod2: 'Módulo 2 — Stack de IA',
+  mod3: 'Módulo 3 — Execução', mod4: 'Módulo 4 — Precificação',
+  mod5: 'Módulo 5 — Captação', mod6: 'Módulo 6 — Escala',
+  ob1: 'Extra — Templates HTML', ob2: 'Extra — Planilha', ob3: 'Extra — Prompts de IA'
+};
+let moduloAtual = 'home';
+
+function goTo(modulo) {
+  // Esconde todos
+  document.querySelectorAll('.module-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  // Mostra o alvo
+  const page = document.getElementById('page-' + modulo);
+  if (page) page.classList.add('active');
+
+  const navItem = document.querySelector(`[data-module="${modulo}"]`);
+  if (navItem) navItem.classList.add('active');
+
+  document.getElementById('breadcrumbText').textContent = BREADCRUMBS[modulo] || modulo;
+  moduloAtual = modulo;
+
+  // Scroll top
+  document.querySelector('.main-area').scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Fecha sidebar no mobile
+  if (window.innerWidth <= 860) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+
+  // Atualiza botão de marcar
+  const concluido = getProgresso()[modulo];
+  const btn = document.getElementById('btnMarkDone');
+  if (concluido) {
+    btn.textContent = '✓ Concluído'; btn.classList.add('done');
+  } else {
+    btn.textContent = '✓ Marcar como concluído'; btn.classList.remove('done');
+  }
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+/* ============================================================
+   PROGRESSO
+============================================================ */
+const MODULOS_PRINCIPAIS = ['home','mod1','mod2','mod3','mod4','mod5','mod6'];
+
+function getProgresso() {
+  try { return JSON.parse(localStorage.getItem('mentoria_progress') || '{}'); } catch(e) { return {}; }
+}
+
+function salvarProgresso(prog) {
+  localStorage.setItem('mentoria_progress', JSON.stringify(prog));
+}
+
+function carregarProgresso() {
+  const prog = getProgresso();
+  Object.keys(prog).forEach(k => {
+    if (prog[k]) {
+      const navItem = document.querySelector(`[data-module="${k}"]`);
+      if (navItem) navItem.classList.add('completed');
+    }
+  });
+}
+
+function marcarConcluido() {
+  const prog = getProgresso();
+  prog[moduloAtual] = true;
+  salvarProgresso(prog);
+
+  const navItem = document.querySelector(`[data-module="${moduloAtual}"]`);
+  if (navItem) navItem.classList.add('completed');
+
+  const btn = document.getElementById('btnMarkDone');
+  btn.textContent = '✓ Concluído'; btn.classList.add('done');
+
+  atualizarProgressoVisual();
+}
+
+function atualizarProgressoVisual() {
+  const prog = getProgresso();
+  const total = MODULOS_PRINCIPAIS.length;
+  const feitos = MODULOS_PRINCIPAIS.filter(m => prog[m]).length;
+  const pct = Math.round((feitos / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '%';
+}
+
+/* ============================================================
+   COPIAR PROMPTS
+============================================================ */
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id)?.textContent || '';
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = text; el.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+  });
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', inicializar);
+</script>
+</body>
+</html>
