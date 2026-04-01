@@ -54,28 +54,37 @@
     <button onclick="entrar()">Acessar Mentoria →</button>
   </div>
   <script>
+    // ── ATENÇÃO: troque as senhas abaixo pelas suas ──
+    const SENHAS_VALIDAS = ['pretinho123', 'mentoria2026', 'rafael2026'];
+    const EXPIRY_1ANO = 365 * 24 * 60 * 60 * 1000;
+
     function entrar() {
       const senha = document.getElementById('senha').value;
       const erroEl = document.getElementById('erroMsg');
       const sucessoEl = document.getElementById('sucessoMsg');
       erroEl.style.display = 'none';
       sucessoEl.style.display = 'none';
-      if (senha !== 'pretinho123') {
+
+      if (!SENHAS_VALIDAS.includes(senha)) {
         erroEl.style.display = 'block';
         document.getElementById('senha').value = '';
         document.getElementById('senha').focus();
         return;
       }
+
+      // Gera token e salva em localStorage com 1 ano de validade
       const token = Math.random().toString(36).substring(2, 18) + Date.now().toString(36);
-      const expiry = Date.now() + (24 * 60 * 60 * 1000);
+      const expiry = Date.now() + EXPIRY_1ANO;
       const hash = btoa(token + ':rafael2026');
-      sessionStorage.setItem('mentoria_access', JSON.stringify({
+
+      localStorage.setItem('mentoria_access', JSON.stringify({
         token, expiry, hash,
         nome: 'Rafael Admin',
         email: 'admin@rafael.dev',
         extras: { ob1: true, ob2: true, ob3: true },
         compradoEm: new Date().toISOString()
       }));
+
       sucessoEl.style.display = 'block';
       setTimeout(() => { window.location.href = 'mentoria.html'; }, 1200);
     }
