@@ -23,26 +23,32 @@
     #accessGate {
       display: none; position: fixed; inset: 0; background: var(--bg);
       z-index: 9999; align-items: center; justify-content: center;
-      flex-direction: column; gap: 20px; text-align: center; padding: 40px;
+      flex-direction: column; gap: 16px; text-align: center; padding: 40px;
     }
     #accessGate.visible { display: flex; }
-    .gate-icon { font-size: 4rem; margin-bottom: 4px; }
+    .gate-icon { font-size: 3.5rem; margin-bottom: 4px; }
     .gate-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; letter-spacing: -0.04em; }
-    .gate-desc { color: var(--text2); font-size: 1rem; max-width: 400px; line-height: 1.6; }
+    .gate-desc { color: var(--text2); font-size: 0.95rem; max-width: 420px; line-height: 1.65; margin-bottom: 4px; }
     .gate-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; padding: 14px 28px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; text-decoration: none; font-size: 0.95rem; transition: transform 0.2s; }
     .gate-btn:hover { transform: scale(1.04); }
 
-    /* ── ACESSO ANÔNIMO ── */
-    .anon-toggle { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px 18px; border-radius: 100px; font-size: 0.78rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.25s; }
-    .anon-toggle:hover { border-color: rgba(200,242,59,0.3); color: var(--text2); }
-    #anonForm { display: none; flex-direction: column; align-items: center; gap: 10px; margin-top: 4px; width: 100%; max-width: 320px; }
-    #anonForm.visible { display: flex; }
-    #anonInput { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; text-align: center; letter-spacing: 0.1em; transition: border-color 0.2s; }
-    #anonInput:focus { border-color: rgba(200,242,59,0.4); }
-    #anonInput::placeholder { color: var(--muted); letter-spacing: 0; }
-    #anonBtn { width: 100%; background: var(--accent); color: #000; border: none; padding: 12px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; cursor: pointer; transition: transform 0.2s; }
-    #anonBtn:hover { transform: scale(1.02); }
-    #anonError { font-size: 0.78rem; color: var(--accent3); display: none; }
+    .gate-divider { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 360px; margin: 8px 0; }
+    .gate-divider::before, .gate-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .gate-divider span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .recover-tabs { display: flex; gap: 8px; width: 100%; max-width: 360px; }
+    .recover-tab { flex: 1; background: var(--surface); border: 1px solid var(--border); color: var(--muted); padding: 10px; border-radius: 10px; font-size: 0.8rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .recover-tab.active { border-color: rgba(200,242,59,0.4); color: var(--accent); background: rgba(200,242,59,0.06); }
+
+    .recover-form { display: none; flex-direction: column; align-items: center; gap: 8px; width: 100%; max-width: 360px; }
+    .recover-form.visible { display: flex; }
+    .recover-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .recover-input:focus { border-color: rgba(200,242,59,0.4); }
+    .recover-input::placeholder { color: var(--muted); }
+    .recover-btn { width: 100%; background: var(--accent); color: #000; border: none; padding: 12px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; cursor: pointer; transition: transform 0.2s; }
+    .recover-btn:hover { transform: scale(1.02); }
+    .recover-error { font-size: 0.78rem; color: var(--accent3); display: none; }
+    .recover-hint { font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.5; }
 
     /* ── CONTEÚDO PRINCIPAL ── */
     #mainContent { display: none; }
@@ -85,11 +91,13 @@
     .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #000; font-weight: 700; flex-shrink: 0; }
     .user-name { font-size: 0.82rem; font-weight: 500; }
     .user-status { font-size: 0.68rem; color: var(--accent2); margin-top: 1px; }
+    .btn-sair { display: block; width: 100%; margin-top: 10px; background: none; border: 1px solid var(--border); color: var(--muted); padding: 8px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .btn-sair:hover { border-color: rgba(255,107,107,0.3); color: var(--accent3); }
 
     /* ── MAIN ── */
     .main-area { margin-left: var(--sidebar-w); flex: 1; min-height: 100vh; }
     .topbar {
-      position: sticky; top: 0; z-index: 40; background: rgba(8,8,8,0.85);
+      position: sticky; top: 0; z-index: 40; background: rgba(8,8,8,0.9);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border); padding: 14px 48px;
       display: flex; align-items: center; justify-content: space-between; gap: 20px;
@@ -102,7 +110,7 @@
     .hamburger { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; cursor: pointer; color: var(--text2); font-size: 1rem; }
 
     /* ── MÓDULOS ── */
-    .module-page { display: none; padding: 56px 48px 80px; max-width: 900px; }
+    .module-page { display: none; padding: 56px 48px 80px; max-width: 920px; }
     .module-page.active { display: block; }
     .module-hero { margin-bottom: 48px; }
     .module-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.15); color: var(--accent); padding: 5px 14px; border-radius: 100px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
@@ -123,8 +131,6 @@
     .content-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
     .content-card p { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
     .content-card .card-tag { display: inline-block; margin-top: 12px; font-size: 0.68rem; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.15); color: var(--accent); padding: 2px 8px; border-radius: 100px; }
-
-    /* Highlight & Warning */
     .highlight-box { background: linear-gradient(135deg, rgba(200,242,59,0.06), rgba(45,255,212,0.04)); border: 1px solid rgba(200,242,59,0.15); border-radius: 14px; padding: 24px 28px; margin: 24px 0; }
     .highlight-box .hb-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
     .highlight-box p { font-size: 0.9rem; color: var(--text2); line-height: 1.7; }
@@ -134,16 +140,12 @@
     .success-box { background: rgba(45,255,212,0.05); border: 1px solid rgba(45,255,212,0.2); border-radius: 14px; padding: 20px 24px; margin: 20px 0; }
     .success-box .sb-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--accent2); margin-bottom: 8px; }
     .success-box p { font-size: 0.87rem; color: rgba(45,255,212,0.8); line-height: 1.6; }
-
-    /* Steps */
     .steps-list { display: flex; flex-direction: column; margin: 24px 0; }
     .step-row { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
     .step-row:last-child { border-bottom: none; }
     .step-num-badge { width: 36px; height: 36px; border-radius: 10px; background: rgba(200,242,59,0.1); border: 1px solid rgba(200,242,59,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--accent); flex-shrink: 0; }
     .step-row-content h5 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.97rem; margin-bottom: 6px; }
     .step-row-content p { font-size: 0.87rem; color: var(--text2); line-height: 1.65; }
-
-    /* Bullets */
     .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
     .bullet-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; line-height: 1.6; color: var(--text2); }
     .bullet-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
@@ -151,8 +153,6 @@
     .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
     .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--text2); line-height: 1.55; }
     .check-list li::before { content: '✓'; color: var(--accent2); font-weight: 700; flex-shrink: 0; }
-
-    /* Tabela */
     .price-table { width: 100%; border-collapse: collapse; margin: 20px 0; border-radius: 12px; overflow: hidden; }
     .price-table th { background: var(--surface2); padding: 12px 16px; text-align: left; font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
     .price-table td { padding: 12px 16px; font-size: 0.87rem; border-bottom: 1px solid var(--border); color: var(--text2); }
@@ -160,22 +160,16 @@
     .price-table tr:hover td { background: rgba(200,242,59,0.03); }
     .price-table .price-val { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); }
     .price-table .price-ideal { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent2); }
-
-    /* Prompts */
     .prompt-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 16px 0; position: relative; }
     .prompt-box .prompt-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     .prompt-box .prompt-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
     .prompt-box .prompt-text { font-size: 0.88rem; line-height: 1.7; color: var(--text2); font-style: italic; padding-right: 60px; }
     .btn-copy-prompt { position: absolute; top: 16px; right: 16px; background: rgba(45,255,212,0.08); border: 1px solid rgba(45,255,212,0.18); color: var(--accent2); border-radius: 6px; padding: 5px 10px; font-size: 0.7rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
     .btn-copy-prompt:hover { background: rgba(45,255,212,0.15); }
-
-    /* Scripts */
     .script-box { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 16px 0; }
     .script-box .script-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; font-weight: 600; }
     .script-box .script-text { font-size: 0.9rem; line-height: 1.8; color: var(--text2); }
     .script-box .script-text strong { color: var(--text); }
-
-    /* Tools */
     .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
     .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; transition: border-color 0.25s; }
     .tool-card:hover { border-color: rgba(200,242,59,0.25); }
@@ -184,30 +178,22 @@
     .tool-card .tool-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
     .tool-card .tool-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
     .tool-card .tool-price { font-size: 0.72rem; background: rgba(200,242,59,0.07); border: 1px solid rgba(200,242,59,0.12); color: var(--accent); padding: 2px 8px; border-radius: 100px; display: inline-block; margin-top: 4px; }
-
-    /* Stat cards */
     .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
     .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
     .stat-card .stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); letter-spacing: -0.04em; }
     .stat-card .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-
-    /* Objection box */
     .objection-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
     .objection-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .obj-q { padding: 14px 18px; font-size: 0.88rem; color: var(--accent3); font-weight: 500; background: rgba(255,107,107,0.04); border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 8px; }
     .obj-a { padding: 14px 18px; font-size: 0.87rem; color: var(--text2); line-height: 1.65; }
     .obj-a strong { color: var(--accent2); }
-
-    /* Timeline */
     .timeline { position: relative; padding-left: 28px; margin: 24px 0; }
     .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
     .tl-item { position: relative; margin-bottom: 24px; }
-    .tl-dot { position: absolute; left: -24px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--accent); flex-shrink: 0; }
+    .tl-dot { position: absolute; left: -24px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--accent); }
     .tl-item.done .tl-dot { background: var(--accent); }
     .tl-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
     .tl-desc { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
-
-    /* Welcome */
     .welcome-header { text-align: center; padding: 60px 0 40px; }
     .welcome-emoji { font-size: 4rem; margin-bottom: 20px; display: block; }
     .welcome-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; letter-spacing: -0.04em; margin-bottom: 12px; }
@@ -219,25 +205,58 @@
     .module-nav-card .mnc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; }
     .module-nav-card .mnc-desc { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
     .module-nav-card .mnc-icon { font-size: 1.5rem; margin-bottom: 12px; display: block; }
-
-    /* Nav bottom */
     .nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border); }
     .nav-bottom-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); background: var(--surface); color: var(--text2); }
     .nav-bottom-btn:hover { border-color: rgba(200,242,59,0.3); color: var(--accent); }
     .nav-bottom-btn.primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 500; }
     .nav-bottom-btn.primary:hover { box-shadow: 0 0 20px rgba(200,242,59,0.3); }
-
-    /* OB section */
     .ob-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(45,255,212,0.1); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
 
-    /* Inline badge */
-    .badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; margin-left: 8px; vertical-align: middle; }
-    .badge-green { background: rgba(200,242,59,0.1); border: 1px solid rgba(200,242,59,0.2); color: var(--accent); }
-    .badge-teal { background: rgba(45,255,212,0.1); border: 1px solid rgba(45,255,212,0.2); color: var(--accent2); }
-    .badge-red { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.2); color: var(--accent3); }
+    /* ── CALCULADORA ── */
+    .calc-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin: 28px 0; }
+    .calc-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .calc-group label { display: block; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+    .calc-group select, .calc-group input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; appearance: none; }
+    .calc-group select:focus, .calc-group input:focus { border-color: rgba(200,242,59,0.4); }
+    .calc-result { background: linear-gradient(135deg, rgba(200,242,59,0.1), rgba(45,255,212,0.06)); border: 1px solid rgba(200,242,59,0.2); border-radius: 14px; padding: 20px 24px; display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; text-align: center; }
+    .calc-result-item .calc-result-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--accent); letter-spacing: -0.03em; }
+    .calc-result-item .calc-result-label { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
 
-    /* Number big */
-    .big-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.5rem; color: var(--accent); letter-spacing: -0.05em; line-height: 1; }
+    /* ── CHECKLIST INTERATIVO ── */
+    .checklist-interactive { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .checklist-header { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .checklist-header h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .checklist-progress-text { font-size: 0.78rem; color: var(--accent2); }
+    .checklist-progress-bar { height: 2px; background: var(--surface2); }
+    .checklist-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.3s; width: 0%; }
+    .checklist-item { display: flex; align-items: center; gap: 14px; padding: 14px 24px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s; }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-item:hover { background: rgba(200,242,59,0.03); }
+    .checklist-item.checked { opacity: 0.6; }
+    .checklist-item.checked .ci-text { text-decoration: line-through; }
+    .ci-box { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .checklist-item.checked .ci-box { background: var(--accent2); border-color: var(--accent2); }
+    .ci-check { font-size: 0.65rem; color: #000; display: none; }
+    .checklist-item.checked .ci-check { display: block; }
+    .ci-text { font-size: 0.87rem; color: var(--text2); flex: 1; }
+    .ci-cat { font-size: 0.65rem; background: rgba(200,242,59,0.08); border: 1px solid rgba(200,242,59,0.15); color: var(--accent); padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+
+    /* ── CONTRACT ── */
+    .contract-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 16px 0; font-family: 'DM Sans', sans-serif; }
+    .contract-box .contract-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .contract-text { font-size: 0.87rem; line-height: 1.9; color: var(--text2); white-space: pre-line; }
+    .contract-text strong { color: var(--text); }
+
+    /* ── 30 DIAS ── */
+    .plan-week { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin: 16px 0; }
+    .plan-week-header { padding: 14px 20px; background: rgba(200,242,59,0.06); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .plan-week-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+    .plan-week-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .plan-week-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .plan-task { display: flex; align-items: flex-start; gap: 10px; font-size: 0.87rem; color: var(--text2); line-height: 1.5; }
+    .plan-task::before { content: '→'; color: var(--accent2); flex-shrink: 0; font-weight: 700; }
+    .plan-task strong { color: var(--text); }
 
     @media (max-width: 860px) {
       :root { --sidebar-w: 0px; }
@@ -247,9 +266,9 @@
       .topbar { padding: 14px 20px; }
       .hamburger { display: block; }
       .module-page { padding: 32px 20px 60px; }
-      .content-grid, .content-grid-3, .module-cards-grid { grid-template-columns: 1fr; }
+      .content-grid, .content-grid-3, .module-cards-grid, .calc-grid { grid-template-columns: 1fr; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
-      .tool-grid { grid-template-columns: 1fr 1fr; }
+      .calc-result { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -258,20 +277,33 @@
 <!-- ── TELA DE ACESSO NEGADO ── -->
 <div id="accessGate" class="visible">
   <div class="gate-icon">🔒</div>
-  <h1 class="gate-title">Acesso Restrito</h1>
-  <p class="gate-desc">Esta área é exclusiva para alunos da Mentoria Pro. Adquira seu acesso ou entre com a senha.</p>
+  <h1 class="gate-title">Área de Membros</h1>
+  <p class="gate-desc">Esta área é exclusiva para alunos da Mentoria Pro. Garanta seu acesso ou recupere sua sessão.</p>
   <a href="index.html" class="gate-btn">Quero garantir meu acesso →</a>
-  <button class="anon-toggle" id="anonToggleBtn" onclick="toggleAnonForm()">🔑 Já tenho senha de acesso</button>
-  <div id="anonForm">
-    <input type="password" id="anonInput" placeholder="Digite a senha..." onkeydown="if(event.key==='Enter')anonEntrar()" />
-    <button id="anonBtn" onclick="anonEntrar()">Entrar →</button>
-    <span id="anonError">Senha incorreta. Tente novamente.</span>
+
+  <div class="gate-divider"><span>Já é aluno?</span></div>
+
+  <div class="recover-tabs">
+    <button class="recover-tab active" onclick="switchTab('email')">📧 Recuperar por e-mail</button>
+    <button class="recover-tab" onclick="switchTab('senha')">🔑 Senha de acesso</button>
+  </div>
+
+  <div class="recover-form visible" id="formEmail">
+    <input type="email" class="recover-input" id="recoverEmail" placeholder="seu@email.com — usado na compra" onkeydown="if(event.key==='Enter')emailEntrar()" />
+    <button class="recover-btn" onclick="emailEntrar()">Recuperar acesso →</button>
+    <span class="recover-error" id="erroEmail">E-mail não encontrado. Verifique ou compre o acesso.</span>
+    <span class="recover-hint">Insira o mesmo e-mail usado na compra do PIX.<br>Acesso salvo neste dispositivo por 1 ano.</span>
+  </div>
+
+  <div class="recover-form" id="formSenha">
+    <input type="password" class="recover-input" id="recoverSenha" placeholder="Senha de acesso..." onkeydown="if(event.key==='Enter')senhaEntrar()" />
+    <button class="recover-btn" onclick="senhaEntrar()">Entrar →</button>
+    <span class="recover-error" id="erroSenha">Senha incorreta. Tente novamente.</span>
   </div>
 </div>
 
 <!-- ── CONTEÚDO PRINCIPAL ── -->
 <div id="mainContent">
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-text">rafael<span>.</span>dev</div>
@@ -285,7 +317,7 @@
       <div class="nav-section-label">Início</div>
       <a class="nav-item active" onclick="goTo('home')" data-module="home">
         <span class="nav-icon">🏠</span>
-        <div class="nav-text">Boas-vindas<small>Visão geral do curso</small></div>
+        <div class="nav-text">Boas-vindas<small>Visão geral e plano de ação</small></div>
         <div class="nav-check">✓</div>
       </a>
       <div class="nav-section-label">Módulos</div>
@@ -296,7 +328,7 @@
       </a>
       <a class="nav-item" onclick="goTo('mod2')" data-module="mod2">
         <span class="nav-icon">🛠️</span>
-        <div class="nav-text">Módulo 2 — Stack de IA<small>Ferramentas essenciais</small></div>
+        <div class="nav-text">Módulo 2 — Stack de IA<small>Ferramentas e prompts</small></div>
         <div class="nav-check">✓</div>
       </a>
       <a class="nav-item" onclick="goTo('mod3')" data-module="mod3">
@@ -311,7 +343,7 @@
       </a>
       <a class="nav-item" onclick="goTo('mod5')" data-module="mod5">
         <span class="nav-icon">🎯</span>
-        <div class="nav-text">Módulo 5 — Captação<small>Encontrar e fechar clientes</small></div>
+        <div class="nav-text">Módulo 5 — Captação<small>Scripts e estratégias</small></div>
         <div class="nav-check">✓</div>
       </a>
       <a class="nav-item" onclick="goTo('mod6')" data-module="mod6">
@@ -324,23 +356,32 @@
         <div class="nav-text">Módulo 7 — Produto Digital<small>Vender além do serviço</small></div>
         <div class="nav-check">✓</div>
       </a>
-      <div class="nav-section-label" id="navExtrasLabel" style="display:none">Extras</div>
-      <a class="nav-item" id="navOB1" onclick="goTo('ob1')" data-module="ob1" style="display:none">
-        <span class="nav-icon">🗂️</span>
-        <div class="nav-text">Templates HTML<small>10 templates prontos</small></div>
-        <span class="nav-ob-badge">Extra</span>
+      <div class="nav-section-label">Ferramentas</div>
+      <a class="nav-item" onclick="goTo('calc')" data-module="calc">
+        <span class="nav-icon">🧮</span>
+        <div class="nav-text">Calculadora de Preços<small>Calcule seu orçamento ideal</small></div>
         <div class="nav-check">✓</div>
       </a>
-      <a class="nav-item" id="navOB2" onclick="goTo('ob2')" data-module="ob2" style="display:none">
-        <span class="nav-icon">📊</span>
-        <div class="nav-text">Planilha de Gestão<small>Controle total freelancer</small></div>
-        <span class="nav-ob-badge">Extra</span>
+      <a class="nav-item" onclick="goTo('checklist')" data-module="checklist">
+        <span class="nav-icon">✅</span>
+        <div class="nav-text">Checklist de Entrega<small>QA antes de cada projeto</small></div>
         <div class="nav-check">✓</div>
       </a>
+      <a class="nav-item" onclick="goTo('contratos')" data-module="contratos">
+        <span class="nav-icon">📄</span>
+        <div class="nav-text">Contratos & Proposta<small>Templates de texto prontos</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <a class="nav-item" onclick="goTo('plano30')" data-module="plano30">
+        <span class="nav-icon">📅</span>
+        <div class="nav-text">Plano 30 dias<small>Ação semana a semana</small></div>
+        <div class="nav-check">✓</div>
+      </a>
+      <div class="nav-section-label" id="navExtrasLabel" style="display:none">Bônus</div>
       <a class="nav-item" id="navOB3" onclick="goTo('ob3')" data-module="ob3" style="display:none">
         <span class="nav-icon">💡</span>
-        <div class="nav-text">Prompts de IA<small>50+ prompts testados</small></div>
-        <span class="nav-ob-badge">Extra</span>
+        <div class="nav-text">60+ Prompts de IA<small>Biblioteca completa</small></div>
+        <span class="nav-ob-badge">Bônus</span>
         <div class="nav-check">✓</div>
       </a>
     </nav>
@@ -349,879 +390,697 @@
         <div class="user-avatar" id="userInitial">?</div>
         <div>
           <div class="user-name" id="userName">Carregando...</div>
-          <div class="user-status">✓ Acesso liberado</div>
+          <div class="user-status">✓ Acesso vitalício</div>
         </div>
       </div>
+      <button class="btn-sair" onclick="sair()">↩ Sair desta conta</button>
     </div>
   </aside>
 
-  <!-- MAIN -->
   <div class="main-area">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:14px;">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
         <div class="topbar-breadcrumb">Mentoria Pro <span>›</span> <span id="breadcrumbText">Início</span></div>
       </div>
-      <div>
-        <button class="btn-mark" id="btnMarkDone" onclick="marcarConcluido()">✓ Marcar como concluído</button>
-      </div>
+      <button class="btn-mark" id="btnMarkDone" onclick="marcarConcluido()">✓ Marcar como concluído</button>
     </div>
 
-    <!-- ══════════════════════════════════
-         HOME
-    ══════════════════════════════════ -->
+    <!-- HOME -->
     <div class="module-page active" id="page-home">
       <div class="welcome-header">
         <span class="welcome-emoji">🎓</span>
         <h1 class="welcome-title">Bem-vindo(a), <span id="welcomeName">aluno</span>!</h1>
-        <p class="welcome-sub">Você está na Mentoria Pro de Renda Extra com IA — o guia mais direto ao ponto para criar uma renda real com desenvolvimento web, mesmo começando do zero. Avance no seu ritmo.</p>
+        <p class="welcome-sub">Você está na Mentoria Pro — do zero ao primeiro cliente com IA. Avance no seu ritmo, o conteúdo e as ferramentas ficam aqui para sempre.</p>
       </div>
       <div class="stat-grid">
-        <div class="stat-card"><div class="stat-val">7</div><div class="stat-label">Módulos completos</div></div>
-        <div class="stat-card"><div class="stat-val">60+</div><div class="stat-label">Prompts e scripts</div></div>
+        <div class="stat-card"><div class="stat-val">7</div><div class="stat-label">Módulos de conteúdo</div></div>
+        <div class="stat-card"><div class="stat-val">4</div><div class="stat-label">Ferramentas interativas</div></div>
         <div class="stat-card"><div class="stat-val">∞</div><div class="stat-label">Acesso vitalício</div></div>
       </div>
+      <h2 class="section-h2" style="margin-top:40px;">Módulos do curso</h2>
       <div class="module-cards-grid">
-        <div class="module-nav-card" onclick="goTo('mod1')"><span class="mnc-icon">🧠</span><div class="mnc-num">Módulo 01</div><div class="mnc-title">Mentalidade de Mercado</div><div class="mnc-desc">Como se posicionar, escolher nicho e pensar como um negócio.</div></div>
-        <div class="module-nav-card" onclick="goTo('mod2')"><span class="mnc-icon">🛠️</span><div class="mnc-num">Módulo 02</div><div class="mnc-title">Stack de IA</div><div class="mnc-desc">As ferramentas certas para criar sites profissionais rápido.</div></div>
-        <div class="module-nav-card" onclick="goTo('mod3')"><span class="mnc-icon">⚙️</span><div class="mnc-num">Módulo 03</div><div class="mnc-title">Execução Técnica</div><div class="mnc-desc">Do briefing ao site publicado: o processo que eu uso todo dia.</div></div>
-        <div class="module-nav-card" onclick="goTo('mod4')"><span class="mnc-icon">💰</span><div class="mnc-num">Módulo 04</div><div class="mnc-title">Precificação</div><div class="mnc-desc">Tabelas reais, como apresentar orçamentos e nunca trabalhar barato.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod1')"><span class="mnc-icon">🧠</span><div class="mnc-num">Módulo 01</div><div class="mnc-title">Mentalidade de Mercado</div><div class="mnc-desc">Como se posicionar, escolher nicho e pensar como um negócio desde o primeiro dia.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod2')"><span class="mnc-icon">🛠️</span><div class="mnc-num">Módulo 02</div><div class="mnc-title">Stack de IA</div><div class="mnc-desc">As ferramentas certas + prompts prontos para criar sites profissionais rápido.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod3')"><span class="mnc-icon">⚙️</span><div class="mnc-num">Módulo 03</div><div class="mnc-title">Execução Técnica</div><div class="mnc-desc">Do briefing ao site publicado: o processo que uso em cada projeto.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod4')"><span class="mnc-icon">💰</span><div class="mnc-num">Módulo 04</div><div class="mnc-title">Precificação</div><div class="mnc-desc">Tabelas reais, psicologia de preços e como nunca mais trabalhar barato.</div></div>
         <div class="module-nav-card" onclick="goTo('mod5')"><span class="mnc-icon">🎯</span><div class="mnc-num">Módulo 05</div><div class="mnc-title">Captação de Clientes</div><div class="mnc-desc">Scripts e estratégias para fechar os primeiros clientes esta semana.</div></div>
-        <div class="module-nav-card" onclick="goTo('mod6')"><span class="mnc-icon">🚀</span><div class="mnc-num">Módulo 06</div><div class="mnc-title">Escala e Recorrência</div><div class="mnc-desc">De renda extra a fluxo de caixa mensal previsível.</div></div>
-        <div class="module-nav-card" onclick="goTo('mod7')"><span class="mnc-icon">🧩</span><div class="mnc-num">Módulo 07</div><div class="mnc-title">Produto Digital</div><div class="mnc-desc">Como vender além do serviço: templates, mentorias e SaaS.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod6')"><span class="mnc-icon">🚀</span><div class="mnc-num">Módulo 06</div><div class="mnc-title">Escala e Recorrência</div><div class="mnc-desc">De renda extra a fluxo de caixa mensal previsível com parcerias.</div></div>
+        <div class="module-nav-card" onclick="goTo('mod7')"><span class="mnc-icon">🧩</span><div class="mnc-num">Módulo 07</div><div class="mnc-title">Produto Digital</div><div class="mnc-desc">Renda passiva: como vender além do serviço com escada de valor.</div></div>
+      </div>
+      <h2 class="section-h2" style="margin-top:40px;">Ferramentas incluídas</h2>
+      <div class="content-grid">
+        <div class="content-card" style="cursor:pointer" onclick="goTo('calc')"><span class="card-icon">🧮</span><h4>Calculadora de Preços</h4><p>Calcule o orçamento ideal para qualquer projeto em segundos. Nunca mais chute preço.</p><span class="card-tag">Interativo</span></div>
+        <div class="content-card" style="cursor:pointer" onclick="goTo('checklist')"><span class="card-icon">✅</span><h4>Checklist de Entrega</h4><p>27 itens para verificar antes de entregar qualquer site. Evita constrangimentos com clientes.</p><span class="card-tag">Interativo</span></div>
+        <div class="content-card" style="cursor:pointer" onclick="goTo('contratos')"><span class="card-icon">📄</span><h4>Contratos & Proposta</h4><p>Texto pronto de contrato e proposta comercial. Copie, adapte e use hoje mesmo.</p><span class="card-tag">Pronto pra usar</span></div>
+        <div class="content-card" style="cursor:pointer" onclick="goTo('plano30')"><span class="card-icon">📅</span><h4>Plano de Ação 30 dias</h4><p>O que fazer semana a semana para sair do zero ao primeiro cliente pago.</p><span class="card-tag">Passo a passo</span></div>
       </div>
       <div class="nav-bottom" style="justify-content:flex-end">
         <button class="nav-bottom-btn primary" onclick="goTo('mod1')">Começar pelo Módulo 1 →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 1 — MENTALIDADE
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 1 -->
     <div class="module-page" id="page-mod1">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 01 · Fundação</div>
         <h1 class="module-title">A mentalidade que<br>separa quem <em>fatura</em><br>de quem só tenta</h1>
-        <p class="module-lead">A maioria das pessoas falha não por falta de habilidade técnica, mas por falta de mentalidade de negócio. Este módulo vai reprogramar a forma como você enxerga o mercado.</p>
+        <p class="module-lead">A maioria falha não por falta de habilidade técnica, mas por falta de mentalidade de negócio. Este módulo vai reprogramar a forma como você enxerga o mercado.</p>
       </div>
-
       <div class="highlight-box">
-        <div class="hb-title">💡 A virada de chave que muda tudo</div>
-        <p>Você não é um "programador que aceita freelas". Você é um <strong>especialista em resultados digitais</strong> que usa IA como alavanca. Um dentista sem site está perdendo pacientes todo dia. Você resolve esse problema. Quando você internaliza isso, o preço que você cobra muda completamente.</p>
+        <div class="hb-title">💡 A virada de chave</div>
+        <p>Você não é um "programador que aceita freelas". Você é um <strong>especialista em resultados digitais</strong> que usa IA como alavanca. Um dentista sem site está perdendo pacientes todo dia. Você resolve isso. Quando internaliza isso, o preço que cobra muda completamente.</p>
       </div>
-
       <h2 class="section-h2">1.1 — Nichos com maior potencial de lucro</h2>
-      <p class="body-text">Não atenda qualquer cliente. Escolha um nicho onde há demanda reprimida, ticket médio alto e baixa concorrência digital. Esses são os melhores em 2025–2026:</p>
-
+      <p class="body-text">Não atenda qualquer cliente. Escolha um nicho onde há demanda reprimida e baixa concorrência digital:</p>
       <div class="content-grid">
-        <div class="content-card"><span class="card-icon">🏥</span><h4>Saúde & Estética</h4><p>Clínicas, dentistas, psicólogos, nutricionistas, dermatologistas. Alta demanda, público com poder aquisitivo e 70% sem site decente.</p><span class="card-tag">Ticket: R$1.200–4.000</span></div>
-        <div class="content-card"><span class="card-icon">⚖️</span><h4>Advocacia</h4><p>Escritórios de advocacia dependem da reputação digital. Não podem fazer propaganda agressiva — um site profissional é obrigatório.</p><span class="card-tag">Ticket: R$1.500–5.000</span></div>
-        <div class="content-card"><span class="card-icon">🏗️</span><h4>Construção Civil</h4><p>Construtoras, arquitetos, reformas, paisagismo. Mercado enorme que opera no boca a boca sem presença digital nenhuma.</p><span class="card-tag">Ticket: R$1.000–3.500</span></div>
-        <div class="content-card"><span class="card-icon">📚</span><h4>Educação & Cursos</h4><p>Infoprodutores, professores, escolas de idiomas, cursos profissionalizantes. Precisam de landing pages constantemente.</p><span class="card-tag">Ticket: R$800–2.500</span></div>
-        <div class="content-card"><span class="card-icon">🍕</span><h4>Gastronomia</h4><p>Restaurantes, cafés, confeitarias, delivery. Precisam de menu digital, fotos profissionais e botão de pedido direto.</p><span class="card-tag">Ticket: R$700–1.800</span></div>
-        <div class="content-card"><span class="card-icon">💆</span><h4>Beleza & Bem-estar</h4><p>Salões, barbearias, spas, studios de pilates. Alto volume de leads locais pelo Google — site é essencial para conversão.</p><span class="card-tag">Ticket: R$600–1.500</span></div>
+        <div class="content-card"><span class="card-icon">🏥</span><h4>Saúde & Estética</h4><p>Clínicas, dentistas, psicólogos, nutricionistas. Alto poder aquisitivo, 70% sem site decente.</p><span class="card-tag">Ticket: R$1.200–4.000</span></div>
+        <div class="content-card"><span class="card-icon">⚖️</span><h4>Advocacia</h4><p>Dependem da reputação digital. Não podem fazer propaganda agressiva — um site é obrigatório.</p><span class="card-tag">Ticket: R$1.500–5.000</span></div>
+        <div class="content-card"><span class="card-icon">🏗️</span><h4>Construção Civil</h4><p>Construtoras, arquitetos, reformas. Mercado enorme que opera no boca a boca sem presença digital.</p><span class="card-tag">Ticket: R$1.000–3.500</span></div>
+        <div class="content-card"><span class="card-icon">📚</span><h4>Educação & Cursos</h4><p>Infoprodutores, professores, escolas de idiomas. Precisam de landing pages constantemente.</p><span class="card-tag">Ticket: R$800–2.500</span></div>
+        <div class="content-card"><span class="card-icon">🍕</span><h4>Gastronomia</h4><p>Restaurantes, cafés, delivery. Precisam de menu digital e botão de pedido direto.</p><span class="card-tag">Ticket: R$700–1.800</span></div>
+        <div class="content-card"><span class="card-icon">💆</span><h4>Beleza & Bem-estar</h4><p>Salões, barbearias, spas. Alto volume de leads locais pelo Google — site essencial para conversão.</p><span class="card-tag">Ticket: R$600–1.500</span></div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">1.2 — Como escolher SEU nicho ideal</h2>
-      <p class="body-text">Use este critério de três fatores para decidir com qual nicho começar:</p>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">01</div>
-          <div class="step-row-content">
-            <h5>Afinidade ou conhecimento prévio</h5>
-            <p>Você tem família na área da saúde? Amigos que trabalham em escritórios de advocacia? Conhecimento de contexto é uma vantagem enorme. Você entende o vocabulário, as dores e os sonhos do cliente antes mesmo de falar com ele.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">02</div>
-          <div class="step-row-content">
-            <h5>Densidade de potenciais clientes na sua cidade</h5>
-            <p>Abra o Google Maps e pesquise o nicho na sua cidade. Se aparecerem 50+ negócios, você tem mercado suficiente para começar sem precisar prospectar fora do estado.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">03</div>
-          <div class="step-row-content">
-            <h5>Qualidade dos sites atuais</h5>
-            <p>Pesquise os 10 primeiros resultados do Google para esse nicho + sua cidade. Se a maioria dos sites for horrível (ou não existir), você tem uma mina de ouro. Quanto pior a concorrência digital, melhor para você.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">01</div><div class="step-row-content"><h5>Afinidade ou conhecimento prévio</h5><p>Tem família na área da saúde? Conhece escritórios de advocacia? Contexto é vantagem enorme — você entende o vocabulário e as dores antes de falar com o cliente.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">02</div><div class="step-row-content"><h5>Densidade de potenciais clientes na sua cidade</h5><p>Abra o Google Maps e pesquise o nicho na sua cidade. Se aparecerem 50+ negócios, você tem mercado suficiente para começar sem precisar prospectar fora do estado.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">03</div><div class="step-row-content"><h5>Qualidade dos sites atuais</h5><p>Pesquise os 10 primeiros resultados do Google para esse nicho + sua cidade. Se a maioria dos sites for horrível (ou não existir), você tem uma mina de ouro. Quanto pior a concorrência digital, melhor pra você.</p></div></div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">1.3 — Posicionamento que justifica preços altos</h2>
-      <p class="body-text">O erro fatal: tentar competir por preço. Quem compete por preço sempre perde para alguém disposto a cobrar menos. Veja como se diferenciar genuinamente:</p>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">A</div>
-          <div class="step-row-content">
-            <h5>Especialize-se em resultado, não em tecnologia</h5>
-            <p>"Faço sites em HTML/CSS" é genérico e commodity. "Crio páginas de captação de pacientes para clínicas odontológicas que triplicam agendamentos" é específico, valioso e justifica um preço 4x maior.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">B</div>
-          <div class="step-row-content">
-            <h5>Fale de ROI, não de tecnologia</h5>
-            <p>Seu cliente não quer saber que o site é responsivo. Ele quer saber: "se eu investir R$2.000, quanto vou faturar a mais?" Aprenda a calcular e apresentar isso. Um dentista que cobra R$200 por consulta precisa de apenas 10 pacientes novos para pagar o site — e um bom site traz isso no primeiro mês.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">C</div>
-          <div class="step-row-content">
-            <h5>Crie autoridade antes de prospectar</h5>
-            <p>Crie 2–3 sites fictícios do nicho escolhido usando IA. Hospede gratuitamente no Netlify. Poste no Instagram mostrando o antes/depois. Faça um vídeo de timelapse do processo. Quando você prospectar, já vai ter um portfólio convincente — mesmo sem um cliente real sequer.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">D</div>
-          <div class="step-row-content">
-            <h5>O depoimento do "primeiro cliente gratuito"</h5>
-            <p>Se você está começando do zero, ofereça 1 projeto gratuito ou com desconto em troca de depoimento em vídeo e autorização de uso no portfólio. Um depoimento real vale mais do que 10 sites fictícios. Escolha bem: quem tem presença nas redes e vai mostrar para a rede de contatos.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">A</div><div class="step-row-content"><h5>Especialize-se em resultado, não em tecnologia</h5><p>"Faço sites em HTML" é genérico. "Crio páginas de captação de pacientes para clínicas que triplicam agendamentos" é específico, valioso e justifica preço 4x maior.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">B</div><div class="step-row-content"><h5>Fale de ROI, não de tecnologia</h5><p>Seu cliente não quer saber que o site é responsivo. Ele quer saber: "quanto vou faturar a mais?" Um dentista que cobra R$200 por consulta precisa de apenas 10 pacientes novos para pagar o site.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">C</div><div class="step-row-content"><h5>Crie autoridade com portfólio fictício</h5><p>Crie 2–3 sites fictícios do nicho escolhido usando IA. Hospede gratuitamente no Netlify. Poste no Instagram mostrando o antes/depois. Quando prospectar, já terá um portfólio convincente — mesmo sem um cliente real.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">D</div><div class="step-row-content"><h5>O primeiro cliente gratuito estratégico</h5><p>Se estiver começando do zero, ofereça 1 projeto gratuito em troca de depoimento em vídeo e autorização de uso no portfólio. Um depoimento real vale mais do que 10 sites fictícios. Escolha alguém com presença nas redes.</p></div></div>
       </div>
-
       <div class="warning-box">
-        <div class="wb-title">⚠️ A armadilha do "freela barato" — leia isso agora</div>
-        <p>Se você aceitar o primeiro cliente por R$200 por desespero, você se posicionou nesse nível para sempre. É praticamente impossível aumentar preços para o mesmo cliente. Prefira esperar 1–2 semanas extras e fechar pelo valor correto. Clientes que pagam pouco também pedem muito mais revisão, são mais difíceis e te drenam energia.</p>
+        <div class="wb-title">⚠️ A armadilha do "freela barato"</div>
+        <p>Se você aceitar o primeiro cliente por R$200 por desespero, se posicionou nesse nível para sempre. É quase impossível aumentar preços para o mesmo cliente depois. Prefira esperar 1–2 semanas extras e fechar pelo valor correto. Clientes que pagam pouco também pedem muito mais revisão.</p>
       </div>
-
       <h2 class="section-h2">1.4 — A psicologia do cliente que paga bem</h2>
-      <p class="body-text">Clientes que pagam R$2.000+ têm características específicas. Entender isso muda quem você prospecta:</p>
-
       <ul class="bullet-list">
-        <li><strong>Eles compram resultados, não serviços.</strong> Apresente o que vai mudar na vida deles, não a lista de entregáveis.</li>
-        <li><strong>Eles pagam por confiança, não pelo menor preço.</strong> Um portfólio profissional e depoimentos reais valem mais que qualquer desconto.</li>
-        <li><strong>Eles valorizam quem tem processo.</strong> Mostrar as etapas do seu trabalho (briefing → desenvolvimento → revisão → entrega) demonstra maturidade profissional.</li>
-        <li><strong>Eles querem prazo, não previsão.</strong> "Entrego em 10 dias úteis" é melhor que "mais ou menos 2 semanas". Precisão transmite confiança.</li>
-        <li><strong>Eles indicam outros do mesmo nível.</strong> Um cliente bem atendido que paga R$2.000 vai te indicar para alguém que também paga R$2.000. Cuide bem de quem você quer atrair.</li>
+        <li><strong>Compram resultados, não serviços.</strong> Apresente o que vai mudar na vida deles, não a lista de entregáveis.</li>
+        <li><strong>Pagam por confiança, não pelo menor preço.</strong> Portfólio profissional e depoimentos reais valem mais que qualquer desconto.</li>
+        <li><strong>Valorizam quem tem processo.</strong> Mostrar as etapas do seu trabalho demonstra maturidade profissional.</li>
+        <li><strong>Querem prazo, não previsão.</strong> "Entrego em 10 dias úteis" é melhor que "mais ou menos 2 semanas". Precisão transmite confiança.</li>
+        <li><strong>Indicam outros do mesmo nível.</strong> Um cliente bem atendido que paga R$2.000 vai te indicar para alguém que também paga R$2.000.</li>
       </ul>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('home')">← Início</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod2'); marcarConcluido()">Módulo 2: Stack de IA →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 2 — STACK DE IA
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 2 -->
     <div class="module-page" id="page-mod2">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 02 · Ferramentas</div>
         <h1 class="module-title">O <em>arsenal de IA</em><br>que uso em todo<br>projeto</h1>
-        <p class="module-lead">Você não precisa de todas as ferramentas — precisa das certas. Aqui está o stack real que uso para criar sites profissionais em horas, com a qualidade que justifica cobrar bem.</p>
+        <p class="module-lead">Você não precisa de todas as ferramentas — precisa das certas. Aqui está o stack real que uso para criar sites profissionais em horas.</p>
       </div>
-
       <h2 class="section-h2">2.1 — Ferramentas essenciais (use desde o primeiro projeto)</h2>
       <div class="tool-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
-        <div class="tool-card"><span class="tool-emoji">🤖</span><div class="tool-name">Claude (Anthropic)</div><div class="tool-type">Geração de código</div><div class="tool-desc">Melhor que ChatGPT para gerar HTML/CSS longos e complexos. Mantém contexto maior e erra menos no código.</div><span class="tool-price">Gratuito / $20/mês Pro</span></div>
-        <div class="tool-card"><span class="tool-emoji">💬</span><div class="tool-name">ChatGPT 4o</div><div class="tool-type">Copy & Estratégia</div><div class="tool-desc">Excelente para copywriting, scripts de prospecção, textos de vendas e ideias estratégicas.</div><span class="tool-price">Gratuito / $20/mês Plus</span></div>
-        <div class="tool-card"><span class="tool-emoji">⚡</span><div class="tool-name">v0.dev (Vercel)</div><div class="tool-type">UI gerada por IA</div><div class="tool-desc">Descreva um componente e ele gera código profissional. Ótimo para seções específicas como cards, tabelas e navbars.</div><span class="tool-price">Gratuito (limitado)</span></div>
-        <div class="tool-card"><span class="tool-emoji">📸</span><div class="tool-name">Screenshot-to-Code</div><div class="tool-type">Conversão visual</div><div class="tool-desc">Tire print de qualquer site que você goste e converta em HTML/CSS automaticamente. Economiza horas de reverse engineering.</div><span class="tool-price">Open-source / grátis</span></div>
-        <div class="tool-card"><span class="tool-emoji">🎨</span><div class="tool-name">DALL-E 3 / Midjourney</div><div class="tool-type">Imagens exclusivas</div><div class="tool-desc">Crie fotos de hero, ícones e imagens de estilo de vida para cada cliente. Nunca mais use stock photo genérico.</div><span class="tool-price">Créditos / $10/mês</span></div>
-        <div class="tool-card"><span class="tool-emoji">🗺️</span><div class="tool-name">Relume.io</div><div class="tool-type">Wireframe com IA</div><div class="tool-desc">Gere sitemap e wireframe completo com IA em minutos. Exporte para Figma. Ideal para apresentar antes de codar.</div><span class="tool-price">Freemium</span></div>
-        <div class="tool-card"><span class="tool-emoji">🚀</span><div class="tool-name">Netlify</div><div class="tool-type">Hospedagem</div><div class="tool-desc">Hospede HTML/CSS gratuitamente. Deploy em 30 segundos via drag & drop. Domínio customizado, SSL automático.</div><span class="tool-price">Gratuito</span></div>
-        <div class="tool-card"><span class="tool-emoji">📝</span><div class="tool-name">VS Code</div><div class="tool-type">Editor de código</div><div class="tool-desc">Editor gratuito com GitHub Copilot integrado. Extensões Prettier e Live Server são obrigatórias.</div><span class="tool-price">Gratuito</span></div>
+        <div class="tool-card"><span class="tool-emoji">🤖</span><div class="tool-name">Claude (Anthropic)</div><div class="tool-type">Geração de código</div><div class="tool-desc">Melhor que ChatGPT para gerar HTML/CSS longos e complexos. Mantém contexto maior e erra menos no código.</div><span class="tool-price">Grátis / $20/mês Pro</span></div>
+        <div class="tool-card"><span class="tool-emoji">💬</span><div class="tool-name">ChatGPT 4o</div><div class="tool-type">Copy & Estratégia</div><div class="tool-desc">Excelente para copywriting, scripts de prospecção, textos de vendas e ideias estratégicas.</div><span class="tool-price">Grátis / $20/mês Plus</span></div>
+        <div class="tool-card"><span class="tool-emoji">⚡</span><div class="tool-name">v0.dev (Vercel)</div><div class="tool-type">UI gerada por IA</div><div class="tool-desc">Descreva um componente e ele gera código profissional. Ótimo para seções específicas.</div><span class="tool-price">Grátis (limitado)</span></div>
+        <div class="tool-card"><span class="tool-emoji">🎨</span><div class="tool-name">DALL-E 3 / Midjourney</div><div class="tool-type">Imagens exclusivas</div><div class="tool-desc">Crie fotos de hero e imagens de estilo de vida para cada cliente. Nunca mais use stock photo genérico.</div><span class="tool-price">Créditos / $10/mês</span></div>
+        <div class="tool-card"><span class="tool-emoji">🚀</span><div class="tool-name">Netlify</div><div class="tool-type">Hospedagem</div><div class="tool-desc">Hospede HTML/CSS gratuitamente. Deploy em 30 segundos via drag & drop. SSL automático.</div><span class="tool-price">Gratuito</span></div>
+        <div class="tool-card"><span class="tool-emoji">📝</span><div class="tool-name">VS Code</div><div class="tool-type">Editor de código</div><div class="tool-desc">Editor gratuito. Extensões Prettier e Live Server são obrigatórias. GitHub Copilot integrado.</div><span class="tool-price">Gratuito</span></div>
+        <div class="tool-card"><span class="tool-emoji">🗺️</span><div class="tool-name">Relume.io</div><div class="tool-type">Wireframe com IA</div><div class="tool-desc">Gere sitemap e wireframe completo com IA em minutos. Ideal para apresentar antes de codar.</div><span class="tool-price">Freemium</span></div>
+        <div class="tool-card"><span class="tool-emoji">🎬</span><div class="tool-name">Loom</div><div class="tool-type">Vídeo-demonstração</div><div class="tool-desc">Grave vídeos mostrando o site ao cliente. Profissionaliza a entrega e reduz revisões.</div><span class="tool-price">Grátis (5 min)</span></div>
       </div>
-
-      <h2 class="section-h2">2.2 — Ferramentas de segundo nível (para projetos maiores)</h2>
+      <h2 class="section-h2">2.2 — Ferramentas de segundo nível</h2>
       <div class="tool-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
-        <div class="tool-card"><span class="tool-emoji">🤝</span><div class="tool-name">Typebot</div><div class="tool-type">Chatbot com IA</div><div class="tool-desc">Crie chatbots de qualificação de leads para embutir no site do cliente. Agrega muito valor e diferencia você.</div><span class="tool-price">Gratuito / $39/mês</span></div>
-        <div class="tool-card"><span class="tool-emoji">📊</span><div class="tool-name">Hotjar (free)</div><div class="tool-type">Heatmaps</div><div class="tool-desc">Mostre ao cliente onde os visitantes clicam. Ofereça como relatório mensal — transforma qualquer projeto em recorrência.</div><span class="tool-price">Gratuito (básico)</span></div>
-        <div class="tool-card"><span class="tool-emoji">📅</span><div class="tool-name">Calendly</div><div class="tool-type">Agendamento</div><div class="tool-desc">Integre ao site do cliente para agendamento automático. Elimina o vai-e-vem de mensagens. Valor enorme para clínicas.</div><span class="tool-price">Gratuito (básico)</span></div>
-        <div class="tool-card"><span class="tool-emoji">📧</span><div class="tool-name">Brevo (ex-Sendinblue)</div><div class="tool-type">E-mail marketing</div><div class="tool-desc">Ofereça integração de formulário com automação de e-mail como serviço adicional. R$200–500/mês extra.</div><span class="tool-price">Gratuito até 300/dia</span></div>
-        <div class="tool-card"><span class="tool-emoji">🔍</span><div class="tool-name">Google Search Console</div><div class="tool-type">SEO e Analytics</div><div class="tool-desc">Configure gratuitamente para cada cliente e entregue relatório mensal. Justifica o contrato de manutenção.</div><span class="tool-price">Gratuito</span></div>
-        <div class="tool-card"><span class="tool-emoji">🎬</span><div class="tool-name">Loom</div><div class="tool-type">Vídeo-demonstração</div><div class="tool-desc">Grave vídeos mostrando o site ao cliente antes de entregar. Profissionaliza a entrega e reduz revisões desnecessárias.</div><span class="tool-price">Gratuito (5 min)</span></div>
+        <div class="tool-card"><span class="tool-emoji">🤝</span><div class="tool-name">Typebot</div><div class="tool-type">Chatbot com IA</div><div class="tool-desc">Crie chatbots de qualificação de leads para embutir no site do cliente. Agrega muito valor.</div><span class="tool-price">Grátis / $39/mês</span></div>
+        <div class="tool-card"><span class="tool-emoji">📊</span><div class="tool-name">Hotjar (free)</div><div class="tool-type">Heatmaps</div><div class="tool-desc">Mostre ao cliente onde os visitantes clicam. Ofereça como relatório mensal — gera recorrência.</div><span class="tool-price">Grátis (básico)</span></div>
+        <div class="tool-card"><span class="tool-emoji">📅</span><div class="tool-name">Calendly</div><div class="tool-type">Agendamento</div><div class="tool-desc">Integre ao site do cliente para agendamento automático. Valor enorme para clínicas.</div><span class="tool-price">Grátis (básico)</span></div>
+        <div class="tool-card"><span class="tool-emoji">🔍</span><div class="tool-name">Google Search Console</div><div class="tool-type">SEO e Analytics</div><div class="tool-desc">Configure gratuitamente para cada cliente e entregue relatório mensal. Justifica contrato de manutenção.</div><span class="tool-price">Gratuito</span></div>
+        <div class="tool-card"><span class="tool-emoji">📸</span><div class="tool-name">Squoosh.app</div><div class="tool-type">Otimização de imagens</div><div class="tool-desc">Converta e otimize imagens para WebP gratuitamente. Site rápido é diferencial competitivo.</div><span class="tool-price">Gratuito</span></div>
+        <div class="tool-card"><span class="tool-emoji">📧</span><div class="tool-name">Brevo</div><div class="tool-type">E-mail marketing</div><div class="tool-desc">Integração de formulário com automação de e-mail como serviço adicional. R$200–500/mês extra.</div><span class="tool-price">Grátis até 300/dia</span></div>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">2.3 — O workflow IA que eu uso (do zero ao site em 1 dia)</h2>
-
+      <h2 class="section-h2">2.3 — O workflow IA (do zero ao site em 1 dia)</h2>
       <div class="timeline">
-        <div class="tl-item done">
-          <div class="tl-dot"></div>
-          <div class="tl-title">Etapa 1 (30min): Briefing → prompt mestre</div>
-          <div class="tl-desc">Após o briefing, alimento o Claude com todas as informações: nicho, objetivo, público, cores, referências. Peço para gerar um "documento de estratégia" antes de qualquer código. Isso evita retrabalho.</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-dot"></div>
-          <div class="tl-title">Etapa 2 (45min): Estrutura HTML completa</div>
-          <div class="tl-desc">Com o documento de estratégia, peço o HTML completo seção por seção: hero, serviços, depoimentos, FAQ, CTA. Cada seção em uma conversa separada para manter qualidade.</div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-dot"></div>
-          <div class="tl-title">Etapa 3 (30min): CSS e responsividade</div>
-          <div class="tl-desc">Peço o CSS completo com variáveis de cor do cliente. Depois: "torne 100% responsivo para mobile em 375px de largura". Verifico no browser DevTools em cada breakpoint.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-title">Etapa 4 (20min): Imagens e assets</div>
-          <div class="tl-desc">Gero imagens no DALL-E 3 para o hero e seções visuais. Optimizo via Squoosh.app (grátis) para WebP. Carregamento rápido é diferencial competitivo.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-title">Etapa 5 (15min): Deploy e revisão</div>
-          <div class="tl-desc">Deploy no Netlify via drag & drop. Gravo um Loom de 2 minutos mostrando o site ao cliente com narração. Envio o link para aprovação antes de fazer qualquer ajuste.</div>
-        </div>
+        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-title">Etapa 1 (30min): Briefing → prompt mestre</div><div class="tl-desc">Alimento o Claude com todas as informações: nicho, objetivo, público, cores, referências. Peço para gerar um "documento de estratégia" antes de qualquer código. Evita retrabalho.</div></div>
+        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-title">Etapa 2 (45min): Estrutura HTML completa</div><div class="tl-desc">Com o documento de estratégia, peço o HTML completo seção por seção: hero, serviços, depoimentos, FAQ, CTA. Cada seção numa conversa separada para manter qualidade.</div></div>
+        <div class="tl-item done"><div class="tl-dot"></div><div class="tl-title">Etapa 3 (30min): CSS e responsividade</div><div class="tl-desc">Peço o CSS completo com variáveis de cor do cliente. Depois: "torne 100% responsivo para mobile em 375px". Verifico no browser DevTools em cada breakpoint.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">Etapa 4 (20min): Imagens e assets</div><div class="tl-desc">Gero imagens no DALL-E 3 para o hero. Optimizo via Squoosh.app para WebP. Carregamento rápido é diferencial competitivo que clientes percebem.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">Etapa 5 (15min): Deploy e entrega</div><div class="tl-desc">Deploy no Netlify via drag & drop. Gravo um Loom de 2 minutos mostrando o site ao cliente. Envio o link para aprovação antes de qualquer ajuste.</div></div>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">2.4 — Prompts que eu uso todo dia</h2>
-
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt Mestre: Gerar landing page completa</div>
-        <div class="prompt-text" id="pm1">Você é um desenvolvedor front-end sênior especialista em HTML5 e CSS3. Crie uma landing page completa e profissional para [NOME DA EMPRESA], um(a) [NICHO] em [CIDADE]. Informações do cliente: [COLE O BRIEFING]. A página deve ter: (1) Hero com headline impactante e CTA para WhatsApp [NÚMERO], (2) Seção de serviços com 3 cards, (3) Seção "Por que nos escolher" com diferenciais, (4) 3 depoimentos reais, (5) FAQ com 5 perguntas, (6) Rodapé com mapa e contato. Design: dark mode com cor de destaque [COR HEX]. Fontes: Syne (títulos) e DM Sans (texto) via Google Fonts. Mobile-first, responsivo. Código limpo, sem frameworks externos, comentado em português. Retorne SOMENTE o código HTML completo, sem explicações.</div>
-        <button class="btn-copy-prompt" onclick="copyPrompt('pm1',this)">Copiar</button>
-      </div>
-
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Copywriting de hero section (5 opções)</div>
-        <div class="prompt-text" id="pm2">Escreva 5 headlines diferentes para hero section de [NICHO] em [CIDADE]. Público: [DESCREVA]. Principal dor: [PROBLEMA]. Solução: [SOLUÇÃO]. Use as fórmulas: 1) Resultado + Prazo (ex: "Mais pacientes em 30 dias"), 2) Pergunta que dói (ex: "Ainda perdendo clientes por não ter site?"), 3) Número + Benefício (ex: "3x mais agendamentos com um site que converte"), 4) Transformação (antes → depois), 5) Ao contrário da concorrência. Máximo 10 palavras por headline. Liste também uma subheadline de suporte (20–30 palavras) para cada uma.</div>
-        <button class="btn-copy-prompt" onclick="copyPrompt('pm2',this)">Copiar</button>
-      </div>
-
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Corrigir e otimizar código gerado</div>
-        <div class="prompt-text" id="pm3">Revise este código HTML/CSS: [COLE O CÓDIGO]. Faça: (1) Corrija qualquer erro de sintaxe, (2) Melhore a semântica HTML (h1, h2, section, article, aria-labels), (3) Otimize o CSS removendo redundâncias, (4) Garanta que funciona em Chrome, Firefox e Safari, (5) Adicione meta tags de SEO completas incluindo Open Graph, (6) Adicione loading="lazy" em todas as imagens, (7) Substitua fontes por versões com font-display: swap. Retorne o código corrigido completo.</div>
-        <button class="btn-copy-prompt" onclick="copyPrompt('pm3',this)">Copiar</button>
-      </div>
-
+      <h2 class="section-h2">2.4 — Prompts que uso todo dia</h2>
+      <div class="prompt-box"><div class="prompt-label">Prompt Mestre: Landing page completa</div><div class="prompt-text" id="pm1">Você é um desenvolvedor front-end sênior especialista em HTML5 e CSS3. Crie uma landing page completa e profissional para [NOME DA EMPRESA], um(a) [NICHO] em [CIDADE]. Informações do cliente: [COLE O BRIEFING]. A página deve ter: (1) Hero com headline impactante e CTA para WhatsApp [NÚMERO], (2) Seção de serviços com 3 cards, (3) Seção "Por que nos escolher" com diferenciais, (4) 3 depoimentos reais, (5) FAQ com 5 perguntas, (6) Rodapé com mapa e contato. Design: dark mode com cor de destaque [COR HEX]. Fontes: Syne (títulos) e DM Sans (texto) via Google Fonts. Mobile-first, responsivo. Código limpo, sem frameworks externos, comentado em português. Retorne SOMENTE o código HTML completo.</div><button class="btn-copy-prompt" onclick="copyPrompt('pm1',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Prompt: Copywriting de hero (5 opções)</div><div class="prompt-text" id="pm2">Escreva 5 headlines diferentes para hero section de [NICHO] em [CIDADE]. Público: [DESCREVA]. Principal dor: [PROBLEMA]. Use as fórmulas: 1) Resultado + Prazo, 2) Pergunta que dói, 3) Número + Benefício, 4) Transformação antes/depois, 5) Ao contrário da concorrência. Máximo 10 palavras por headline. Liste também uma subheadline de suporte (20–30 palavras) para cada uma.</div><button class="btn-copy-prompt" onclick="copyPrompt('pm2',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Prompt: Revisar e otimizar código gerado</div><div class="prompt-text" id="pm3">Revise este código HTML/CSS: [COLE O CÓDIGO]. Faça: (1) Corrija erros de sintaxe, (2) Melhore a semântica HTML (h1, h2, section, article, aria-labels), (3) Otimize o CSS removendo redundâncias, (4) Garanta funcionamento em Chrome, Firefox e Safari, (5) Adicione meta tags de SEO completas incluindo Open Graph, (6) Adicione loading="lazy" em todas as imagens. Retorne o código corrigido completo.</div><button class="btn-copy-prompt" onclick="copyPrompt('pm3',this)">Copiar</button></div>
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod1')">← Módulo 1</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod3'); marcarConcluido()">Módulo 3: Execução →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 3 — EXECUÇÃO
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 3 -->
     <div class="module-page" id="page-mod3">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 03 · Técnico</div>
         <h1 class="module-title">Do briefing ao<br>site publicado em<br><em>menos de 48h</em></h1>
-        <p class="module-lead">O processo completo que uso em cada projeto. Cada etapa está descrita com o que fazer, como fazer e quais armadilhas evitar.</p>
+        <p class="module-lead">O processo completo que uso em cada projeto. Cada etapa com o que fazer, como fazer e quais armadilhas evitar.</p>
       </div>
-
-      <h2 class="section-h2">3.1 — Briefing: as 8 perguntas que mudam tudo</h2>
-      <p class="body-text">Nunca comece a codar sem um briefing completo. Estas perguntas vão alimentar seu prompt mestre com informações precisas:</p>
+      <h2 class="section-h2">3.1 — As 8 perguntas de briefing que mudam tudo</h2>
       <ul class="check-list">
         <li><strong>Qual é o objetivo principal do site?</strong> (captar leads, vender, mostrar portfólio, agendar?)</li>
         <li><strong>Quem é o cliente ideal?</strong> (idade, renda, problema principal, onde busca soluções)</li>
         <li><strong>Qual é a única ação que você quer que o visitante tome?</strong> (ligar, WhatsApp, formulário, agendar?)</li>
         <li><strong>Me manda 3 sites que você admira</strong> (mesmo fora do nicho — referências visuais valem mais que palavras)</li>
-        <li><strong>Quais são seus principais diferenciais frente à concorrência?</strong> (o que você faz que outros não fazem?)</li>
-        <li><strong>Você tem fotos profissionais dos seus serviços/espaço?</strong> (fotografia real aumenta conversão em 40%)</li>
-        <li><strong>Tem depoimentos de clientes?</strong> (vídeo é o melhor, mas texto com foto já funciona muito)</li>
-        <li><strong>Quais cores e fontes representam sua marca?</strong> (se não souber, peça referências de marcas que admira)</li>
+        <li><strong>Quais são seus principais diferenciais?</strong> (o que você faz que outros não fazem?)</li>
+        <li><strong>Você tem fotos profissionais?</strong> (fotografia real aumenta conversão em 40%)</li>
+        <li><strong>Tem depoimentos de clientes?</strong> (vídeo é o melhor, mas texto com foto já funciona)</li>
+        <li><strong>Quais cores representam sua marca?</strong> (se não souber, peça referências de marcas que admira)</li>
       </ul>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">3.2 — Anatomia de uma landing page de alta conversão</h2>
-      <p class="body-text">Esta é a estrutura que eu uso em 90% dos projetos. Cada seção tem um papel específico na jornada do visitante:</p>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">1</div>
-          <div class="step-row-content">
-            <h5>Nav bar — âncoras de confiança</h5>
-            <p>Logo + links âncora + botão de CTA destacado. Deve ficar sticky (fixo no scroll). Inclua número de telefone visível se o público for mais velho.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">2</div>
-          <div class="step-row-content">
-            <h5>Hero section — a decisão mais importante</h5>
-            <p>80% das pessoas decidem em 5 segundos se vão ficar na página. Headline forte (benefício claro), subheadline (como você entrega), CTA visível, e um elemento de prova social (ex: "mais de 200 pacientes atendidos").</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">3</div>
-          <div class="step-row-content">
-            <h5>Dor & Agitação — você entende o problema</h5>
-            <p>Seção curta mostrando que você entende a dor do cliente do seu cliente. Ex: "Você perde pacientes todos os dias para concorrentes com site porque o Google não te encontra." Quanto mais específico, mais poderoso.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">4</div>
-          <div class="step-row-content">
-            <h5>Serviços — benefícios, não funcionalidades</h5>
-            <p>"Site responsivo" é funcionalidade. "Seus pacientes podem agendar pelo celular às 11h da noite" é benefício. Reescreva cada serviço assim e a percepção de valor explode.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">5</div>
-          <div class="step-row-content">
-            <h5>Depoimentos — prova social real</h5>
-            <p>Mínimo 2–3 depoimentos. Depoimento em vídeo converte 5x mais que texto. Se o cliente não tiver depoimentos, ofereça fazer 2–3 semanas depois da entrega — quando o cliente já tiver resultados.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">6</div>
-          <div class="step-row-content">
-            <h5>FAQ — matando objeções antes que surjam</h5>
-            <p>As 5 objeções mais comuns variam por nicho. Para clínicas: "Aceita plano?" "Como funciona o agendamento?" Para advogados: "Quanto custa a consulta?" "Atende meu tipo de caso?" Responda antes que o visitante desista.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">7</div>
-          <div class="step-row-content">
-            <h5>CTA final + urgência</h5>
-            <p>Repita a ação principal com um elemento de urgência real (não inventado). Ex: "Agende sua consulta hoje — agenda aberta para [MÊS]". Formulário simples: nome + telefone + mensagem. Botão WhatsApp se o cliente prefere contato direto.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">1</div><div class="step-row-content"><h5>Nav bar — âncoras de confiança</h5><p>Logo + links âncora + botão de CTA destacado. Deve ficar sticky (fixo no scroll). Inclua número de telefone visível se o público for mais velho.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">2</div><div class="step-row-content"><h5>Hero section — a decisão mais importante</h5><p>80% das pessoas decidem em 5 segundos se vão ficar na página. Headline forte (benefício claro), subheadline (como você entrega), CTA visível, e elemento de prova social.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">3</div><div class="step-row-content"><h5>Dor & Agitação — você entende o problema</h5><p>Seção curta mostrando que você entende a dor do cliente do seu cliente. "Você perde pacientes todos os dias para concorrentes com site porque o Google não te encontra." Quanto mais específico, mais poderoso.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">4</div><div class="step-row-content"><h5>Serviços — benefícios, não funcionalidades</h5><p>"Site responsivo" é funcionalidade. "Seus pacientes podem agendar pelo celular às 11h da noite" é benefício. Reescreva cada serviço assim e a percepção de valor explode.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">5</div><div class="step-row-content"><h5>Depoimentos — prova social real</h5><p>Mínimo 2–3 depoimentos. Depoimento em vídeo converte 5x mais que texto. Se o cliente não tiver, ofereça buscar 2–3 semanas após a entrega — quando já tiver resultados.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">6</div><div class="step-row-content"><h5>FAQ — matando objeções antes que surjam</h5><p>As 5 objeções mais comuns do nicho. Para clínicas: "Aceita plano?" Para advogados: "Quanto custa a consulta?" Responda antes que o visitante desista.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">7</div><div class="step-row-content"><h5>CTA final + urgência</h5><p>Repita a ação principal com elemento de urgência real. "Agende sua consulta hoje — agenda aberta para [MÊS]". Formulário simples: nome + telefone + mensagem.</p></div></div>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">3.3 — QA Checklist antes de entregar</h2>
-      <p class="body-text">Nunca entregue sem passar por este checklist. Cada item evita constrangimento com o cliente:</p>
-
-      <div class="content-grid">
-        <div class="content-card">
-          <span class="card-icon">📱</span>
-          <h4>Mobile (375px, 390px, 414px)</h4>
-          <p>Teste nos breakpoints reais dos iPhones mais comuns. Nenhum texto cortado, botões com mínimo 44px de altura, imagens sem overflow.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">⚡</span>
-          <h4>PageSpeed Insights</h4>
-          <p>Score mínimo de 85 no mobile. Imagens em WebP, fontes com font-display:swap, sem CSS/JS bloqueante. Clientes adoram ver o score alto.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">🔗</span>
-          <h4>Links e formulários</h4>
-          <p>Teste todos os links, botões WhatsApp (com o número correto!), formulários e âncoras de navegação. Erro em link do WhatsApp é vergonhoso.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">🖥️</span>
-          <h4>Cross-browser</h4>
-          <p>Chrome, Firefox e Safari no mínimo. No Safari, atenção especial a -webkit-prefixes e gap em flexbox. Teste em tela de 1280px e 1920px.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">🔍</span>
-          <h4>SEO básico</h4>
-          <p>Title e meta description únicos, alt em todas as imagens, H1 único, estrutura de headings lógica (H1→H2→H3), canonical tag configurada.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">♿</span>
-          <h4>Acessibilidade mínima</h4>
-          <p>Contraste de texto mínimo 4.5:1, botões com aria-label, imagens com alt descritivo, formulários com labels associados. Passará em auditoria básica.</p>
-        </div>
-      </div>
-
+      <h2 class="section-h2">3.3 — Checklist de entrega (use a ferramenta interativa)</h2>
+      <p class="body-text">Nunca entregue sem verificar. Acesse o <button onclick="goTo('checklist')" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:0.93rem;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px;">Checklist Interativo de Entrega</button> na seção de Ferramentas — 27 itens organizados por categoria.</p>
       <div class="highlight-box">
         <div class="hb-title">🎁 Entregável extra que impressiona</div>
-        <p>Junto com o site, entregue um PDF de 1 página com: (1) Print do PageSpeed score, (2) instrução de como publicar no Instagram Stories, (3) 3 dicas para melhorar o rankeamento no Google sem pagar nada. Custa 15 minutos e o cliente sente que recebeu muito mais do que pagou — gerando indicações.</p>
+        <p>Junto com o site, entregue um PDF de 1 página com: (1) Print do PageSpeed score, (2) instrução de como publicar no Instagram Stories, (3) 3 dicas para melhorar o rankeamento no Google sem pagar nada. Custa 15 minutos e o cliente sente que recebeu muito mais do que pagou.</p>
       </div>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod2')">← Módulo 2</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod4'); marcarConcluido()">Módulo 4: Precificação →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 4 — PRECIFICAÇÃO
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 4 -->
     <div class="module-page" id="page-mod4">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 04 · Negócio</div>
         <h1 class="module-title">Como cobrar mais<br>e <em>nunca mais</em><br>trabalhar barato</h1>
-        <p class="module-lead">Precificação é a habilidade que mais impacta sua renda. Aqui estão os números reais, as estratégias psicológicas e os scripts para apresentar preços com confiança.</p>
+        <p class="module-lead">Precificação é a habilidade que mais impacta sua renda. Números reais, estratégias psicológicas e scripts para apresentar preços com confiança.</p>
       </div>
-
+      <p class="body-text">Use a <button onclick="goTo('calc')" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:0.93rem;font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px;">Calculadora de Preços</button> nas ferramentas para calcular o orçamento ideal de cada projeto automaticamente.</p>
       <h2 class="section-h2">4.1 — Tabela de preços por tipo de projeto</h2>
       <table class="price-table">
-        <thead>
-          <tr><th>Serviço</th><th>Prazo</th><th>Preço Mínimo</th><th>Preço Ideal</th><th>Potencial</th></tr>
-        </thead>
+        <thead><tr><th>Serviço</th><th>Prazo</th><th>Preço Mínimo</th><th>Preço Ideal</th><th>Potencial</th></tr></thead>
         <tbody>
-          <tr><td>Landing Page simples (1 objetivo)</td><td>2–3 dias</td><td class="price-val">R$ 700</td><td class="price-val">R$ 1.400</td><td class="price-ideal">R$ 2.200</td></tr>
-          <tr><td>Landing Page completa (6+ seções)</td><td>4–7 dias</td><td class="price-val">R$ 1.400</td><td class="price-val">R$ 2.500</td><td class="price-ideal">R$ 4.000</td></tr>
-          <tr><td>Site Institucional (4–6 páginas)</td><td>10–15 dias</td><td class="price-val">R$ 3.000</td><td class="price-val">R$ 5.500</td><td class="price-ideal">R$ 9.000</td></tr>
-          <tr><td>Site + Chatbot de qualificação</td><td>10–14 dias</td><td class="price-val">R$ 4.000</td><td class="price-val">R$ 7.000</td><td class="price-ideal">R$ 12.000</td></tr>
-          <tr><td>Redesign (reformulação de site)</td><td>5–10 dias</td><td class="price-val">R$ 1.200</td><td class="price-val">R$ 3.000</td><td class="price-ideal">R$ 5.000</td></tr>
-          <tr><td>Landing page de produto/infoproduto</td><td>5–8 dias</td><td class="price-val">R$ 1.500</td><td class="price-val">R$ 3.500</td><td class="price-ideal">R$ 6.000</td></tr>
-          <tr><td>Manutenção mensal</td><td>Contínuo</td><td class="price-val">R$ 200/mês</td><td class="price-val">R$ 400/mês</td><td class="price-ideal">R$ 700/mês</td></tr>
-          <tr><td>SEO + relatório mensal</td><td>Contínuo</td><td class="price-val">R$ 350/mês</td><td class="price-val">R$ 700/mês</td><td class="price-ideal">R$ 1.500/mês</td></tr>
+          <tr><td>Landing Page simples (1 objetivo)</td><td>2–3 dias</td><td class="price-val">R$700</td><td class="price-val">R$1.400</td><td class="price-ideal">R$2.200</td></tr>
+          <tr><td>Landing Page completa (6+ seções)</td><td>4–7 dias</td><td class="price-val">R$1.400</td><td class="price-val">R$2.500</td><td class="price-ideal">R$4.000</td></tr>
+          <tr><td>Site Institucional (4–6 páginas)</td><td>10–15 dias</td><td class="price-val">R$3.000</td><td class="price-val">R$5.500</td><td class="price-ideal">R$9.000</td></tr>
+          <tr><td>Site + Chatbot de qualificação</td><td>10–14 dias</td><td class="price-val">R$4.000</td><td class="price-val">R$7.000</td><td class="price-ideal">R$12.000</td></tr>
+          <tr><td>Redesign (reformulação de site)</td><td>5–10 dias</td><td class="price-val">R$1.200</td><td class="price-val">R$3.000</td><td class="price-ideal">R$5.000</td></tr>
+          <tr><td>Landing page de infoproduto</td><td>5–8 dias</td><td class="price-val">R$1.500</td><td class="price-val">R$3.500</td><td class="price-ideal">R$6.000</td></tr>
+          <tr><td>Manutenção mensal</td><td>Contínuo</td><td class="price-val">R$200/mês</td><td class="price-val">R$400/mês</td><td class="price-ideal">R$700/mês</td></tr>
+          <tr><td>SEO + relatório mensal</td><td>Contínuo</td><td class="price-val">R$350/mês</td><td class="price-val">R$700/mês</td><td class="price-ideal">R$1.500/mês</td></tr>
         </tbody>
       </table>
-
       <div class="highlight-box">
         <div class="hb-title">📐 A fórmula das 3x</div>
-        <p>Calcule horas do projeto × seu valor/hora desejado × 3. O "×3" existe porque: 1x = seu tempo real, 1x = revisões, comunicação e imprevistos, 1x = lucro real do negócio. Se você quer R$80/hora e o projeto leva 10 horas: 10 × 80 × 3 = <strong>R$2.400</strong>. Esse é seu preço mínimo.</p>
+        <p>Calcule horas do projeto × seu valor/hora desejado × 3. O "×3" existe porque: 1x = seu tempo real, 1x = revisões e imprevistos, 1x = lucro real do negócio. Se você quer R$80/hora e o projeto leva 10 horas: 10 × 80 × 3 = <strong>R$2.400</strong>. Esse é seu preço mínimo.</p>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">4.2 — Psicologia de preços que funciona</h2>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">💡</div>
-          <div class="step-row-content">
-            <h5>Ancore alto antes de revelar o preço final</h5>
-            <p>Antes de apresentar seu preço, fale do valor de mercado: "Sites como esse cobrados por agências custam entre R$8.000 e R$20.000. Meu serviço, com IA como acelerador, entrego a mesma qualidade por R$2.500." O cliente compara com o âncora, não com o preço que ele imaginou antes.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">💡</div>
-          <div class="step-row-content">
-            <h5>Sempre apresente 3 opções</h5>
-            <p>Básico / Recomendado / Premium. A maioria escolhe o do meio (efeito Goldilocks). O básico faz o cliente não fugir pelo preço; o premium faz o médio parecer razoável. O recomendado é onde você quer que eles cheguem.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">💡</div>
-          <div class="step-row-content">
-            <h5>Dê nome ao preço, não apenas números</h5>
-            <p>"Esse investimento vai te trazer X novos clientes por mês" é mais convincente do que "vai custar R$2.000". Calcule o ROI junto com o cliente: "Com 5 consultas extras por mês a R$250 cada, você recupera o investimento em 1,6 meses."</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">💡</div>
-          <div class="step-row-content">
-            <h5>Nunca dê desconto — troque por entregável</h5>
-            <p>Se o cliente pedir desconto, diga: "Não reduzo o preço porque isso afetaria a qualidade. Mas posso ajustar o escopo: retiro [X entregável] e fica em R$[VALOR MENOR]." Isso mantém sua posição de valor e dá saída honesta ao cliente.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">💡</div><div class="step-row-content"><h5>Ancore alto antes de revelar o preço final</h5><p>"Sites como esse cobrados por agências custam entre R$8.000 e R$20.000. Meu serviço, com IA como acelerador, entrego a mesma qualidade por R$2.500." O cliente compara com o âncora, não com o que imaginou antes.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">💡</div><div class="step-row-content"><h5>Sempre apresente 3 opções</h5><p>Básico / Recomendado / Premium. A maioria escolhe o do meio (efeito Goldilocks). O básico faz o cliente não fugir pelo preço; o premium faz o médio parecer razoável.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">💡</div><div class="step-row-content"><h5>Dê nome ao preço, não apenas números</h5><p>"Esse investimento vai te trazer X novos clientes por mês" é mais convincente do que "vai custar R$2.000". Calcule o ROI junto com o cliente.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">💡</div><div class="step-row-content"><h5>Nunca dê desconto — troque por entregável</h5><p>Se o cliente pedir desconto: "Não reduzo o preço porque isso afetaria a qualidade. Mas posso ajustar o escopo: retiro [X] e fica em R$[VALOR MENOR]." Mantém sua posição de valor.</p></div></div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">4.3 — Lidando com objeções de preço</h2>
-
       <div class="objection-list">
-        <div class="objection-item">
-          <div class="obj-q">❓ "Achei caro, vi mais barato em outro lugar"</div>
-          <div class="obj-a"><strong>Resposta:</strong> "Entendo. Sites mais baratos geralmente são feitos com construtores como Wix ou WordPress com template genérico. Entregar um código feito do zero, exclusivo, com alta performance no Google é diferente. Mas me fala: o que é mais importante pra você, o menor preço ou o melhor resultado?"</div>
-        </div>
-        <div class="objection-item">
-          <div class="obj-q">❓ "Deixa eu pensar e te retorno"</div>
-          <div class="obj-a"><strong>Resposta:</strong> "Claro! Só pra eu entender melhor: tem alguma dúvida específica que ficou sobre o que eu entrego? Às vezes consigo esclarecer algo que facilita a decisão." — Isso convida o cliente a revelar a objeção real.</div>
-        </div>
-        <div class="objection-item">
-          <div class="obj-q">❓ "Tem como parcelar?"</div>
-          <div class="obj-a"><strong>Resposta:</strong> "Sim! Trabalho com 50% na assinatura do contrato e 50% na aprovação final. Se preferir, posso dividir em 3x sem juros no cartão ou PIX. Qual forma fica melhor pra você?"</div>
-        </div>
-        <div class="objection-item">
-          <div class="obj-q">❓ "Meu sobrinho faz sites, vai sair mais barato"</div>
-          <div class="obj-a"><strong>Resposta:</strong> "Que bom que você tem essa opção! Se ele entrega com prazo, responsividade garantida, SEO configurado e suporte pós-entrega, pode ser uma boa pedida. O que eu ofereço além disso é [liste seus diferenciais]. Você decide o que faz mais sentido pro seu negócio."</div>
-        </div>
+        <div class="objection-item"><div class="obj-q">❓ "Achei caro, vi mais barato em outro lugar"</div><div class="obj-a"><strong>Resposta:</strong> "Entendo. Sites mais baratos geralmente são feitos com Wix ou WordPress com template genérico. Código do zero, exclusivo e com alta performance no Google é diferente. O que é mais importante pra você — o menor preço ou o melhor resultado?"</div></div>
+        <div class="objection-item"><div class="obj-q">❓ "Deixa eu pensar e te retorno"</div><div class="obj-a"><strong>Resposta:</strong> "Claro! Só pra eu entender melhor: tem alguma dúvida específica que ficou sobre o que eu entrego? Às vezes consigo esclarecer algo que facilita a decisão." — Isso convida o cliente a revelar a objeção real.</div></div>
+        <div class="objection-item"><div class="obj-q">❓ "Tem como parcelar?"</div><div class="obj-a"><strong>Resposta:</strong> "Sim! Trabalho com 50% na assinatura do contrato e 50% na aprovação final. Se preferir, divido em 3x no cartão ou PIX. Qual forma fica melhor?"</div></div>
+        <div class="objection-item"><div class="obj-q">❓ "Meu sobrinho faz sites, vai sair mais barato"</div><div class="obj-a"><strong>Resposta:</strong> "Que bom que você tem essa opção! Se ele entrega com prazo garantido, responsividade, SEO e suporte pós-entrega, pode ser uma boa pedida. O que eu ofereço além disso é [seus diferenciais]. Você decide o que faz mais sentido."</div></div>
       </div>
-
-      <div class="divider"></div>
-
-      <h2 class="section-h2">4.4 — Criando recorrência que paga as contas todo mês</h2>
-      <p class="body-text">Um projeto pago é ótimo. Um contrato mensal é o que muda sua vida financeira. Com 6–8 contratos de manutenção a R$350/mês, você tem R$2.100–2.800 garantidos todo mês — antes de fazer qualquer projeto novo.</p>
-
-      <div class="content-grid">
-        <div class="content-card"><span class="card-icon">🔄</span><h4>Plano de Manutenção</h4><p>Até 2h de atualização/mês + backup semanal + relatório de acessos Google Analytics. Inclua uma chamada de 15min/mês para revisão estratégica.</p><span class="card-tag">R$200–500/mês</span></div>
-        <div class="content-card"><span class="card-icon">📈</span><h4>SEO Mensal</h4><p>Otimizações técnicas, novos textos para blog, construção de backlinks locais, relatório Google Search Console. Mostre crescimento mês a mês.</p><span class="card-tag">R$400–1.200/mês</span></div>
-        <div class="content-card"><span class="card-icon">📣</span><h4>Landing Pages Sazonais</h4><p>Campanha de Carnaval, Dia das Mães, Black Friday, férias... Clientes de saúde, varejo e gastronomia sempre precisam. Cobre por page extra.</p><span class="card-tag">R$600–1.500/page</span></div>
-        <div class="content-card"><span class="card-icon">🤖</span><h4>Chatbot de Qualificação</h4><p>Implante e gerencie um Typebot no site do cliente. Ele recebe leads qualificados automaticamente. Você cobra setup + mensalidade de gestão.</p><span class="card-tag">R$800 setup + R$300/mês</span></div>
-      </div>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod3')">← Módulo 3</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod5'); marcarConcluido()">Módulo 5: Captação →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 5 — CAPTAÇÃO
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 5 -->
     <div class="module-page" id="page-mod5">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 05 · Vendas</div>
         <h1 class="module-title">Como encontrar<br><em>clientes todo mês</em><br>sem anunciar</h1>
-        <p class="module-lead">Prospecção é a habilidade que mais assusta quem começa. Com os métodos certos, você vai perceber que vender é apenas conectar a pessoa certa com a solução certa no momento certo.</p>
+        <p class="module-lead">Com os métodos certos, você vai perceber que vender é apenas conectar a pessoa certa com a solução certa no momento certo.</p>
       </div>
-
       <div class="stat-grid">
         <div class="stat-card"><div class="stat-val">10</div><div class="stat-label">contatos/semana</div></div>
         <div class="stat-card"><div class="stat-val">25%</div><div class="stat-label">taxa de resposta</div></div>
         <div class="stat-card"><div class="stat-val">2–3</div><div class="stat-label">clientes/mês</div></div>
       </div>
-
       <h2 class="section-h2">5.1 — Canal 1: Google Maps (o mais eficiente para começar)</h2>
-      <p class="body-text">O Google Maps é a mina de ouro mais subutilizada do Brasil. Veja o processo exato:</p>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">01</div>
-          <div class="step-row-content">
-            <h5>Pesquise e identifique oportunidades</h5>
-            <p>Pesquise "[nicho] [cidade]" no Google Maps. Clique em cada resultado e verifique se tem site. Sem site = lead quente. Site horrível/desatualizado = lead morno. Use uma planilha para registrar: nome, telefone, e-mail, status do site, nota que você daria para o site atual.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">02</div>
-          <div class="step-row-content">
-            <h5>Crie um mockup ANTES de contatar</h5>
-            <p>Para cada lead, crie uma versão simplificada de como o site deles poderia ser usando IA. Leva 20–30 minutos. Hospede no Netlify com URL personalizada (ex: clinicaxyz-preview.netlify.app). Isso transforma uma abordagem "fria" em uma demonstração de valor concreta — e aumenta a taxa de resposta em 5x.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">03</div>
-          <div class="step-row-content">
-            <h5>Aborde com o mockup no WhatsApp</h5>
-            <p>Use o script abaixo. A mensagem é curta, específica e já entrega valor antes de pedir qualquer coisa. Evite mensagens longas que parecem spam.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">01</div><div class="step-row-content"><h5>Pesquise e identifique oportunidades</h5><p>Pesquise "[nicho] [cidade]" no Google Maps. Clique em cada resultado e verifique se tem site. Sem site = lead quente. Site horrível = lead morno. Use planilha para registrar: nome, telefone, status do site.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">02</div><div class="step-row-content"><h5>Crie um mockup ANTES de contatar</h5><p>Para cada lead, crie uma versão simplificada de como o site deles poderia ser usando IA. Leva 20–30 minutos. Hospede no Netlify com URL personalizada. Isso transforma abordagem "fria" em demonstração de valor — aumenta a taxa de resposta em 5x.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">03</div><div class="step-row-content"><h5>Aborde com o mockup no WhatsApp</h5><p>Use o script abaixo. A mensagem é curta, específica e já entrega valor antes de pedir qualquer coisa.</p></div></div>
       </div>
-
       <div class="script-box">
-        <div class="script-label">Script WhatsApp — Abordagem com mockup (2025)</div>
-        <div class="script-text">
-          Oi, <strong>[NOME]</strong>! Tudo bem? 😊<br><br>
-          Sou o Rafael, dev especializado em sites para <strong>[NICHO]</strong>. Fiquei curioso com a presença digital de vocês e criei uma ideia rápida de como um site moderno pra <strong>[NOME DA EMPRESA]</strong> poderia parecer:<br><br>
-          👉 <strong>[LINK DO MOCKUP]</strong><br><br>
-          É só uma prévia — nada comprometido. Se gostar da ideia e quiser conversar, é só me falar. 🙂
-        </div>
+        <div class="script-label">Script WhatsApp — Abordagem com mockup</div>
+        <div class="script-text">Oi, <strong>[NOME]</strong>! Tudo bem? 😊<br><br>Sou o Rafael, dev especializado em sites para <strong>[NICHO]</strong>. Fiquei curioso com a presença digital de vocês e criei uma ideia rápida de como um site moderno pra <strong>[NOME DA EMPRESA]</strong> poderia parecer:<br><br>👉 <strong>[LINK DO MOCKUP]</strong><br><br>É só uma prévia — nada comprometido. Se gostar da ideia e quiser conversar, é só me falar. 🙂</div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">5.2 — Canal 2: Instagram (volume + conteúdo)</h2>
-      <p class="body-text">O Instagram tem dois papéis: prospecção direta via DM e captação inbound via conteúdo. Os dois se complementam.</p>
-
       <div class="content-grid">
-        <div class="content-card">
-          <span class="card-icon">📤</span>
-          <h4>Prospecção via DM</h4>
-          <p>Pesquise hashtags do nicho + cidade. Siga os negócios sem site. Interaja com 3–5 posts deles (likes + comentário genuíno) antes de enviar DM. Parecer familiar melhora muito a taxa de resposta.</p>
-        </div>
-        <div class="content-card">
-          <span class="card-icon">🎬</span>
-          <h4>Conteúdo que atrai leads</h4>
-          <p>Poste 1 Reel por semana mostrando um site que você criou (timelapse). Use a legenda: "Criei este site para [NICHO] em [X horas] usando IA. Se você é [NICHO] em [CIDADE] e quer algo assim, manda DM." Simples. Funciona.</p>
-        </div>
+        <div class="content-card"><span class="card-icon">📤</span><h4>Prospecção via DM</h4><p>Pesquise hashtags do nicho + cidade. Interaja com 3–5 posts deles (likes + comentário genuíno) antes de enviar DM. Parecer familiar melhora muito a taxa de resposta.</p></div>
+        <div class="content-card"><span class="card-icon">🎬</span><h4>Conteúdo que atrai leads</h4><p>Poste 1 Reel por semana mostrando um site criado (timelapse). "Criei este site para [NICHO] em [X horas] usando IA. Manda DM." Simples. Funciona.</p></div>
       </div>
-
       <div class="script-box">
-        <div class="script-label">Script Instagram DM — Abordagem direta</div>
-        <div class="script-text">
-          Oi <strong>[NOME]</strong>! Vi seu perfil e curti muito <strong>[MENCIONE ALGO ESPECÍFICO E REAL — uma foto, um serviço, uma bio]</strong>.<br><br>
-          Trabalho criando sites para <strong>[NICHO]</strong> e tenho uma ideia de como isso poderia ajudar o <strong>[NOME DA EMPRESA]</strong>. Posso te mandar uma prévia rápida? Não cobra nada, só quero mostrar o potencial. 😊
-        </div>
+        <div class="script-label">Script Instagram DM</div>
+        <div class="script-text">Oi <strong>[NOME]</strong>! Vi seu perfil e curti muito <strong>[MENCIONE ALGO ESPECÍFICO — uma foto, um serviço, algo real]</strong>.<br><br>Trabalho criando sites para <strong>[NICHO]</strong> e tenho uma ideia de como isso poderia ajudar o <strong>[NOME DA EMPRESA]</strong>. Posso te mandar uma prévia rápida? Não cobra nada, só quero mostrar o potencial. 😊</div>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">5.3 — Canal 3: LinkedIn (clientes B2B de maior ticket)</h2>
-      <p class="body-text">Gerentes e donos de empresa com orçamento maior estão no LinkedIn. O processo é diferente do Instagram — mais formal, mais direto ao ponto.</p>
-
-      <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">01</div>
-          <div class="step-row-content">
-            <h5>Perfil antes de prospectar</h5>
-            <p>Seu perfil precisa estar completo: foto profissional, headline clara ("Dev Front-End | Sites que convertem para [NICHO]"), banner com os seus projetos, seção de recomendações. Um perfil vazio destrói sua credibilidade.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">02</div>
-          <div class="step-row-content">
-            <h5>Conteúdo semanal no feed</h5>
-            <p>Poste 2x/semana: um post de case (antes/depois com resultado) e um post educativo (dica de SEO, erro comum em sites, etc). Quem posta consiste ganha visibilidade orgânica sem pagar nada.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">03</div>
-          <div class="step-row-content">
-            <h5>Conexão → mensagem (após 3–5 dias)</h5>
-            <p>Conecte-se com decisores (donos, gerentes de marketing). Espere 3–5 dias e envie mensagem de valor — não de venda. "Vi que vocês expandiram recentemente. Tenho alguns dados sobre como empresas do seu segmento estão usando o site para captar mais leads. Posso compartilhar?"</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <h2 class="section-h2">5.4 — Canal 4: Indicações (o mais barato e mais poderoso)</h2>
-
+      <h2 class="section-h2">5.3 — Canal 3: Indicações ativas</h2>
       <div class="highlight-box">
         <div class="hb-title">🏆 Estratégia de indicação ativa</div>
-        <p>Não espere indicações acontecerem. <strong>Peça ativamente.</strong> Após entregar um projeto com boa recepção, diga: "Fico feliz que ficou do jeito que você queria! Você conhece alguém que também precisa de um site assim? Tenho um programa de indicação onde você ganha R$[200–500] para cada cliente que fechar comigo." Clientes satisfeitos viram seus melhores vendedores — eles só precisam ser ativados.</p>
+        <p>Não espere indicações acontecerem. <strong>Peça ativamente.</strong> Após entregar um projeto com boa recepção: "Você conhece alguém que também precisa de um site assim? Tenho um programa de indicação onde você ganha R$[200–500] para cada cliente que fechar comigo." Clientes satisfeitos viram seus melhores vendedores — só precisam ser ativados.</p>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">5.5 — A ligação de fechamento: do interesse ao contrato</h2>
-      <p class="body-text">Quando um lead responder com interesse, agende uma chamada de 30 minutos (não uma reunião longa). Siga este roteiro:</p>
-
+      <h2 class="section-h2">5.4 — A chamada de fechamento</h2>
       <div class="steps-list">
-        <div class="step-row"><div class="step-num-badge">A</div><div class="step-row-content"><h5>Ouça mais do que fale (10 min)</h5><p>Pergunte sobre o negócio, os objetivos, as frustrações atuais. Deixe o cliente falar. Anote tudo. Quem faz mais perguntas controla a conversa.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">B</div><div class="step-row-content"><h5>Apresente sua solução (10 min)</h5><p>Baseado no que você ouviu, explique como o site resolve as dores específicas que o cliente mencionou. Use as palavras e expressões que ELE usou — cria espelhamento e conexão.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">C</div><div class="step-row-content"><h5>Apresente o preço com confiança (5 min)</h5><p>Diga o preço sem hesitar. Pausa e silêncio são seus aliados — não tente preencher o silêncio depois de apresentar o preço. Deixe o cliente processar. Quem fala primeiro perde.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">D</div><div class="step-row-content"><h5>Lide com objeções e feche (5 min)</h5><p>Use os scripts do Módulo 4 para cada objeção. Ao final: "Posso reservar uma data de início para essa semana. Você prefere começar na terça ou na quarta?" — uma pergunta de fechamento com opções, não "quer fechar?" (que permite um "não" fácil).</p></div></div>
+        <div class="step-row"><div class="step-num-badge">A</div><div class="step-row-content"><h5>Ouça mais do que fale (10 min)</h5><p>Pergunte sobre o negócio, os objetivos, as frustrações atuais. Deixe o cliente falar. Quem faz mais perguntas controla a conversa.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">B</div><div class="step-row-content"><h5>Apresente sua solução (10 min)</h5><p>Com base no que ouviu, explique como o site resolve as dores específicas que o cliente mencionou. Use as palavras e expressões que ELE usou — cria espelhamento e conexão.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">C</div><div class="step-row-content"><h5>Apresente o preço com confiança (5 min)</h5><p>Diga o preço sem hesitar. Pausa e silêncio são seus aliados — não tente preencher o silêncio depois de apresentar o preço. Quem fala primeiro perde.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">D</div><div class="step-row-content"><h5>Feche com opções (5 min)</h5><p>"Posso reservar uma data de início para essa semana. Você prefere começar na terça ou na quarta?" — pergunta de fechamento com opções, não "quer fechar?" (que permite um "não" fácil).</p></div></div>
       </div>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod4')">← Módulo 4</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod6'); marcarConcluido()">Módulo 6: Escala →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 6 — ESCALA
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 6 -->
     <div class="module-page" id="page-mod6">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 06 · Crescimento</div>
         <h1 class="module-title">De <em>renda extra</em><br>a negócio de<br>R$15k/mês</h1>
         <p class="module-lead">Você tem o método. Agora veja como transformar em algo previsível, escalável e que funciona mesmo quando você não está trabalhando ativamente.</p>
       </div>
-
       <div class="highlight-box">
         <div class="hb-title">🧮 A matemática realista da escala</div>
         <p>Com IA reduzindo em 70% o tempo de cada projeto, você consegue <strong>4–6 projetos/mês no tempo livre</strong>. A R$2.000 de ticket médio = R$8.000–12.000/mês. Adicione 8 contratos de manutenção a R$350/mês = R$2.800 fixos. Total possível: <strong>R$10.800–14.800/mês</strong> — trabalhando nas horas vagas.</p>
       </div>
-
       <h2 class="section-h2">6.1 — Automatizando a captação com conteúdo</h2>
-
       <div class="content-grid">
-        <div class="content-card"><span class="card-icon">🎬</span><h4>1 Reel/semana no Instagram</h4><p>Timelapse de site criado com IA. Legenda: "Criei para [NICHO] — DM para saber mais". Em 8–12 semanas você começa a receber DMs sem prospectar ativamente.</p></div>
-        <div class="content-card"><span class="card-icon">🎙️</span><h4>1 post/semana no LinkedIn</h4><p>Case com resultado (ex: "+40% de agendamentos após o novo site"). O LinkedIn distribui conteúdo de negócio organicamente melhor que qualquer outra rede.</p></div>
-        <div class="content-card"><span class="card-icon">📺</span><h4>YouTube Shorts</h4><p>Recicle os Reels do Instagram. O mesmo vídeo em 3 plataformas = 3x o alcance com zero trabalho extra. YouTube indexa no Google — SEO gratuito.</p></div>
-        <div class="content-card"><span class="card-icon">✉️</span><h4>Newsletter semanal</h4><p>E-mail simples com 1 dica de presença digital para donos de negócio. Construa a lista aos poucos. Com 500 inscritos, você tem leads pedindo para ser atendidos.</p></div>
+        <div class="content-card"><span class="card-icon">🎬</span><h4>1 Reel/semana no Instagram</h4><p>Timelapse de site criado com IA. Em 8–12 semanas você começa a receber DMs sem prospectar ativamente.</p></div>
+        <div class="content-card"><span class="card-icon">🎙️</span><h4>1 post/semana no LinkedIn</h4><p>Case com resultado (ex: "+40% de agendamentos após o novo site"). O LinkedIn distribui conteúdo de negócio organicamente muito bem.</p></div>
+        <div class="content-card"><span class="card-icon">📺</span><h4>YouTube Shorts</h4><p>Recicle os Reels do Instagram. O mesmo vídeo em 3 plataformas = 3x o alcance com zero trabalho extra.</p></div>
+        <div class="content-card"><span class="card-icon">✉️</span><h4>Newsletter semanal</h4><p>1 dica de presença digital para donos de negócio. Com 500 inscritos, você tem leads pedindo para ser atendidos.</p></div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">6.2 — Parcerias estratégicas que multiplicam leads</h2>
-
       <div class="steps-list">
-        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Gestores de Tráfego Pago</h5><p>Eles gerenciam anúncios e precisam de landing pages constantemente. Proposta: eles indicam clientes que precisam de site → você faz o site → paga 15% de comissão. Eles lucram, você lucra, sem competir.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Social Media Managers</h5><p>Gerenciam redes sociais mas não fazem sites. Quando um cliente deles pede um site, eles indicam você. E quando um cliente seu precisa de gestão de redes, você indica eles. Parceria de mão dupla.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Designers Gráficos</h5><p>Criam identidade visual mas não sabem codar. Juntos, vocês atendem clientes de ticket mais alto: o designer faz o brand, você faz o site. Dividam 60/40 ou cada um cobra pela sua parte.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Contadores e Consultores de Negócio</h5><p>Eles têm acesso direto a donos de empresa que precisam crescer digitalmente. Uma comissão de 10–15% por indicação fechada é excelente para eles e você tem leads quentes sem esforço de prospecção.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Gestores de Tráfego Pago</h5><p>Eles gerenciam anúncios e precisam de landing pages constantemente. Proposta: eles indicam clientes que precisam de site → você faz o site → paga 15% de comissão.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Social Media Managers</h5><p>Gerenciam redes sociais mas não fazem sites. Quando um cliente deles pede um site, eles indicam você. E vice-versa. Parceria de mão dupla.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Designers Gráficos</h5><p>Criam identidade visual mas não sabem codar. Juntos atendem clientes de ticket mais alto: o designer faz o brand, você faz o site.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">🤝</div><div class="step-row-content"><h5>Contadores e Consultores</h5><p>Têm acesso direto a donos de empresa que precisam crescer digitalmente. Comissão de 10–15% por indicação fechada é excelente para eles.</p></div></div>
       </div>
-
       <div class="divider"></div>
-
       <h2 class="section-h2">6.3 — Do freelancer à micro-agência</h2>
-      <p class="body-text">Quando você chegar a R$10k/mês consistentes, começa a fazer sentido escalar além das suas próprias horas. Veja o caminho:</p>
-
       <div class="steps-list">
-        <div class="step-row">
-          <div class="step-num-badge">1</div>
-          <div class="step-row-content">
-            <h5>Documente seu processo (mês 3–4)</h5>
-            <p>Escreva cada etapa do que você faz: briefing, prompts que usa, QA checklist, processo de entrega. Isso transforma seu conhecimento em sistema — e sistemas são delegáveis.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">2</div>
-          <div class="step-row-content">
-            <h5>Contrate um assistente de IA (mês 5–6)</h5>
-            <p>Com seu processo documentado, você pode contratar um estudante de TI por R$800–1.500/mês para executar projetos seguindo seu workflow de IA. Você supervisiona, revisa e mantém o relacionamento com cliente.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">3</div>
-          <div class="step-row-content">
-            <h5>Crie pacotes produtizados</h5>
-            <p>"Site para Clínica: R$3.500 — entregue em 7 dias" é melhor que "solicite orçamento". Pacotes prontos eliminam negociação, aceleram fechamento e permitem que outros executem sem você precisar customizar tudo.</p>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num-badge">4</div>
-          <div class="step-row-content">
-            <h5>Foque em 1–2 nichos exclusivos</h5>
-            <p>Uma agência especializada em "sites para profissionais de saúde" cobra mais, entrega mais rápido (porque já fez 20 iguais) e atrai por indicação dentro do nicho. Generalistas competem por preço; especialistas competem por expertise.</p>
-          </div>
-        </div>
+        <div class="step-row"><div class="step-num-badge">1</div><div class="step-row-content"><h5>Documente seu processo (mês 3–4)</h5><p>Escreva cada etapa do que você faz: briefing, prompts que usa, QA checklist, processo de entrega. Isso transforma seu conhecimento em sistema — sistemas são delegáveis.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">2</div><div class="step-row-content"><h5>Contrate um assistente (mês 5–6)</h5><p>Com seu processo documentado, contrate um estudante de TI por R$800–1.500/mês para executar projetos seguindo seu workflow de IA. Você supervisiona e mantém o relacionamento com cliente.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">3</div><div class="step-row-content"><h5>Crie pacotes produtizados</h5><p>"Site para Clínica: R$3.500 — entregue em 7 dias" é melhor que "solicite orçamento". Pacotes prontos eliminam negociação e aceleram fechamento.</p></div></div>
+        <div class="step-row"><div class="step-num-badge">4</div><div class="step-row-content"><h5>Foque em 1–2 nichos exclusivos</h5><p>Uma agência especializada em "sites para profissionais de saúde" cobra mais, entrega mais rápido e atrai por indicação dentro do nicho. Especialistas competem por expertise, não por preço.</p></div></div>
       </div>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod5')">← Módulo 5</button>
         <button class="nav-bottom-btn primary" onclick="goTo('mod7'); marcarConcluido()">Módulo 7: Produto Digital →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         MÓDULO 7 — PRODUTO DIGITAL
-    ══════════════════════════════════ -->
+    <!-- MÓDULO 7 -->
     <div class="module-page" id="page-mod7">
       <div class="module-hero">
         <div class="module-eyebrow">Módulo 07 · Alavancagem</div>
         <h1 class="module-title">Vendendo <em>além</em><br>do serviço: renda<br>que escala sem horas</h1>
         <p class="module-lead">Serviço troca seu tempo por dinheiro — tem limite. Produto digital não tem. Este módulo mostra como criar fontes de renda paralela que crescem enquanto você dorme.</p>
       </div>
-
       <div class="highlight-box">
-        <div class="hb-title">🔑 A diferença entre serviço e produto</div>
-        <p>No serviço, você faz o trabalho 1x e é pago 1x. No produto digital, você faz 1x e é pago indefinidamente. Packs de templates que levaram 3 dias para criar podem gerar R$500–3.000/mês em vendas passivas por anos. <strong>Não escolha um ou outro — tenha os dois.</strong></p>
+        <div class="hb-title">🔑 Serviço vs Produto</div>
+        <p>No serviço, você faz o trabalho 1x e é pago 1x. No produto digital, você faz 1x e é pago indefinidamente. Um e-book que levou 3 dias para criar pode gerar R$500–3.000/mês em vendas passivas por anos. <strong>Não escolha um ou outro — tenha os dois.</strong></p>
       </div>
-
-      <h2 class="section-h2">7.1 — Produtos digitais que você pode criar AGORA</h2>
-
+      <h2 class="section-h2">7.1 — Produtos digitais que você pode criar agora</h2>
       <div class="content-grid-3">
-        <div class="content-card"><span class="card-icon">🗂️</span><h4>Pack de Templates HTML</h4><p>10–20 templates de landing page por nicho. Venda no Hotmart, Kiwify ou diretamente no seu site. Preço: R$47–197.</p><span class="card-tag">Renda passiva</span></div>
-        <div class="content-card"><span class="card-icon">📘</span><h4>E-book / Guia</h4><p>"Como criar um site profissional com IA em 1 dia" — para donos de negócio que querem fazer sozinhos. Preço: R$27–97. Volume alto compensa ticket baixo.</p><span class="card-tag">Alto volume</span></div>
-        <div class="content-card"><span class="card-icon">🎓</span><h4>Mini-curso em vídeo</h4><p>5–8 aulas de 10–20 min ensinando seu processo. Plataformas: Hotmart, Kiwify, Teachable. Preço: R$97–497. Upsell natural para quem compra o e-book.</p><span class="card-tag">Alto ticket</span></div>
-        <div class="content-card"><span class="card-icon">📊</span><h4>Planilhas e ferramentas</h4><p>Planilha de gestão de freela, calculadora de precificação, template de proposta comercial. Simples de criar, alto valor percebido. Preço: R$17–67.</p><span class="card-tag">Fácil de criar</span></div>
-        <div class="content-card"><span class="card-icon">💬</span><h4>Mentoria individual</h4><p>Você está aqui. 1h de consultoria/mês com o cliente para estratégia digital. Preço: R$300–800/sessão. Alta margem, zero custo de produção.</p><span class="card-tag">Alta margem</span></div>
-        <div class="content-card"><span class="card-icon">🔧</span><h4>SaaS Simplificado</h4><p>Uma ferramenta específica para o nicho (ex: gerador de orçamentos para reformas, calculadora de honorários para advogados). Preço recorrente: R$29–97/mês.</p><span class="card-tag">Recorrência</span></div>
+        <div class="content-card"><span class="card-icon">📘</span><h4>E-book / Guia</h4><p>"Como criar um site profissional com IA em 1 dia" para donos de negócio que querem fazer sozinhos. Preço: R$27–97. Volume alto compensa ticket baixo.</p><span class="card-tag">Alto volume</span></div>
+        <div class="content-card"><span class="card-icon">🎓</span><h4>Mini-curso em vídeo</h4><p>5–8 aulas de 10–20 min ensinando seu processo. Plataformas: Hotmart, Kiwify. Preço: R$97–497. Upsell natural para quem compra o e-book.</p><span class="card-tag">Alto ticket</span></div>
+        <div class="content-card"><span class="card-icon">💬</span><h4>Mentoria individual</h4><p>1h de consultoria/mês com o cliente para estratégia digital. Preço: R$300–800/sessão. Alta margem, zero custo de produção.</p><span class="card-tag">Alta margem</span></div>
+        <div class="content-card"><span class="card-icon">📊</span><h4>Planilhas e ferramentas</h4><p>Calculadora de precificação, template de proposta comercial, gestão de projetos. Preço: R$17–67.</p><span class="card-tag">Fácil de criar</span></div>
+        <div class="content-card"><span class="card-icon">🔧</span><h4>SaaS Simplificado</h4><p>Ferramenta específica para o nicho (ex: calculadora de honorários para advogados). Preço recorrente: R$29–97/mês.</p><span class="card-tag">Recorrência</span></div>
+        <div class="content-card"><span class="card-icon">🎙️</span><h4>Comunidade paga</h4><p>Grupo exclusivo no WhatsApp ou Telegram com conteúdo semanal, tirar dúvidas ao vivo e networking. R$47–197/mês.</p><span class="card-tag">Recorrência</span></div>
       </div>
-
       <div class="divider"></div>
-
-      <h2 class="section-h2">7.2 — Como criar e lançar um pack de templates</h2>
-      <p class="body-text">Este é o produto digital mais rápido de criar e com melhor retorno inicial. Veja o processo completo:</p>
-
+      <h2 class="section-h2">7.2 — Estratégia de escada de valor</h2>
       <div class="steps-list">
-        <div class="step-row"><div class="step-num-badge">01</div><div class="step-row-content"><h5>Escolha 1 nicho e crie 10 variações</h5><p>Exemplo: 10 templates de landing page para profissionais de saúde, cada um com um especialidade diferente (dermatologista, nutricionista, dentista, etc). Use seus prompts do Módulo 2 para gerar todos em 1–2 dias.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">02</div><div class="step-row-content"><h5>Documente como usar</h5><p>Crie um PDF simples de 5–10 páginas explicando como personalizar cada template com o ChatGPT. Inclua os prompts de personalização. Isso transforma um "produto técnico" em algo que qualquer pessoa pode usar.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">03</div><div class="step-row-content"><h5>Precifique e suba na plataforma</h5><p>R$97 é o sweet spot para packs de templates. Crie uma landing page de vendas (use seus próprios templates!) e suba na Hotmart ou Kiwify. Ambas são gratuitas para usar e cobram percentual apenas na venda.</p></div></div>
-        <div class="step-row"><div class="step-num-badge">04</div><div class="step-row-content"><h5>Distribuição orgânica</h5><p>Poste no Instagram mostrando os templates. TikTok com timelapse de personalização. Grupos do Facebook do nicho. Responda perguntas em fóruns do nicho com "tenho um pack de templates que resolve isso". Tráfego orgânico antes de pagar anúncios.</p></div></div>
+        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$0</div><div class="step-row-content"><h5>Isca digital gratuita</h5><p>E-book "5 erros que destroem a presença digital do seu negócio" — gratuito em troca de e-mail. Objetivo: captar contatos e criar confiança.</p></div></div>
+        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$97</div><div class="step-row-content"><h5>Mini-curso ou Guia</h5><p>Para quem quer aprender a fazer sozinho. No final, apresente a opção de "você prefere que eu faça pra você?"</p></div></div>
+        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$497</div><div class="step-row-content"><h5>Mentoria / Acompanhamento</h5><p>Para quem quer aprender fazendo com suporte. 4 semanas de acompanhamento individual. Ideal para quem ficou travado.</p></div></div>
+        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$2.500+</div><div class="step-row-content"><h5>Serviço completo "feito por mim"</h5><p>Para quem quer delegar tudo. O cliente que chegou pelo e-book de R$0 pode virar um projeto de R$3.000.</p></div></div>
       </div>
-
-      <div class="divider"></div>
-
-      <h2 class="section-h2">7.3 — Estratégia de escada de valor</h2>
-      <p class="body-text">A escada de valor conecta seus produtos e serviços de forma que cada venda leva ao próximo passo:</p>
-
-      <div class="steps-list">
-        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$27</div><div class="step-row-content"><h5>Isca digital grátis ou muito barata</h5><p>E-book "5 erros que destroem a presença digital do seu negócio" — gratuito em troca de e-mail. Ou um template básico por R$27. Objetivo: captar contatos e criar confiança.</p></div></div>
-        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$97</div><div class="step-row-content"><h5>Pack de Templates ou Mini-curso</h5><p>Para quem quer fazer sozinho. Entrega real valor. No final do produto, apresente a opção de "você prefere que eu faça pra você?"</p></div></div>
-        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$497</div><div class="step-row-content"><h5>Mentoria / Acompanhamento</h5><p>Para quem quer aprender fazendo com suporte. 4 semanas de acompanhamento individual. Ideal para quem comprou o template mas ficou travado.</p></div></div>
-        <div class="step-row"><div class="step-num-badge" style="background:rgba(200,242,59,0.1);">R$2.500+</div><div class="step-row-content"><h5>Serviço completo "feito por mim"</h5><p>Para quem quer delegar tudo. Você faz o briefing, cria o site, publica e entrega. O cliente que chegou pelo e-book de R$0 pode virar um projeto de R$3.000.</p></div></div>
-      </div>
-
       <div class="success-box">
         <div class="sb-title">🎓 Parabéns! Você concluiu a Mentoria Pro</div>
-        <p>Agora você tem o método completo — da mentalidade à escala, incluindo produto digital. O próximo passo é <strong>agir hoje</strong>: escolha um nicho, crie 2 mockups com IA, e mande a primeira mensagem para um potencial cliente. Os resultados vêm com consistência, não com perfeição.</p>
+        <p>Agora você tem o método completo — da mentalidade à escala. O próximo passo é <strong>agir hoje</strong>: escolha um nicho, crie 2 mockups com IA, e mande a primeira mensagem para um potencial cliente. Resultados vêm com consistência, não com perfeição.</p>
       </div>
-
-      <div style="text-align:center;margin-top:32px;">
-        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Concluí+a+mentoria+e+tenho+uma+dúvida+sobre..." target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:14px 28px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:800;text-decoration:none;font-size:0.92rem;">💬 Tirei uma dúvida com o Rafael →</a>
+      <div style="text-align:center;margin-top:28px;">
+        <a href="https://wa.me/5547999410049?text=Olá+Rafael!+Concluí+a+mentoria+e+tenho+uma+dúvida..." target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#000;padding:14px 28px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:800;text-decoration:none;font-size:0.92rem;">💬 Tirar dúvida com o Rafael →</a>
       </div>
-
       <div class="nav-bottom">
         <button class="nav-bottom-btn" onclick="goTo('mod6')">← Módulo 6</button>
         <button class="nav-bottom-btn primary" onclick="goTo('home'); marcarConcluido()">✓ Concluir mentoria</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         OB1: TEMPLATES HTML
-    ══════════════════════════════════ -->
-    <div class="module-page" id="page-ob1">
+    <!-- CALCULADORA DE PREÇOS -->
+    <div class="module-page" id="page-calc">
       <div class="module-hero">
-        <div class="ob-eyebrow">Extra exclusivo</div>
-        <h1 class="module-title">Pack de <em>10 Templates</em><br>HTML Prontos</h1>
-        <p class="module-lead">10 landing pages profissionais para os nichos mais lucrativos. Copie, personalize com IA em 30 min e entregue. Economize horas em cada projeto.</p>
+        <div class="module-eyebrow">Ferramenta · Interativo</div>
+        <h1 class="module-title"><em>Calculadora</em><br>de Preços</h1>
+        <p class="module-lead">Preencha os campos abaixo e calcule automaticamente o orçamento ideal para qualquer projeto. Nunca mais chute preço.</p>
       </div>
-
-      <div class="tool-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
-        <div class="tool-card"><span class="tool-emoji">🏥</span><div class="tool-name">Clínica de Saúde</div><div class="tool-desc">Hero, especialidades, equipe médica, depoimentos, formulário de agendamento com Calendly.</div></div>
-        <div class="tool-card"><span class="tool-emoji">⚖️</span><div class="tool-name">Escritório de Advocacia</div><div class="tool-desc">Áreas de atuação, diferenciais, FAQ jurídico, formulário de consulta inicial.</div></div>
-        <div class="tool-card"><span class="tool-emoji">🏋️</span><div class="tool-name">Academia / Personal</div><div class="tool-desc">Planos, galeria de transformações, cronograma, WhatsApp CTA com pré-mensagem.</div></div>
-        <div class="tool-card"><span class="tool-emoji">🍕</span><div class="tool-name">Restaurante / Delivery</div><div class="tool-desc">Cardápio visual, localização, horários, integração iFood e botão de pedido WhatsApp.</div></div>
-        <div class="tool-card"><span class="tool-emoji">🏗️</span><div class="tool-name">Construção Civil</div><div class="tool-desc">Portfólio de obras, formulário de orçamento, certificações, depoimentos de clientes.</div></div>
-        <div class="tool-card"><span class="tool-emoji">💇</span><div class="tool-name">Salão / Estética</div><div class="tool-desc">Serviços, galeria, agendamento online, promoções, seção de antes e depois.</div></div>
-        <div class="tool-card"><span class="tool-emoji">📚</span><div class="tool-name">Curso / Mentoria</div><div class="tool-desc">Módulos, bônus, depoimentos, FAQs, countdown e botão de compra.</div></div>
-        <div class="tool-card"><span class="tool-emoji">🏡</span><div class="tool-name">Imobiliária / Corretor</div><div class="tool-desc">Listagem de imóveis, filtros visuais, formulário de contato com corretor.</div></div>
-        <div class="tool-card"><span class="tool-emoji">🐾</span><div class="tool-name">Pet Shop / Veterinária</div><div class="tool-desc">Serviços, galeria de pets, agendamento de consultas, dicas de saúde animal.</div></div>
-        <div class="tool-card"><span class="tool-emoji">💼</span><div class="tool-name">Portfólio Profissional</div><div class="tool-desc">Sobre, projetos com cases, habilidades, depoimentos, formulário de contato.</div></div>
+      <div class="calc-box">
+        <div class="calc-title">🧮 Calculadora de Orçamento</div>
+        <div class="calc-grid">
+          <div class="calc-group">
+            <label>Tipo de projeto</label>
+            <select id="calcTipo" onchange="calcular()">
+              <option value="landing-simples">Landing Page Simples</option>
+              <option value="landing-completa">Landing Page Completa</option>
+              <option value="institucional">Site Institucional</option>
+              <option value="redesign">Redesign de Site</option>
+              <option value="infoproduto">Landing Page Infoproduto</option>
+              <option value="chatbot">Site + Chatbot</option>
+            </select>
+          </div>
+          <div class="calc-group">
+            <label>Nível de complexidade</label>
+            <select id="calcComplexidade" onchange="calcular()">
+              <option value="1">Simples — cliente organizado, briefing claro</option>
+              <option value="1.3" selected>Médio — revisões esperadas</option>
+              <option value="1.6">Complexo — muito customizado, nicho difícil</option>
+            </select>
+          </div>
+          <div class="calc-group">
+            <label>Sua experiência atual</label>
+            <select id="calcExp" onchange="calcular()">
+              <option value="0.7">Iniciante (0–3 projetos)</option>
+              <option value="1" selected>Intermediário (4–10 projetos)</option>
+              <option value="1.3">Experiente (10+ projetos)</option>
+            </select>
+          </div>
+          <div class="calc-group">
+            <label>Urgência do cliente</label>
+            <select id="calcUrgencia" onchange="calcular()">
+              <option value="1">Normal (sem pressa)</option>
+              <option value="1.2">Quer em 1 semana</option>
+              <option value="1.5">Urgente — precisa em 3 dias</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result" id="calcResult">
+          <div class="calc-result-item"><div class="calc-result-val" id="calcMin">R$—</div><div class="calc-result-label">Preço mínimo</div></div>
+          <div class="calc-result-item"><div class="calc-result-val" id="calcIdeal" style="color:var(--accent2)">R$—</div><div class="calc-result-label">Preço ideal ✦</div></div>
+          <div class="calc-result-item"><div class="calc-result-val" id="calcMax">R$—</div><div class="calc-result-label">Preço premium</div></div>
+        </div>
       </div>
-
-      <div class="highlight-box" style="margin-top:28px;">
-        <div class="hb-title">📥 Como personalizar cada template</div>
-        <p>Cada template é um arquivo HTML/CSS autocontido. Abra no VS Code, cole o código no Claude e use o prompt abaixo para personalizar completamente em 20–30 minutos.</p>
-      </div>
-
-      <div class="prompt-box">
-        <div class="prompt-label">Prompt: Personalizar template completo para cliente</div>
-        <div class="prompt-text" id="ptmpl">Tenho um template HTML de landing page para [NICHO]. Personalize-o para [NOME DA EMPRESA] em [CIDADE]: 1) Substitua TODOS os textos de exemplo por textos reais e persuasivos para este negócio específico, 2) Mude as cores para [COR PRIMÁRIA HEX] e [COR SECUNDÁRIA HEX], 3) Substitua "Empresa Exemplo" pelo nome real em todos os lugares, 4) Faça o botão de CTA abrir o WhatsApp [NÚMERO] com a mensagem "Olá, vim pelo site e gostaria de [AÇÃO DESEJADA]", 5) Adicione SEO: meta title "[NOME DA EMPRESA] | [NICHO] em [CIDADE]" e meta description de 155 chars com palavras-chave locais. Mantenha a estrutura HTML e modifique apenas os conteúdos. [COLE O CÓDIGO AQUI]</div>
-        <button class="btn-copy-prompt" onclick="copyPrompt('ptmpl',this)">Copiar</button>
-      </div>
-
-      <div class="nav-bottom">
-        <button class="nav-bottom-btn" onclick="goTo('mod7')">← Módulo 7</button>
-      </div>
-    </div>
-
-    <!-- ══════════════════════════════════
-         OB2: PLANILHA DE GESTÃO
-    ══════════════════════════════════ -->
-    <div class="module-page" id="page-ob2">
-      <div class="module-hero">
-        <div class="ob-eyebrow">Extra exclusivo</div>
-        <h1 class="module-title">Planilha de <em>Gestão</em><br>Completa do<br>Freelancer</h1>
-        <p class="module-lead">Controle clientes, prazos, pagamentos e projetos em um lugar. Com dashboard visual e alertas automáticos de pagamento pendente.</p>
-      </div>
-
-      <div class="content-grid">
-        <div class="content-card"><span class="card-icon">👥</span><h4>Aba Clientes</h4><p>Nome, contato, nicho, status do relacionamento, data de início, histórico de projetos e observações. Filtros por nicho e status.</p></div>
-        <div class="content-card"><span class="card-icon">📋</span><h4>Aba Projetos</h4><p>Projeto, cliente, prazo, etapa atual, % concluído, valor total, sinal recebido, saldo pendente e data de entrega prevista.</p></div>
-        <div class="content-card"><span class="card-icon">💸</span><h4>Aba Financeiro</h4><p>Entradas, saídas, mês a mês, projeção anual, ticket médio e comparativo com mês anterior. Saiba exatamente o que vem no próximo mês.</p></div>
-        <div class="content-card"><span class="card-icon">📊</span><h4>Dashboard Visual</h4><p>Gráficos automáticos de faturamento, projetos por status, clientes ativos e taxa de recorrência. Visão executiva do seu negócio em 30 segundos.</p></div>
-      </div>
-
       <div class="highlight-box">
-        <div class="hb-title">📥 Acessar a Planilha</div>
-        <p>A planilha está em Google Sheets. Clique em "Arquivo → Fazer uma cópia" para salvar na sua conta Google. Você pode adaptar livremente.</p>
-        <br>
-        <a href="https://docs.google.com/spreadsheets/d/1exemplo" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(200,242,59,0.1);border:1px solid rgba(200,242,59,0.25);color:var(--accent);padding:10px 20px;border-radius:8px;text-decoration:none;font-size:0.88rem;font-weight:500;margin-top:8px;">📊 Abrir Planilha no Google Sheets →</a>
+        <div class="hb-title">💡 Como usar estes números</div>
+        <p>O <strong>Preço mínimo</strong> é o piso — nunca aceite abaixo disso. O <strong>Preço ideal</strong> é o que você deve apresentar na proposta. O <strong>Preço premium</strong> use quando o cliente já demonstrou urgência ou orçamento elevado. Na dúvida, apresente 3 opções usando os três valores como referência.</p>
       </div>
-      <div class="nav-bottom">
-        <button class="nav-bottom-btn" onclick="goTo('mod7')">← Módulo 7</button>
+      <div class="highlight-box" style="margin-top:0">
+        <div class="hb-title">📐 Recorrência que paga as contas todo mês</div>
+        <p>Com 8 contratos de manutenção a R$350/mês = <strong>R$2.800 garantidos</strong> antes de abrir qualquer projeto novo. Com 5 contratos de SEO a R$600/mês = <strong>R$3.000 fixos</strong>. Combine os dois e tenha R$5.800 de base antes de qualquer projeto pontual.</p>
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         OB3: PROMPTS DE IA
-    ══════════════════════════════════ -->
+    <!-- CHECKLIST -->
+    <div class="module-page" id="page-checklist">
+      <div class="module-hero">
+        <div class="module-eyebrow">Ferramenta · Interativo</div>
+        <h1 class="module-title"><em>Checklist</em><br>de Entrega</h1>
+        <p class="module-lead">27 itens para verificar antes de entregar qualquer site. Marque cada item conforme for verificando. O progresso fica salvo.</p>
+      </div>
+      <div class="checklist-interactive" id="checklistContainer">
+        <div class="checklist-header">
+          <h4>✅ Verificação pré-entrega</h4>
+          <span class="checklist-progress-text" id="clProgressText">0 / 27 concluídos</span>
+        </div>
+        <div class="checklist-progress-bar"><div class="checklist-progress-fill" id="clProgressFill"></div></div>
+        <!-- itens gerados por JS -->
+      </div>
+      <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+        <button onclick="resetChecklist()" style="background:none;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:8px;font-size:0.78rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(255,107,107,0.3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↺ Reiniciar checklist</button>
+        <span style="font-size:0.78rem;color:var(--muted);padding:8px 0;">O progresso é salvo automaticamente no seu navegador.</span>
+      </div>
+    </div>
+
+    <!-- CONTRATOS & PROPOSTA -->
+    <div class="module-page" id="page-contratos">
+      <div class="module-hero">
+        <div class="module-eyebrow">Ferramenta · Pronto pra usar</div>
+        <h1 class="module-title">Contratos &<br><em>Proposta Comercial</em></h1>
+        <p class="module-lead">Textos prontos que você pode copiar, adaptar ao seu negócio e usar hoje mesmo. Substitua os campos em [COLCHETES] pelas informações reais.</p>
+      </div>
+
+      <h2 class="section-h2">Proposta Comercial — Texto pronto</h2>
+      <p class="body-text">Copie este texto, cole num Google Docs, substitua os campos e exporte como PDF.</p>
+      <div class="contract-box">
+        <div class="contract-label">
+          <span>📋 Proposta Comercial</span>
+          <button class="btn-copy-prompt" style="position:static;" onclick="copyEl('proposta')">Copiar tudo</button>
+        </div>
+        <div class="contract-text" id="proposta"><strong>PROPOSTA COMERCIAL — DESENVOLVIMENTO DE SITE</strong>
+
+Preparado por: [SEU NOME COMPLETO]
+Data: [DATA DE HOJE]
+Válida até: [DATA + 7 DIAS]
+Para: [NOME DO CLIENTE / EMPRESA]
+
+---
+
+<strong>1. ENTENDIMENTO DO PROJETO</strong>
+
+Após nossa conversa, compreendi que [NOME DA EMPRESA] precisa de [DESCRIÇÃO DO QUE VOCÊ ENTENDEU]. O principal objetivo é [OBJETIVO PRINCIPAL — ex: captar mais agendamentos online] e o público que precisa ser convencido é [PÚBLICO-ALVO].
+
+---
+
+<strong>2. O QUE SERÁ ENTREGUE</strong>
+
+✓ Landing page / site completo com as seções: [LISTE AS SEÇÕES]
+✓ Design responsivo (funciona em celular, tablet e computador)
+✓ Botão de contato direto via WhatsApp ([NÚMERO])
+✓ Formulário de contato funcional
+✓ Otimização básica de SEO (meta tags, títulos, descrições)
+✓ Imagens otimizadas para carregamento rápido
+✓ Publicação na hospedagem [NETLIFY / SERVIÇO ESCOLHIDO]
+✓ Suporte pós-entrega por 15 dias corridos
+✓ Até [2] rodadas de revisão incluídas
+
+NÃO está incluso: criação de logotipo, gestão de redes sociais, fotografia profissional.
+
+---
+
+<strong>3. INVESTIMENTO</strong>
+
+Opção Essencial:   R$ [VALOR 1] — [DESCREVA O QUE INCLUI]
+Opção Recomendada: R$ [VALOR 2] — [DESCREVA O QUE INCLUI] ← Recomendada
+Opção Completa:    R$ [VALOR 3] — [DESCREVA O QUE INCLUI]
+
+Forma de pagamento: 50% na assinatura do contrato + 50% na aprovação do projeto.
+Aceito: PIX, transferência bancária ou cartão em até 3x sem juros.
+
+---
+
+<strong>4. PRAZO</strong>
+
+Início: [DATA DE INÍCIO] — após confirmação e pagamento do sinal.
+Entrega para revisão: [DATA ESTIMADA].
+Publicação final: [DATA FINAL].
+
+---
+
+<strong>5. PRÓXIMOS PASSOS</strong>
+
+1. Você confirma a proposta respondendo esta mensagem
+2. Assino o contrato simples (1 página)
+3. Você realiza o pagamento do sinal de 50%
+4. Iniciamos na data acordada
+
+Dúvidas? Me chama no WhatsApp: [SEU NÚMERO]
+
+[SEU NOME]
+[SEU E-MAIL] | [SEU WHATSAPP]</div>
+      </div>
+
+      <div class="divider"></div>
+      <h2 class="section-h2">Contrato Simplificado — 1 página</h2>
+      <p class="body-text">Este contrato simples protege você e o cliente. Pode ser enviado por WhatsApp ou e-mail — vale mesmo sem assinatura física (guarde o print/e-mail da confirmação do cliente).</p>
+      <div class="contract-box">
+        <div class="contract-label">
+          <span>📄 Contrato de Prestação de Serviços</span>
+          <button class="btn-copy-prompt" style="position:static;" onclick="copyEl('contrato')">Copiar tudo</button>
+        </div>
+        <div class="contract-text" id="contrato"><strong>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE DESENVOLVIMENTO WEB</strong>
+
+<strong>CONTRATANTE:</strong> [NOME COMPLETO DO CLIENTE], [CPF ou CNPJ], residente/sediado em [CIDADE/ESTADO].
+
+<strong>CONTRATADO:</strong> [SEU NOME COMPLETO], [SEU CPF], desenvolvedor web autônomo, residente em [SUA CIDADE/ESTADO].
+
+---
+
+<strong>CLÁUSULA 1 — OBJETO</strong>
+O CONTRATADO prestará serviços de desenvolvimento de site conforme descrito na Proposta Comercial de [DATA], que faz parte integrante deste contrato.
+
+<strong>CLÁUSULA 2 — PRAZO</strong>
+O prazo de entrega para revisão é de [X] dias úteis a partir da confirmação do pagamento do sinal e recebimento de todos os materiais necessários (textos, fotos, logotipo). Atrasos na entrega de materiais pelo CONTRATANTE prorrogam automaticamente o prazo.
+
+<strong>CLÁUSULA 3 — VALORES E PAGAMENTO</strong>
+O valor total é de R$ [VALOR]. Pagamento: 50% (R$ [METADE]) no início + 50% (R$ [METADE]) na aprovação do projeto. A publicação do site só ocorre após quitação total.
+
+<strong>CLÁUSULA 4 — REVISÕES</strong>
+Estão incluídas [2] rodadas de revisão. Revisões adicionais são cobradas a R$ [SEU VALOR]/hora.
+
+<strong>CLÁUSULA 5 — PROPRIEDADE E ENTREGA</strong>
+Após quitação total, todos os arquivos do site são transferidos ao CONTRATANTE. O CONTRATADO poderá usar o projeto em portfólio, salvo solicitação expressa em contrário.
+
+<strong>CLÁUSULA 6 — CANCELAMENTO</strong>
+Se o CONTRATANTE cancelar após início do desenvolvimento, o sinal de 50% é retido como compensação pelo trabalho realizado. Se o CONTRATADO cancelar sem justificativa, devolve o sinal integralmente.
+
+<strong>CLÁUSULA 7 — FORO</strong>
+Eventuais disputas serão resolvidas no foro da comarca de [SUA CIDADE/ESTADO].
+
+Local e data: [CIDADE], [DATA]
+
+CONTRATANTE: ________________________________
+CONTRATADO:  ________________________________
+
+(Este contrato pode ser confirmado por mensagem de WhatsApp ou e-mail. Guarde o registro.)</div>
+      </div>
+
+      <div class="divider"></div>
+      <h2 class="section-h2">Scripts adicionais de comunicação</h2>
+      <div class="script-box">
+        <div class="script-label">Mensagem de entrega do projeto</div>
+        <div class="script-text">Oi <strong>[NOME]</strong>! 🎉 O site está pronto para revisão!<br><br>Link para visualizar: <strong>[LINK DO NETLIFY]</strong><br><br>O que foi entregue:<br>✓ [SEÇÃO 1]<br>✓ [SEÇÃO 2]<br>✓ [SEÇÃO 3]<br>✓ Design responsivo (celular + desktop)<br>✓ Botão WhatsApp funcionando<br><br>Você tem até <strong>[DATA]</strong> para enviar os ajustes desta rodada de revisão. Me fala o que achou! 😊</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Pedido de depoimento após entrega</div>
+        <div class="script-text">Oi <strong>[NOME]</strong>! Que bom que o site ficou do jeito que você esperava! 🙌<br><br>Você poderia me ajudar com uma coisa rápida? Precisaria de um depoimento seu para o meu portfólio — pode ser um <strong>áudio de 30–60 segundos</strong> ou um texto curto contando como foi a experiência.<br><br>Se possível, mencione: como era antes do site, o que mudou e se me recomendaria. Isso me ajuda muito a mostrar o resultado real do trabalho! 🙏</div>
+      </div>
+    </div>
+
+    <!-- PLANO 30 DIAS -->
+    <div class="module-page" id="page-plano30">
+      <div class="module-hero">
+        <div class="module-eyebrow">Ferramenta · Passo a passo</div>
+        <h1 class="module-title"><em>Plano de Ação</em><br>30 dias</h1>
+        <p class="module-lead">O que fazer semana a semana para sair do zero e fechar o primeiro cliente pago em 30 dias. Sem enrolação.</p>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-header"><div class="plan-week-num">Semana 1</div><div class="plan-week-title">Fundação e ferramentas</div></div>
+        <div class="plan-week-body">
+          <div class="plan-task">Leia os Módulos 1 e 2 completos da mentoria</div>
+          <div class="plan-task">Crie sua conta gratuita no Claude, ChatGPT, Netlify e VS Code</div>
+          <div class="plan-task">Escolha 1 nicho usando o critério dos 3 fatores (Módulo 1.2)</div>
+          <div class="plan-task"><strong>Crie 2 sites fictícios do nicho escolhido</strong> usando os prompts do Módulo 2.4</div>
+          <div class="plan-task">Hospede ambos gratuitamente no Netlify com URLs descritivas</div>
+          <div class="plan-task">Tire print do PageSpeed Insights dos dois sites (mostre o score alto)</div>
+        </div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-header"><div class="plan-week-num">Semana 2</div><div class="plan-week-title">Portfólio e presença</div></div>
+        <div class="plan-week-body">
+          <div class="plan-task">Leia os Módulos 3 e 4. Use a Calculadora de Preços para definir sua tabela</div>
+          <div class="plan-task">Crie sua bio profissional no Instagram focada no nicho escolhido</div>
+          <div class="plan-task">Poste o primeiro Reel mostrando um dos sites criados (timelapse + narração)</div>
+          <div class="plan-task"><strong>Liste 20 potenciais clientes</strong> no Google Maps da sua cidade no nicho escolhido</div>
+          <div class="plan-task">Para os 5 melhores leads, crie um mockup personalizado usando IA (20–30 min cada)</div>
+          <div class="plan-task">Adapte a Proposta Comercial e o Contrato com seus dados</div>
+        </div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-header"><div class="plan-week-num">Semana 3</div><div class="plan-week-title">Prospecção ativa</div></div>
+        <div class="plan-week-body">
+          <div class="plan-task">Leia os Módulos 5 e 6</div>
+          <div class="plan-task"><strong>Envie os 5 mockups</strong> usando o script de WhatsApp do Módulo 5.1</div>
+          <div class="plan-task">Para quem responder com interesse, agende uma chamada de 30 min</div>
+          <div class="plan-task">Continue prospectando: envie mais 5 abordagens no Instagram</div>
+          <div class="plan-task">Faça o segundo post no Instagram (dica de SEO ou comparativo antes/depois)</div>
+          <div class="plan-task">Identifique 1 gestor de tráfego ou social media na sua cidade para possível parceria</div>
+        </div>
+      </div>
+      <div class="plan-week">
+        <div class="plan-week-header"><div class="plan-week-num">Semana 4</div><div class="plan-week-title">Fechamento e entrega</div></div>
+        <div class="plan-week-body">
+          <div class="plan-task">Faça as chamadas de fechamento com quem mostrou interesse (use o roteiro do Módulo 5.4)</div>
+          <div class="plan-task"><strong>Meta: fechar pelo menos 1 contrato</strong> (mesmo que seja o primeiro gratuito em troca de depoimento)</div>
+          <div class="plan-task">Se fechou um projeto pago: execute usando o workflow do Módulo 2.3 (1 dia de trabalho)</div>
+          <div class="plan-task">Use o Checklist de Entrega antes de enviar qualquer coisa ao cliente</div>
+          <div class="plan-task">Após a entrega, peça depoimento usando o script de Contratos & Proposta</div>
+          <div class="plan-task">Avalie: o que funcionou? Qual canal gerou mais resposta? Dobre nele no próximo mês.</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:24px;">
+        <div class="hb-title">🎯 Se não fechar em 30 dias</div>
+        <p>Não é motivo pra desistir — é um sinal de que algo no processo precisa ajuste. Pergunte-se: (1) Os mockups que criei são realmente impressionantes? (2) Estou prospectando o nicho certo ou o ticket está alto demais pro meu portfólio atual? (3) Minha abordagem parece genérica ou personalizada? Ajuste um elemento por vez e repita.</p>
+      </div>
+    </div>
+
+    <!-- OB3: PROMPTS (mantido - tem conteúdo real) -->
     <div class="module-page" id="page-ob3">
       <div class="module-hero">
-        <div class="ob-eyebrow">Extra exclusivo</div>
+        <div class="ob-eyebrow">Bônus exclusivo</div>
         <h1 class="module-title"><em>60+ Prompts</em><br>de IA testados<br>na prática real</h1>
-        <p class="module-lead">Os prompts exatos que uso todo dia para gerar código, copy, imagens e automatizar tarefas. Organizados por categoria, testados no ChatGPT e Claude.</p>
+        <p class="module-lead">Os prompts exatos que uso todo dia para gerar código, copy, imagens e automatizar tarefas. Testados no ChatGPT e Claude.</p>
       </div>
-
       <h2 class="section-h2" style="color:var(--accent);">🖥️ Código e Desenvolvimento</h2>
-      <div class="prompt-box"><div class="prompt-label">Hero section responsiva dark mode</div><div class="prompt-text" id="p1">Crie uma hero section completa em HTML5/CSS3 para [NICHO]. Requisitos: headline em 'Syne' bold, subheadline em 'DM Sans' light, botão CTA verde (#c8f23b) para WhatsApp, background dark (#080808) com gradiente radial sutil, imagem ou video de fundo com overlay, seção de micro-provas sociais (logos ou número de clientes). Mobile-first. Sem frameworks. Animate a entrada com CSS keyframes.</div><button class="btn-copy-prompt" onclick="copyPrompt('p1',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Hero section dark mode responsiva</div><div class="prompt-text" id="p1">Crie uma hero section completa em HTML5/CSS3 para [NICHO]. Requisitos: headline em 'Syne' bold, subheadline em 'DM Sans' light, botão CTA verde (#c8f23b) para WhatsApp, background dark (#080808) com gradiente radial sutil, seção de micro-provas sociais (logos ou número de clientes). Mobile-first. Sem frameworks. Animate a entrada com CSS keyframes.</div><button class="btn-copy-prompt" onclick="copyPrompt('p1',this)">Copiar</button></div>
       <div class="prompt-box"><div class="prompt-label">Grid de serviços com hover animado</div><div class="prompt-text" id="p2">Crie um grid de 3 cards de serviços para [NICHO] em HTML/CSS. Cada card: ícone emoji (1.8rem), título Syne bold, descrição 2–3 linhas, tag de destaque. Hover: borda colorida (var --accent: #c8f23b), leve translateY(-4px), sombra colorida. Background dark. Border-radius 16px. Responsivo: 3 colunas desktop → 1 coluna mobile. Sem JavaScript.</div><button class="btn-copy-prompt" onclick="copyPrompt('p2',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Formulário que abre WhatsApp</div><div class="prompt-text" id="p3">Formulário HTML com: Nome, Telefone (máscara brasileira), Select de serviços, Textarea de mensagem. Ao submeter: valide campos, monte uma mensagem formatada e abra wa.me/[NÚMERO]?text= com os dados. CSS dark mode, botão verde, inputs com borda focus. Sem backend. JavaScript vanilla.</div><button class="btn-copy-prompt" onclick="copyPrompt('p3',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">FAQ com accordion animado</div><div class="prompt-text" id="p4">Crie uma seção FAQ completa para [NICHO] com 6 perguntas relevantes sobre o negócio. Accordion em CSS puro (sem JS): max-height transition, ícone + que vira × ao abrir. Uma pergunta aberta por vez. Background dark, borda sutil, espaçamento generoso. Gere também as 6 perguntas e respostas reais mais comuns para esse nicho.</div><button class="btn-copy-prompt" onclick="copyPrompt('p4',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Formulário que abre WhatsApp direto</div><div class="prompt-text" id="p3">Formulário HTML com: Nome, Telefone (máscara brasileira), Select de serviços, Textarea de mensagem. Ao submeter: valide campos, monte uma mensagem formatada e abra wa.me/[NÚMERO]?text= com os dados. CSS dark mode, botão verde, inputs com borda focus. Sem backend. JavaScript vanilla.</div><button class="btn-copy-prompt" onclick="copyPrompt('p3',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">FAQ accordion (CSS puro, sem JS)</div><div class="prompt-text" id="p4">Crie uma seção FAQ completa para [NICHO] com 6 perguntas relevantes. Accordion em CSS puro: max-height transition, ícone + que vira × ao abrir. Uma pergunta aberta por vez. Background dark, borda sutil. Gere também as 6 perguntas e respostas reais mais comuns para esse nicho.</div><button class="btn-copy-prompt" onclick="copyPrompt('p4',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Navbar sticky com scroll effect</div><div class="prompt-text" id="pnav">Crie uma navbar sticky para site de [NICHO] em HTML/CSS/JS vanilla. Comportamento: fundo transparente no topo → fundo sólido escuro com blur quando faz scroll. Links âncora suaves. Logo à esquerda, links no centro, botão CTA à direita. Hambúrguer no mobile com menu deslizante. Sem bibliotecas externas.</div><button class="btn-copy-prompt" onclick="copyPrompt('pnav',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Seção de depoimentos com slider</div><div class="prompt-text" id="ptest">Crie uma seção de depoimentos em HTML/CSS/JS para [NICHO]. Layout: cards com avatar (emoji ou inicial), nome, cargo, texto do depoimento, estrelas. Auto-play a cada 5s, botões de navegação manual, indicadores de paginação. CSS transitions suaves. Dark mode. Mobile: 1 card por vez. Desktop: até 3 visíveis.</div><button class="btn-copy-prompt" onclick="copyPrompt('ptest',this)">Copiar</button></div>
 
       <h2 class="section-h2" style="color:var(--accent);margin-top:32px;">✍️ Copywriting & Textos</h2>
-      <div class="prompt-box"><div class="prompt-label">5 headlines + subheadlines para A/B</div><div class="prompt-text" id="p5">Escreva 5 headlines (máx. 10 palavras) + subheadlines (20–30 palavras) para a hero section de [NICHO] em [CIDADE]. Público: [DESCRIÇÃO]. Dor principal: [PROBLEMA]. Fórmulas: 1) Resultado+Prazo, 2) Pergunta que dói, 3) Número+Benefício, 4) Transformação antes/depois, 5) Ao contrário da concorrência. Formato: Headline / Subheadline / Por que funciona (2 linhas).</div><button class="btn-copy-prompt" onclick="copyPrompt('p5',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Depoimentos fictícios para portfólio</div><div class="prompt-text" id="p6">Crie 3 depoimentos fictícios realistas para site de portfólio de [NICHO]. Cada um: nome brasileiro plausível, cargo/contexto específico, texto 2–3 linhas com resultado concreto e mensurável (ex: "agendamentos aumentaram 40%"). Tom: natural, não exagerado, sem clichês de marketing. Retorne como JSON: [{nome, cargo, texto, estrelas, iniciais}]</div><button class="btn-copy-prompt" onclick="copyPrompt('p6',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Proposta comercial em PDF</div><div class="prompt-text" id="p7">Escreva o texto completo de uma proposta comercial para [NOME DO CLIENTE], [NICHO] em [CIDADE]. Seções: 1) Resumo executivo (você entendeu o problema), 2) Solução proposta (com escopo detalhado), 3) Por que escolher Rafael Dev (3 diferenciais), 4) Investimento (3 opções de pacote), 5) Próximos passos (call to action claro), 6) Validade da proposta (7 dias). Tom: profissional, direto, confiante. Sem bajulação.</div><button class="btn-copy-prompt" onclick="copyPrompt('p7',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">5 headlines + subheadlines para A/B</div><div class="prompt-text" id="p5">Escreva 5 headlines (máx. 10 palavras) + subheadlines (20–30 palavras) para hero de [NICHO] em [CIDADE]. Público: [DESCRIÇÃO]. Dor principal: [PROBLEMA]. Fórmulas: 1) Resultado+Prazo, 2) Pergunta que dói, 3) Número+Benefício, 4) Transformação antes/depois, 5) Ao contrário da concorrência. Formato: Headline / Subheadline / Por que funciona (2 linhas).</div><button class="btn-copy-prompt" onclick="copyPrompt('p5',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Depoimentos fictícios para portfólio</div><div class="prompt-text" id="p6">Crie 3 depoimentos fictícios realistas para site de portfólio de [NICHO]. Cada um: nome brasileiro plausível, cargo/contexto específico, texto 2–3 linhas com resultado concreto e mensurável (ex: "agendamentos aumentaram 40%"). Tom: natural, não exagerado, sem clichês. Retorne como JSON: [{nome, cargo, texto, estrelas, iniciais}]</div><button class="btn-copy-prompt" onclick="copyPrompt('p6',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Textos de seção "Sobre" persuasivo</div><div class="prompt-text" id="psobre">Escreva o texto da seção "Sobre" para [NOME/EMPRESA], [NICHO] em [CIDADE]. Inclua: quem é, há quanto tempo atua, por que escolheu essa área, qual é sua missão e um fato pessoal que cria conexão. Tom: caloroso, profissional, sem bajulação. Máx. 120 palavras. Escreva em primeira pessoa. Depois sugira 3 títulos alternativos para o H2 da seção.</div><button class="btn-copy-prompt" onclick="copyPrompt('psobre',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Proposta comercial completa</div><div class="prompt-text" id="p7">Escreva o texto completo de uma proposta comercial para [NOME DO CLIENTE], [NICHO] em [CIDADE]. Seções: 1) Resumo executivo (você entendeu o problema), 2) Solução proposta (com escopo detalhado), 3) Por que me escolher (3 diferenciais), 4) Investimento (3 opções de pacote), 5) Próximos passos (call to action claro), 6) Validade da proposta (7 dias). Tom: profissional, direto, confiante. Sem bajulação.</div><button class="btn-copy-prompt" onclick="copyPrompt('p7',this)">Copiar</button></div>
 
       <h2 class="section-h2" style="color:var(--accent);margin-top:32px;">📧 Prospecção e Vendas</h2>
-      <div class="prompt-box"><div class="prompt-label">E-mail frio de alto impacto</div><div class="prompt-text" id="p8">Escreva 3 versões de e-mail frio para prospectar [NICHO] em [CIDADE]. Versão A: foco na dor (perda de clientes sem site). Versão B: foco no ganho (crescimento com mais visibilidade). Versão C: abordagem de curiosidade (pergunta que abre conversa). Cada versão: máx. 120 palavras, assunto com até 50 caracteres, 1 CTA claro. Sem clichês como "espero que esse e-mail te encontre bem".</div><button class="btn-copy-prompt" onclick="copyPrompt('p8',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Follow-up sem parecer chato</div><div class="prompt-text" id="p9">Escreva 3 mensagens de follow-up para depois que um cliente em potencial não respondeu minha proposta comercial. Follow-up 1 (3 dias): entrega valor adicional. Follow-up 2 (7 dias): cria urgência real. Follow-up 3 (14 dias): fecha o assunto com elegância ("última mensagem"). Canais: WhatsApp. Tom: humano, não robótico, sem pressão excessiva.</div><button class="btn-copy-prompt" onclick="copyPrompt('p9',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">E-mail frio de alto impacto (3 versões)</div><div class="prompt-text" id="p8">Escreva 3 versões de e-mail frio para prospectar [NICHO] em [CIDADE]. Versão A: foco na dor (perda de clientes sem site). Versão B: foco no ganho (crescimento com mais visibilidade). Versão C: abordagem de curiosidade (pergunta que abre conversa). Cada versão: máx. 120 palavras, assunto com até 50 caracteres, 1 CTA claro. Sem clichês como "espero que esse e-mail te encontre bem".</div><button class="btn-copy-prompt" onclick="copyPrompt('p8',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Follow-up sem parecer chato</div><div class="prompt-text" id="p9">Escreva 3 mensagens de follow-up para depois que um cliente em potencial não respondeu minha proposta. Follow-up 1 (3 dias): entrega valor adicional. Follow-up 2 (7 dias): cria urgência real. Follow-up 3 (14 dias): fecha o assunto com elegância ("última mensagem"). Canal: WhatsApp. Tom: humano, não robótico, sem pressão excessiva.</div><button class="btn-copy-prompt" onclick="copyPrompt('p9',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Script para ligação de fechamento</div><div class="prompt-text" id="plig">Escreva um roteiro completo para chamada de vendas de 30 minutos com cliente de [NICHO] interessado em um site. Inclua: abertura que cria rapport, perguntas de descoberta (mínimo 5), transição para apresentação da solução, técnica de ancoragem de preço, como apresentar 3 opções, lidando com "preciso pensar", fechamento com 2 opções. Tom: consultivo, não vendedor. Inclua as pausas onde o vendedor deve ficar em silêncio.</div><button class="btn-copy-prompt" onclick="copyPrompt('plig',this)">Copiar</button></div>
 
       <h2 class="section-h2" style="color:var(--accent);margin-top:32px;">🔍 SEO & Performance</h2>
-      <div class="prompt-box"><div class="prompt-label">Meta tags completas + Open Graph</div><div class="prompt-text" id="p10">Gere as meta tags HTML completas para SEO de [NICHO] em [CIDADE]. Inclua: title (55–60 chars), meta description (145–155 chars), keywords, canonical, Open Graph (og:title, og:description, og:image, og:url), Twitter Card, geo.region BR, geo.placename. Palavra-chave principal: "[PALAVRA-CHAVE]". Retorne apenas o código HTML pronto para colar no head.</div><button class="btn-copy-prompt" onclick="copyPrompt('p10',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Texto para seção de blog/SEO local</div><div class="prompt-text" id="p11">Escreva um texto de 400–600 palavras otimizado para SEO local sobre "[SERVIÇO] em [CIDADE]". Palavra-chave principal: "[KW PRINCIPAL]". Palavras-chave secundárias: "[KW2]", "[KW3]". Estrutura: introdução (incluir KW no primeiro parágrafo), benefícios do serviço (H2), por que escolher um profissional local (H2), CTA final. Linguagem natural, sem keyword stuffing. Meta description ao final.</div><button class="btn-copy-prompt" onclick="copyPrompt('p11',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Meta tags completas + Open Graph</div><div class="prompt-text" id="p10">Gere as meta tags HTML completas para SEO de [NICHO] em [CIDADE]. Inclua: title (55–60 chars), meta description (145–155 chars), canonical, Open Graph (og:title, og:description, og:image, og:url), Twitter Card, geo.region BR. Palavra-chave principal: "[PALAVRA-CHAVE]". Retorne apenas o código HTML pronto para colar no head.</div><button class="btn-copy-prompt" onclick="copyPrompt('p10',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Texto para SEO local (400–600 palavras)</div><div class="prompt-text" id="p11">Escreva um texto de 400–600 palavras otimizado para SEO local sobre "[SERVIÇO] em [CIDADE]". Palavra-chave principal: "[KW PRINCIPAL]". KWs secundárias: "[KW2]", "[KW3]". Estrutura: introdução (incluir KW no primeiro parágrafo), benefícios (H2), por que escolher um profissional local (H2), CTA final. Linguagem natural, sem keyword stuffing. Meta description ao final.</div><button class="btn-copy-prompt" onclick="copyPrompt('p11',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Auditoria de SEO completa do site</div><div class="prompt-text" id="pseo">Audite este código HTML/CSS para SEO: [COLE O CÓDIGO]. Verifique e corrija: (1) Title e meta description otimizados, (2) Estrutura de headings (H1 único, H2s lógicos), (3) Alt text em todas as imagens, (4) Schema markup LocalBusiness, (5) Canonical tag, (6) Open Graph tags, (7) Velocidade: loading="lazy" nas imagens, font-display:swap, (8) Links internos e externos. Retorne o código corrigido e lista de problemas encontrados.</div><button class="btn-copy-prompt" onclick="copyPrompt('pseo',this)">Copiar</button></div>
 
-      <h2 class="section-h2" style="color:var(--accent);margin-top:32px;">🖼️ Geração de Imagens (Midjourney / DALL-E)</h2>
-      <div class="prompt-box"><div class="prompt-label">Foto de hero profissional para clínica</div><div class="prompt-text" id="p12">Professional photography of a modern Brazilian medical clinic. Warm, inviting reception area with plants and natural light. A confident female doctor in white coat smiling genuinely at camera. Clean, minimal décor. Shot on Canon 5D Mark IV, 35mm f/1.8, shallow depth of field. Soft bokeh background. Photojournalistic style, not stock photo. Vertical 9:16 for hero section. --ar 9:16 --style raw --v 6</div><button class="btn-copy-prompt" onclick="copyPrompt('p12',this)">Copiar</button></div>
-      <div class="prompt-box"><div class="prompt-label">Ícone SVG minimalista</div><div class="prompt-text" id="p13">Minimal flat icon of [OBJETO/CONCEITO] for a dark-themed website. Single color lime green #c8f23b on transparent background. Ultra clean geometric lines, no gradients, no shadows, no outlines. Recognizable at 32px. SVG-style geometric shapes. 512x512px white canvas with centered icon. No text. --ar 1:1 --style raw</div><button class="btn-copy-prompt" onclick="copyPrompt('p13',this)">Copiar</button></div>
+      <h2 class="section-h2" style="color:var(--accent);margin-top:32px;">🖼️ Geração de Imagens (DALL-E / Midjourney)</h2>
+      <div class="prompt-box"><div class="prompt-label">Foto de hero para clínica/saúde</div><div class="prompt-text" id="p12">Professional photography of a modern Brazilian medical clinic. Warm, inviting reception area with plants and natural light. A confident doctor in white coat smiling genuinely. Clean, minimal décor. Shot on Canon 5D Mark IV, 35mm f/1.8, shallow depth of field. Soft bokeh background. Photojournalistic style, not stock photo. --ar 16:9 --style raw --v 6</div><button class="btn-copy-prompt" onclick="copyPrompt('p12',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Imagem hero para negócio local</div><div class="prompt-text" id="pimglocal">Cinematic photograph of a [TIPO DE NEGÓCIO] in Brazil. Real people working, genuine smiles, authentic environment. Warm golden hour lighting. Shot from a natural angle, not posed. Editorial photography style. 35mm lens, wide aperture, bokeh background. Horizontal format 16:9. --ar 16:9 --style raw --v 6</div><button class="btn-copy-prompt" onclick="copyPrompt('pimglocal',this)">Copiar</button></div>
+      <div class="prompt-box"><div class="prompt-label">Ícone SVG minimalista</div><div class="prompt-text" id="p13">Minimal flat icon of [OBJETO/CONCEITO] for a dark-themed website. Single color lime green #c8f23b on transparent background. Ultra clean geometric lines, no gradients, no shadows. Recognizable at 32px. SVG geometric shapes. 512x512px. No text. --ar 1:1 --style raw</div><button class="btn-copy-prompt" onclick="copyPrompt('p13',this)">Copiar</button></div>
 
       <div class="highlight-box" style="margin-top:32px;">
         <div class="hb-title">💡 Multiplicador de qualidade</div>
-        <p>Sempre adicione ao final de qualquer prompt: <strong>"Antes de gerar, confirme que entendeu o contexto e me pergunte se precisar de mais detalhes."</strong> A IA passa a fazer perguntas inteligentes e o resultado final é 2–3x melhor que uma resposta genérica imediata.</p>
+        <p>Sempre adicione ao final de qualquer prompt: <strong>"Antes de gerar, confirme que entendeu o contexto e me pergunte se precisar de mais detalhes."</strong> A IA faz perguntas inteligentes e o resultado final é 2–3x melhor que uma resposta genérica imediata.</p>
       </div>
-
       <div class="nav-bottom">
-        <button class="nav-bottom-btn" onclick="goTo('mod7')">← Módulo 7</button>
+        <button class="nav-bottom-btn" onclick="goTo('home')">← Início</button>
       </div>
     </div>
 
@@ -1230,58 +1089,96 @@
 
 <script>
 /* ════════════════════════════════════════
-   ACESSO ANÔNIMO COM SENHA
+   SISTEMA DE ACESSO — localStorage com 1 ano de expiração
+   Recuperação por e-mail e senha
 ════════════════════════════════════════ */
 const SENHAS_VALIDAS = ['pretinho123', 'mentoria2026', 'rafael2026'];
+const EXPIRY_1ANO = 365 * 24 * 60 * 60 * 1000;
+let accessData = null;
 
-function toggleAnonForm() {
-  const form = document.getElementById('anonForm');
-  form.classList.toggle('visible');
-  if (form.classList.contains('visible')) {
-    setTimeout(() => document.getElementById('anonInput').focus(), 100);
+function switchTab(tab) {
+  document.querySelectorAll('.recover-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.recover-form').forEach(f => f.classList.remove('visible'));
+  if (tab === 'email') {
+    document.querySelectorAll('.recover-tab')[0].classList.add('active');
+    document.getElementById('formEmail').classList.add('visible');
+    setTimeout(() => document.getElementById('recoverEmail').focus(), 100);
+  } else {
+    document.querySelectorAll('.recover-tab')[1].classList.add('active');
+    document.getElementById('formSenha').classList.add('visible');
+    setTimeout(() => document.getElementById('recoverSenha').focus(), 100);
   }
 }
 
-function anonEntrar() {
-  const senha = document.getElementById('anonInput').value.trim();
-  const erroEl = document.getElementById('anonError');
+function emailEntrar() {
+  const email = document.getElementById('recoverEmail').value.trim().toLowerCase();
+  const erroEl = document.getElementById('erroEmail');
+  erroEl.style.display = 'none';
+  if (!email) { erroEl.style.display = 'block'; return; }
+  // Tenta encontrar compra salva para este e-mail
+  const chave = 'mentoria_compra_' + email.replace(/[^a-z0-9]/g, '_');
+  try {
+    const raw = localStorage.getItem(chave);
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (Date.now() < data.expiry) {
+        // Renova por mais 1 ano a partir de agora
+        data.expiry = Date.now() + EXPIRY_1ANO;
+        localStorage.setItem(chave, JSON.stringify(data));
+        localStorage.setItem('mentoria_access', JSON.stringify(data));
+        accessData = data;
+        inicializar();
+        return;
+      }
+    }
+  } catch(e) {}
+  erroEl.style.display = 'block';
+}
+
+function senhaEntrar() {
+  const senha = document.getElementById('recoverSenha').value.trim();
+  const erroEl = document.getElementById('erroSenha');
   erroEl.style.display = 'none';
   if (SENHAS_VALIDAS.includes(senha)) {
-    // Gera token de acesso completo (com todos os extras)
     const token = Math.random().toString(36).substring(2, 18) + Date.now().toString(36);
-    const expiry = Date.now() + (72 * 60 * 60 * 1000); // 72h
-    const hash = btoa(token + ':rafael2026');
-    sessionStorage.setItem('mentoria_access', JSON.stringify({
-      token, expiry, hash,
-      nome: 'Rafael Admin',
-      email: 'admin@rafael.dev',
-      extras: { ob1: true, ob2: true, ob3: true },
-      compradoEm: new Date().toISOString()
-    }));
+    const data = {
+      token, expiry: Date.now() + EXPIRY_1ANO,
+      hash: btoa(token + ':rafael2026'),
+      nome: 'Rafael Admin', email: 'admin@rafael.dev',
+      extras: { ob3: true }, compradoEm: new Date().toISOString()
+    };
+    localStorage.setItem('mentoria_access', JSON.stringify(data));
+    accessData = data;
     inicializar();
   } else {
     erroEl.style.display = 'block';
-    document.getElementById('anonInput').value = '';
-    document.getElementById('anonInput').focus();
+    document.getElementById('recoverSenha').value = '';
   }
 }
 
-/* ════════════════════════════════════════
-   SISTEMA DE ACESSO POR TOKEN
-════════════════════════════════════════ */
-let accessData = null;
-
 function validarAcesso() {
   try {
-    const raw = sessionStorage.getItem('mentoria_access');
+    const raw = localStorage.getItem('mentoria_access');
     if (!raw) return false;
     const data = JSON.parse(raw);
-    if (Date.now() > data.expiry) { sessionStorage.removeItem('mentoria_access'); return false; }
+    if (Date.now() > data.expiry) { localStorage.removeItem('mentoria_access'); return false; }
     const expectedHash = btoa(data.token + ':rafael2026');
     if (data.hash !== expectedHash) return false;
+    // Renova silenciosamente se faltar menos de 30 dias
+    if (data.expiry - Date.now() < 30 * 24 * 60 * 60 * 1000) {
+      data.expiry = Date.now() + EXPIRY_1ANO;
+      localStorage.setItem('mentoria_access', JSON.stringify(data));
+    }
     accessData = data;
     return true;
   } catch(e) { return false; }
+}
+
+function sair() {
+  if (confirm('Deseja sair? Você precisará recuperar seu acesso pelo e-mail ou senha.')) {
+    localStorage.removeItem('mentoria_access');
+    location.reload();
+  }
 }
 
 function inicializar() {
@@ -1299,13 +1196,15 @@ function inicializar() {
   document.getElementById('userInitial').textContent = primeiroNome.charAt(0).toUpperCase();
 
   const extras = accessData.extras || {};
-  if (extras.ob1 || extras.ob2 || extras.ob3) document.getElementById('navExtrasLabel').style.display = 'block';
-  if (extras.ob1) document.getElementById('navOB1').style.display = 'flex';
-  if (extras.ob2) document.getElementById('navOB2').style.display = 'flex';
-  if (extras.ob3) document.getElementById('navOB3').style.display = 'flex';
+  if (extras.ob3) {
+    document.getElementById('navExtrasLabel').style.display = 'block';
+    document.getElementById('navOB3').style.display = 'flex';
+  }
 
   carregarProgresso();
   atualizarProgressoVisual();
+  iniciarCalculadora();
+  iniciarChecklist();
 }
 
 /* ════════════════════════════════════════
@@ -1316,7 +1215,9 @@ const BREADCRUMBS = {
   mod3:'Módulo 3 — Execução', mod4:'Módulo 4 — Precificação',
   mod5:'Módulo 5 — Captação', mod6:'Módulo 6 — Escala',
   mod7:'Módulo 7 — Produto Digital',
-  ob1:'Extra — Templates HTML', ob2:'Extra — Planilha', ob3:'Extra — Prompts de IA'
+  calc:'Calculadora de Preços', checklist:'Checklist de Entrega',
+  contratos:'Contratos & Proposta', plano30:'Plano 30 Dias',
+  ob3:'Bônus — 60+ Prompts'
 };
 let moduloAtual = 'home';
 
@@ -1338,14 +1239,12 @@ function goTo(modulo) {
   btn.classList.toggle('done', !!concluido);
 }
 
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
 
 /* ════════════════════════════════════════
    PROGRESSO
 ════════════════════════════════════════ */
-const MODULOS_PRINCIPAIS = ['home','mod1','mod2','mod3','mod4','mod5','mod6','mod7'];
+const MODULOS_PRINCIPAIS = ['home','mod1','mod2','mod3','mod4','mod5','mod6','mod7','calc','checklist','contratos','plano30'];
 
 function getProgresso() {
   try { return JSON.parse(localStorage.getItem('mentoria_progress') || '{}'); } catch(e) { return {}; }
@@ -1363,9 +1262,7 @@ function carregarProgresso() {
 }
 
 function marcarConcluido() {
-  const prog = getProgresso();
-  prog[moduloAtual] = true;
-  salvarProgresso(prog);
+  const prog = getProgresso(); prog[moduloAtual] = true; salvarProgresso(prog);
   const navItem = document.querySelector(`[data-module="${moduloAtual}"]`);
   if (navItem) navItem.classList.add('completed');
   const btn = document.getElementById('btnMarkDone');
@@ -1382,7 +1279,112 @@ function atualizarProgressoVisual() {
 }
 
 /* ════════════════════════════════════════
-   COPIAR PROMPTS
+   CALCULADORA DE PREÇOS
+════════════════════════════════════════ */
+const PRECOS_BASE = {
+  'landing-simples':   { min: 700,  ideal: 1400, max: 2200 },
+  'landing-completa':  { min: 1400, ideal: 2500, max: 4000 },
+  'institucional':     { min: 3000, ideal: 5500, max: 9000 },
+  'redesign':          { min: 1200, ideal: 3000, max: 5000 },
+  'infoproduto':       { min: 1500, ideal: 3500, max: 6000 },
+  'chatbot':           { min: 4000, ideal: 7000, max: 12000 },
+};
+
+function iniciarCalculadora() { calcular(); }
+
+function calcular() {
+  const tipo = document.getElementById('calcTipo').value;
+  const comp = parseFloat(document.getElementById('calcComplexidade').value);
+  const exp  = parseFloat(document.getElementById('calcExp').value);
+  const urg  = parseFloat(document.getElementById('calcUrgencia').value);
+  const base = PRECOS_BASE[tipo];
+  const fator = comp * exp * urg;
+  const fmt = v => 'R$' + Math.round(v / 50) * 50 + ',00';
+  document.getElementById('calcMin').textContent   = fmt(base.min * fator);
+  document.getElementById('calcIdeal').textContent = fmt(base.ideal * fator);
+  document.getElementById('calcMax').textContent   = fmt(base.max * fator);
+}
+
+/* ════════════════════════════════════════
+   CHECKLIST INTERATIVO
+════════════════════════════════════════ */
+const CHECKLIST_ITEMS = [
+  { texto: 'Design exibido corretamente no Chrome', cat: 'Browser' },
+  { texto: 'Design exibido corretamente no Firefox', cat: 'Browser' },
+  { texto: 'Design exibido corretamente no Safari', cat: 'Browser' },
+  { texto: 'Mobile 375px (iPhone SE/mini) — sem overflow', cat: 'Mobile' },
+  { texto: 'Mobile 390px (iPhone 14) — sem texto cortado', cat: 'Mobile' },
+  { texto: 'Mobile 414px (iPhone Plus) — botões acessíveis', cat: 'Mobile' },
+  { texto: 'Tablet 768px — layout coerente', cat: 'Mobile' },
+  { texto: 'Todos os links de âncora funcionando', cat: 'Links' },
+  { texto: 'Botão WhatsApp abre com o número correto', cat: 'Links' },
+  { texto: 'Formulário de contato enviando corretamente', cat: 'Links' },
+  { texto: 'Links externos abrem em nova aba (_blank)', cat: 'Links' },
+  { texto: 'PageSpeed Mobile ≥ 85', cat: 'Performance' },
+  { texto: 'Imagens convertidas para WebP', cat: 'Performance' },
+  { texto: 'loading="lazy" em todas as imagens', cat: 'Performance' },
+  { texto: 'font-display: swap nas fontes', cat: 'Performance' },
+  { texto: 'H1 único na página', cat: 'SEO' },
+  { texto: 'Meta title (55–60 caracteres)', cat: 'SEO' },
+  { texto: 'Meta description (145–155 caracteres)', cat: 'SEO' },
+  { texto: 'Alt em todas as imagens', cat: 'SEO' },
+  { texto: 'Open Graph tags configuradas', cat: 'SEO' },
+  { texto: 'Favicon configurado', cat: 'SEO' },
+  { texto: 'Todos os textos revisados (sem lorem ipsum)', cat: 'Conteúdo' },
+  { texto: 'Nome, telefone e endereço do cliente corretos', cat: 'Conteúdo' },
+  { texto: 'Número do WhatsApp correto em todos os botões', cat: 'Conteúdo' },
+  { texto: 'Depoimentos com nomes e fotos reais (ou aprovados)', cat: 'Conteúdo' },
+  { texto: 'Site publicado em domínio correto com SSL (https)', cat: 'Entrega' },
+  { texto: 'Loom de apresentação gravado e enviado ao cliente', cat: 'Entrega' },
+];
+
+const CORES_CAT = {
+  'Browser': 'rgba(200,242,59,0.07)', 'Mobile': 'rgba(45,255,212,0.07)',
+  'Links': 'rgba(255,184,0,0.07)', 'Performance': 'rgba(200,242,59,0.07)',
+  'SEO': 'rgba(45,255,212,0.07)', 'Conteúdo': 'rgba(255,107,107,0.07)',
+  'Entrega': 'rgba(200,242,59,0.07)'
+};
+
+function iniciarChecklist() {
+  const container = document.getElementById('checklistContainer');
+  const saved = JSON.parse(localStorage.getItem('mentoria_checklist') || '{}');
+  CHECKLIST_ITEMS.forEach((item, idx) => {
+    const el = document.createElement('div');
+    el.className = 'checklist-item' + (saved[idx] ? ' checked' : '');
+    el.onclick = () => toggleCheck(idx);
+    el.innerHTML = `<div class="ci-box"><span class="ci-check">✓</span></div><span class="ci-text">${item.texto}</span><span class="ci-cat">${item.cat}</span>`;
+    container.appendChild(el);
+  });
+  atualizarChecklistProgress();
+}
+
+function toggleCheck(idx) {
+  const saved = JSON.parse(localStorage.getItem('mentoria_checklist') || '{}');
+  saved[idx] = !saved[idx];
+  localStorage.setItem('mentoria_checklist', JSON.stringify(saved));
+  const items = document.querySelectorAll('.checklist-item');
+  if (items[idx]) items[idx].classList.toggle('checked', !!saved[idx]);
+  atualizarChecklistProgress();
+}
+
+function atualizarChecklistProgress() {
+  const saved = JSON.parse(localStorage.getItem('mentoria_checklist') || '{}');
+  const total = CHECKLIST_ITEMS.length;
+  const feitos = Object.values(saved).filter(Boolean).length;
+  const pct = Math.round((feitos / total) * 100);
+  document.getElementById('clProgressFill').style.width = pct + '%';
+  document.getElementById('clProgressText').textContent = `${feitos} / ${total} concluídos`;
+}
+
+function resetChecklist() {
+  if (!confirm('Reiniciar o checklist? Todo o progresso será apagado.')) return;
+  localStorage.removeItem('mentoria_checklist');
+  document.querySelectorAll('.checklist-item').forEach(el => el.classList.remove('checked'));
+  atualizarChecklistProgress();
+}
+
+/* ════════════════════════════════════════
+   COPIAR PROMPTS E CONTRATOS
 ════════════════════════════════════════ */
 function copyPrompt(id, btn) {
   const text = document.getElementById(id)?.textContent || '';
@@ -1395,6 +1397,11 @@ function copyPrompt(id, btn) {
     el.select(); document.execCommand('copy'); document.body.removeChild(el);
     btn.textContent = '✓ Copiado!'; setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
   });
+}
+
+function copyEl(id) {
+  const el = document.getElementById(id);
+  copyPrompt(id, el.previousElementSibling.querySelector('button'));
 }
 
 /* ════════════════════════════════════════
