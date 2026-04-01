@@ -113,6 +113,40 @@
     .btn-comprar-mentoria:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(200,242,59,0.3); }
     .mentoria-garantia { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 16px; font-size: 0.78rem; color: var(--muted); }
 
+    /* ── BOTÃO JÁ TENHO ACESSO ── */
+    .btn-ja-tenho { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 12px; padding: 13px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--text2, rgba(240,237,230,0.6)); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; cursor: pointer; transition: border-color 0.25s, color 0.25s, background 0.25s; }
+    .btn-ja-tenho:hover { border-color: rgba(45,255,212,0.4); color: var(--accent2); background: rgba(45,255,212,0.05); }
+
+    /* ── MODAL DE VERIFICAÇÃO DE ACESSO ── */
+    .acesso-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 20000; align-items: center; justify-content: center; padding: 20px; }
+    .acesso-overlay.open { display: flex; }
+    .acesso-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 420px; position: relative; overflow: hidden; animation: modalIn 0.3s ease; }
+    .acesso-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .acesso-header { padding: 28px 28px 0; display: flex; justify-content: space-between; align-items: flex-start; }
+    .acesso-header h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: -0.03em; }
+    .acesso-close { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); background: none; color: var(--muted); font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+    .acesso-close:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+    .acesso-body { padding: 20px 28px 28px; }
+    .acesso-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .acesso-tab { flex: 1; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); font-size: 0.8rem; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .acesso-tab.active { border-color: rgba(45,255,212,0.4); color: var(--accent2); background: rgba(45,255,212,0.07); }
+    .acesso-panel { display: none; }
+    .acesso-panel.active { display: block; }
+    .acesso-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; margin-bottom: 12px; }
+    .acesso-input:focus { border-color: rgba(45,255,212,0.4); }
+    .acesso-input::placeholder { color: var(--muted); }
+    .acesso-btn { display: block; width: 100%; padding: 13px; border-radius: 100px; border: none; background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #000; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.92rem; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s; }
+    .acesso-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(45,255,212,0.25); }
+    .acesso-erro { display: none; font-size: 0.8rem; color: #f87171; padding: 10px 13px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; margin-bottom: 12px; }
+    .acesso-hint { font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.55; margin-top: 10px; }
+    /* Estado: já tem acesso */
+    .acesso-ja-tem { text-align: center; padding: 8px 0 4px; }
+    .acesso-ja-tem .aja-icon { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+    .acesso-ja-tem h4 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent2); margin-bottom: 6px; }
+    .acesso-ja-tem p { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+    .acesso-ja-tem .btn-ir { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; padding: 14px 28px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.92rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s; text-decoration: none; }
+    .acesso-ja-tem .btn-ir:hover { transform: scale(1.04); box-shadow: 0 0 25px rgba(200,242,59,0.3); }
+
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; cursor: none; }
     .modal-overlay.open { display: flex; }
@@ -154,7 +188,6 @@
     .spinner { width: 16px; height: 16px; border: 2px solid rgba(200,242,59,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Step de redirecionamento */
     .redirect-section { text-align: center; padding: 24px 0; }
     .redirect-section .success-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; animation: bounceIn 0.5s ease; }
     @keyframes bounceIn { 0% { transform: scale(0); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -166,7 +199,6 @@
     .btn-acessar:hover { transform: scale(1.04); box-shadow: 0 0 30px rgba(200,242,59,0.3); }
 
     /* ORDER BUMPS */
-    .ob-header { margin-bottom: 16px; }
     .ob-urgency-bar { display: flex; align-items: center; gap: 10px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.8rem; color: #f87171; }
     .ob-urgency-bar .ob-timer-icon { font-size: 1rem; flex-shrink: 0; animation: pulse 1.2s infinite; }
     .ob-urgency-bar strong { color: #fca5a5; }
@@ -174,7 +206,7 @@
     .ob-avatars { display: flex; }
     .ob-avatar { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--surface); margin-left: -6px; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .ob-avatar:first-child { margin-left: 0; }
-    .ob-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 18px 18px 16px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.25s, background 0.25s; cursor: none; position: relative; overflow: hidden; }
+    .ob-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 18px 18px 16px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.25s, background 0.25s; cursor: pointer; position: relative; overflow: hidden; }
     .ob-card:hover { border-color: rgba(200,242,59,0.25); background: rgba(200,242,59,0.03); }
     .ob-card.selected { border-color: var(--accent); background: rgba(200,242,59,0.06); }
     .ob-card.selected::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
@@ -196,16 +228,13 @@
     .ob-total-main { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; }
     .ob-total-label { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
     .ob-total-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--accent); transition: all 0.3s; }
-    .ob-savings-bar { display: none; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; background: linear-gradient(90deg, rgba(200,242,59,0.12), rgba(45,255,212,0.12)); border-top: 1px solid rgba(200,242,59,0.12); font-size: 0.8rem; color: var(--accent); font-weight: 500; animation: savingsPulse 2s ease-in-out infinite; }
+    .ob-savings-bar { display: none; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; background: linear-gradient(90deg, rgba(200,242,59,0.12), rgba(45,255,212,0.12)); border-top: 1px solid rgba(200,242,59,0.12); font-size: 0.8rem; color: var(--accent); font-weight: 500; }
     .ob-savings-bar.visible { display: flex; }
-    .ob-savings-bar strong { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem; color: var(--accent2); }
-    @keyframes savingsPulse { 0%, 100% { background: linear-gradient(90deg, rgba(200,242,59,0.12), rgba(45,255,212,0.12)); } 50% { background: linear-gradient(90deg, rgba(200,242,59,0.18), rgba(45,255,212,0.18)); } }
-    .ob-loss-nudge { display: none; align-items: center; gap: 8px; padding: 10px 14px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; font-size: 0.79rem; color: #fca5a5; margin-bottom: 12px; animation: fadeInNudge 0.4s ease; }
+    .ob-loss-nudge { display: none; align-items: center; gap: 8px; padding: 10px 14px; background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; font-size: 0.79rem; color: #fca5a5; margin-bottom: 12px; }
     .ob-loss-nudge.visible { display: flex; }
-    @keyframes fadeInNudge { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-    .ob-skip { display: block; text-align: center; font-size: 0.78rem; color: var(--muted); cursor: none; margin-top: 10px; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; background: none; border: none; width: 100%; }
+    .ob-skip { display: block; text-align: center; font-size: 0.78rem; color: var(--muted); cursor: pointer; margin-top: 10px; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; background: none; border: none; width: 100%; }
     .ob-skip:hover { color: var(--text); }
-    .btn-ob-cta { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; border: none; padding: 18px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; cursor: none; letter-spacing: -0.01em; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn-ob-cta { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; border: none; padding: 18px 32px; border-radius: 100px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; letter-spacing: -0.01em; transition: transform 0.2s, box-shadow 0.3s; }
     .btn-ob-cta:hover { transform: scale(1.02); box-shadow: 0 0 40px rgba(200,242,59,0.3); }
     .btn-ob-cta .cta-sub { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 400; opacity: 0.75; margin-top: 2px; letter-spacing: 0; }
 
@@ -244,7 +273,7 @@
 
     .faq-list { max-width: 700px; margin-top: 60px; }
     .faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
-    .faq-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; cursor: none; color: var(--text); }
+    .faq-q { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text); }
     .faq-toggle { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent); transition: transform 0.3s; flex-shrink: 0; }
     .faq-item.open .faq-toggle { transform: rotate(45deg); }
     .faq-a { font-size: 0.9rem; line-height: 1.7; color: rgba(240,237,230,0.55); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
@@ -287,9 +316,7 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- ══════════════════════════════════════════════════════════
-       MODAL
-  ══════════════════════════════════════════════════════════ -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="modalPix" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box" id="modalBox">
 
@@ -341,36 +368,28 @@
             </div>
             <span><strong style="color:var(--accent2);">23 pessoas</strong> adicionaram extras hoje</span>
           </div>
-
-          <div class="ob-card" id="ob1" onclick="toggleOB(this, 1)">
-            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
-            <div class="ob-content">
-              <div class="ob-top"><p class="ob-title">Pack de Templates HTML Prontos</p><span class="ob-badge">+vendido</span></div>
-              <p class="ob-desc">10 templates de landing pages prontos para copiar, personalizar e entregar. Economize horas em cada projeto.</p>
-              <div class="ob-items"><span class="ob-item-tag">10 templates</span><span class="ob-item-tag">Responsivos</span><span class="ob-item-tag">Entrega imediata</span></div>
-              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 97,00</span><span class="ob-price-new">+ R$ 19,90</span></div>
-            </div>
-          </div>
-
-          <div class="ob-card" id="ob2" onclick="toggleOB(this, 2)">
-            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
-            <div class="ob-content">
-              <div class="ob-top"><p class="ob-title">Planilha de Gestão de Clientes & Projetos</p><span class="ob-badge">Exclusivo</span></div>
-              <p class="ob-desc">Controle clientes, prazos, pagamentos e projetos — tudo em um lugar com dashboard visual.</p>
-              <div class="ob-items"><span class="ob-item-tag">Controle financeiro</span><span class="ob-item-tag">Dashboard visual</span></div>
-              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 47,00</span><span class="ob-price-new">+ R$ 9,90</span></div>
-            </div>
-          </div>
-
-          <div class="ob-card" id="ob3" onclick="toggleOB(this, 3)">
-            <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
-            <div class="ob-content">
-              <div class="ob-top"><p class="ob-title">E-book: Prompts de IA para Devs</p><span class="ob-badge">Novidade</span></div>
-              <p class="ob-desc">50+ prompts testados para gerar código, layouts e textos de vendas com ChatGPT e Claude.</p>
-              <div class="ob-items"><span class="ob-item-tag">50+ prompts</span><span class="ob-item-tag">PDF imediato</span></div>
-              <div class="ob-price-row" style="margin-top:10px;"><span class="ob-price-old">R$ 37,00</span><span class="ob-price-new">+ R$ 9,90</span></div>
-            </div>
-          </div>
+<div></div>
+<div class="ob-card" id="ob3" onclick="toggleOB(this, 3)">
+  <div class="ob-checkbox"><span class="ob-checkmark">✓</span></div>
+  <div class="ob-content">
+    <div class="ob-top">
+      <p class="ob-title">Pack de 60+ Prompts de IA Profissionais</p>
+      <span class="ob-badge">Atualizado</span>
+    </div>
+    <p class="ob-desc">
+      60+ prompts de IA prontos para gerar sites, códigos e textos de vendas com alta conversão — sem precisar pensar.
+    </p>
+    <div class="ob-items">
+      <span class="ob-item-tag">60+ prompts</span>
+      <span class="ob-item-tag">Alta conversão</span>
+      <span class="ob-item-tag">PDF imediato</span>
+    </div>
+    <div class="ob-price-row" style="margin-top:10px;">
+      <span class="ob-price-old">R$ 37,00</span>
+      <span class="ob-price-new">+ R$ 9,90</span>
+    </div>
+</div>
+  </div>
 
           <div class="ob-loss-nudge" id="obLossNudge">⚠️ Você está deixando <strong id="obLossAmount" style="color:#fca5a5;">R$ 0,00</strong> de desconto na mesa — esses preços não voltam.</div>
 
@@ -415,7 +434,7 @@
         </div>
       </div>
 
-      <!-- Step 3: Redirecionamento -->
+      <!-- Step 3: Acesso Liberado -->
       <div id="stepRedirect" style="display:none;">
         <div class="modal-header">
           <div><h3>Pagamento confirmado! 🎉</h3><p style="font-size:0.82rem;color:var(--accent2);margin-top:4px;">Preparando seu acesso...</p></div>
@@ -431,7 +450,7 @@
           <div class="redirect-section">
             <span class="success-icon">🚀</span>
             <h4>Acesso liberado!</h4>
-            <p id="redirectMsg">Olá! Seu pagamento foi confirmado. Redirecionando para sua área de membros...</p>
+            <p id="redirectMsg">Seu pagamento foi confirmado. Redirecionando para sua área de membros...</p>
             <div class="redirect-bar"><div class="redirect-bar-fill" id="redirectBarFill"></div></div>
             <button class="btn-acessar" id="btnAcessarMentoria" onclick="acessarMentoria()">🎓 Acessar Mentoria Agora →</button>
             <p style="margin-top:12px;font-size:0.72rem;color:var(--muted);">Redirecionamento automático em <span id="redirectCount">3</span>s</p>
@@ -541,6 +560,9 @@
         </div>
         <button class="btn-comprar-mentoria" id="btnAbrirModal">Garantir meu acesso por R$ 29,99 →</button>
         <div class="mentoria-garantia">🔒 Pagamento 100% seguro via PIX · Mercado Pago</div>
+        <button class="btn-ja-tenho" id="btnJaTenhoAcesso" onclick="abrirVerificacaoAcesso()">
+          🔓 Já sou aluno — acessar minha área
+        </button>
       </div>
     </div>
   </section>
@@ -598,8 +620,11 @@
        CONFIGURAÇÕES
     ============================================================ */
     const CONFIG = {
-      CHAVE_PIX: '11629324906', NOME_BENEFICIARIO: 'Rafael Roberto Ubinski',
-      CIDADE: 'Guaramirim', VALOR: '29.99', TXID: 'MENTORIA2026',
+      CHAVE_PIX: '11629324906',
+      NOME_BENEFICIARIO: 'Rafael Roberto Ubinski',
+      CIDADE: 'Guaramirim',
+      VALOR: '29.99',
+      TXID: 'MENTORIA2026',
       MP_ACCESS_TOKEN: 'APP_USR-6953041847224450-033019-14b64a3e732eac02f35114bc7a44f507-374069302',
     };
 
@@ -643,14 +668,28 @@
     function validarNome(n) { return n.trim().length >= 2 && n.trim().length <= 80; }
 
     /* ============================================================
-       GERAR TOKEN DE ACESSO
+       GERAR E SALVAR TOKEN DE ACESSO — localStorage, 1 ano
+       Salva também com chave por e-mail para recuperação futura
     ============================================================ */
+    const EXPIRY_1ANO = 365 * 24 * 60 * 60 * 1000;
+
     function gerarTokenAcesso(nome, email, extras) {
       const token = Math.random().toString(36).substring(2, 18) + Date.now().toString(36);
-      const expiry = Date.now() + (24 * 60 * 60 * 1000); // 24h
+      const expiry = Date.now() + EXPIRY_1ANO;
       const hash = btoa(token + ':rafael2026');
-      const accessData = { token, expiry, hash, nome, email, extras, compradoEm: new Date().toISOString() };
-      sessionStorage.setItem('mentoria_access', JSON.stringify(accessData));
+      const accessData = {
+        token, expiry, hash, nome, email,
+        extras, compradoEm: new Date().toISOString()
+      };
+
+      // Salva a sessão principal
+      localStorage.setItem('mentoria_access', JSON.stringify(accessData));
+
+      // ── NOVO: Salva também indexado pelo e-mail para recuperação futura ──
+      // A chave é derivada do e-mail de forma consistente
+      const emailKey = 'mentoria_compra_' + email.toLowerCase().replace(/[^a-z0-9]/g, '_');
+      localStorage.setItem(emailKey, JSON.stringify(accessData));
+
       return accessData;
     }
 
@@ -789,7 +828,6 @@
       const valorFinal = getTotalOB();
       CONFIG.VALOR = valorFinal.toFixed(2);
       document.getElementById('pixValorDisplay').textContent = fmtBRL(valorFinal);
-      // Captura extras selecionados
       extrasComprados = { ob1: obSelecionados[1], ob2: obSelecionados[2], ob3: obSelecionados[3] };
       try {
         const resp = await fetch('https://api.mercadopago.com/v1/payments', {
@@ -824,7 +862,7 @@
       navigator.clipboard.writeText(txt).then(() => { this.textContent = '✓ Copiado!'; this.classList.add('copied'); setTimeout(() => { this.textContent = 'Copiar'; this.classList.remove('copied'); }, 3000); }).catch(() => { const el = document.createElement('textarea'); el.value = txt; el.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); this.textContent = '✓ Copiado!'; this.classList.add('copied'); setTimeout(() => { this.textContent = 'Copiar'; this.classList.remove('copied'); }, 3000); });
     });
 
-    /* VERIFICAR PAGAMENTO → gera token e redireciona */
+    /* VERIFICAR PAGAMENTO */
     document.getElementById('btnJaPaguei').addEventListener('click', async function () {
       const statusEl = document.getElementById('statusVerificacao'), statusMsg = document.getElementById('statusMsg');
       this.disabled = true; this.textContent = 'Verificando...';
@@ -853,19 +891,17 @@
       }
     });
 
-    /* LIBERAR ACESSO: gera token + mostra tela de redirect */
+    /* LIBERAR ACESSO */
     function liberarAcesso() {
-      // Gera token com dados do comprador e extras
+      // Salva em localStorage com 1 ano de validade + índice por e-mail
       gerarTokenAcesso(dadosComprador.nome, dadosComprador.email, extrasComprados);
 
       mostrarStep(stepRedirect);
       document.getElementById('redirectMsg').textContent =
         'Olá, ' + (dadosComprador.nome.split(' ')[0] || 'bem-vindo(a)') + '! Pagamento confirmado. Sua área de membros está pronta.';
 
-      // Barra de progresso animada
       setTimeout(() => { document.getElementById('redirectBarFill').style.width = '100%'; }, 100);
 
-      // Countdown e redirect automático
       let count = 3;
       const countEl = document.getElementById('redirectCount');
       const interval = setInterval(() => {
@@ -897,74 +933,331 @@
     /* ============================================================
        SCROLL REVEAL & FAQ
     ============================================================ */
-    const obs = new IntersectionObserver((entries) => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    document.querySelectorAll('.faq-item').forEach(item => { item.querySelector('.faq-q').addEventListener('click', () => { const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); }); });
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-q').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
 
     /* HERO ENTRADA */
     const heroLeft = document.querySelector('.hero-left');
     heroLeft.style.cssText = 'opacity:0;transform:translateY(40px)';
     setTimeout(() => { heroLeft.style.transition = 'opacity 1s ease, transform 1s ease'; heroLeft.style.opacity = '1'; heroLeft.style.transform = 'translateY(0)'; }, 100);
   </script>
+
+
+  <!-- ============================================================
+       MODAL DE VERIFICAÇÃO DE ACESSO (Já sou aluno)
+  ============================================================ -->
+  <div class="acesso-overlay" id="acessoOverlay" role="dialog" aria-modal="true">
+    <div class="acesso-box" id="acessoBox">
+
+      <!-- Estado padrão: verificar acesso -->
+      <div id="acessoVerificar">
+        <div class="acesso-header">
+          <div>
+            <h3>🔐 Acessar mentoria</h3>
+            <p style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Verifique sua compra para entrar</p>
+          </div>
+          <button class="acesso-close" onclick="fecharVerificacaoAcesso()">✕</button>
+        </div>
+        <div class="acesso-body">
+          <div class="acesso-tabs">
+            <button class="acesso-tab active" id="tabEmail" onclick="trocarTabAcesso('email')">📧 Por e-mail</button>
+            <button class="acesso-tab" id="tabSenha" onclick="trocarTabAcesso('senha')">🔑 Por senha</button>
+          </div>
+
+          <!-- Painel: e-mail -->
+          <div class="acesso-panel active" id="painelEmail">
+            <div class="acesso-erro" id="erroEmailAcesso"></div>
+            <input type="email" class="acesso-input" id="inputEmailAcesso"
+              placeholder="E-mail usado na compra"
+              onkeydown="if(event.key==='Enter') verificarPorEmail()" />
+            <button class="acesso-btn" onclick="verificarPorEmail()">Verificar e entrar →</button>
+            <p class="acesso-hint">Digite o mesmo e-mail que você usou no momento da compra via PIX.</p>
+          </div>
+
+          <!-- Painel: senha -->
+          <div class="acesso-panel" id="painelSenha">
+            <div class="acesso-erro" id="erroSenhaAcesso"></div>
+            <input type="password" class="acesso-input" id="inputSenhaAcesso"
+              placeholder="Senha de acesso"
+              onkeydown="if(event.key==='Enter') verificarPorSenha()" />
+            <button class="acesso-btn" onclick="verificarPorSenha()">Entrar →</button>
+            <p class="acesso-hint">Senha fornecida pelo Rafael após confirmação manual do pagamento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: acesso confirmado -->
+      <div id="acessoConfirmado" style="display:none; padding: 28px;">
+        <div class="acesso-ja-tem">
+          <span class="aja-icon">🎓</span>
+          <h4 id="acessoNomeConfirmado">Olá! Acesso confirmado.</h4>
+          <p>Sua compra foi verificada. Clique abaixo para entrar na sua área de membros.</p>
+          <button class="btn-ir" onclick="acessarMentoria()">Acessar Mentoria Agora →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ACESSO ADMIN OCULTO — com proteção contra scroll no mobile
+  ============================================================ -->
+  <a href="admin.html" id="adminHiddenAccess"></a>
+
+  <style>
+    #adminHiddenAccess {
+      position: fixed;
+      right: 8px;
+      bottom: 8px;
+      width: 40px;
+      height: 40px;
+      opacity: 0;
+      z-index: 99999;
+      display: block;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+
+  <script>
+    /* ============================================================
+       ACESSO ADMIN SECRETO
+       Correções:
+       1) Mobile: toque com movimento (scroll) NÃO conta como clique.
+          Só conta se o dedo mover menos de 10px desde o touchstart.
+       2) Sequência de teclas continua funcionando normalmente.
+    ============================================================ */
+    (function () {
+      const ADMIN_URL = 'admin.html';
+      const MOVE_THRESHOLD = 10; // pixels — movimento acima disso = scroll, não clique
+
+      let clickCount = 0;
+      let clickTimer = null;
+      let keySequence = '';
+
+      // Coordenadas iniciais do toque no mobile
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchMoved  = false; // flag: o dedo se moveu além do threshold?
+
+      function goToAdmin() {
+        window.location.href = ADMIN_URL;
+      }
+
+      function registrarClique() {
+        clickCount++;
+        if (clickCount >= 7) { goToAdmin(); return; }
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+      }
+
+      // Mouse click (desktop) — comportamento original
+      document.addEventListener('click', function () {
+        registrarClique();
+      });
+
+      // Touch — captura posição inicial
+      document.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchMoved  = false;
+      }, { passive: true });
+
+      // Touch — detecta se houve movimento (scroll)
+      document.addEventListener('touchmove', function (e) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > MOVE_THRESHOLD || dy > MOVE_THRESHOLD) {
+          touchMoved = true;
+        }
+      }, { passive: true });
+
+      // Touch end — só conta como clique se NÃO houve movimento
+      document.addEventListener('touchend', function () {
+        if (!touchMoved) {
+          registrarClique();
+        }
+        touchMoved = false;
+      }, { passive: true });
+
+      // Sequência de teclado (desktop)
+      document.addEventListener('keydown', function (e) {
+        keySequence += String(e.key).toLowerCase();
+        if (keySequence.includes('admin')) { goToAdmin(); return; }
+        if (keySequence.length > 20) { keySequence = keySequence.slice(-20); }
+      });
+    })();
+  </script>
+
+
+  <script>
+    /* ============================================================
+       VERIFICAÇÃO DE ACESSO — modal "Já sou aluno"
+       Senhas válidas sincronizadas com admin.html e mentoria.html
+    ============================================================ */
+    const SENHAS_ACESSO = ['pretinho123', 'mentori', 'rafael2026'];
+    const EXPIRY_1ANO_V = 365 * 24 * 60 * 60 * 1000;
+
+    function abrirVerificacaoAcesso() {
+      // Atalho: se já tem sessão válida, vai direto
+      if (temAcessoValido()) {
+        acessarMentoria();
+        return;
+      }
+      document.getElementById('acessoOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Reset estado
+      mostrarPainelAcesso('email');
+      limparErrosAcesso();
+      document.getElementById('inputEmailAcesso').value = '';
+      document.getElementById('inputSenhaAcesso').value = '';
+      document.getElementById('acessoVerificar').style.display = 'block';
+      document.getElementById('acessoConfirmado').style.display = 'none';
+      setTimeout(() => document.getElementById('inputEmailAcesso').focus(), 100);
+    }
+
+    function fecharVerificacaoAcesso() {
+      document.getElementById('acessoOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function trocarTabAcesso(tab) {
+      document.getElementById('tabEmail').classList.toggle('active', tab === 'email');
+      document.getElementById('tabSenha').classList.toggle('active', tab === 'senha');
+      mostrarPainelAcesso(tab);
+      limparErrosAcesso();
+    }
+
+    function mostrarPainelAcesso(tab) {
+      document.getElementById('painelEmail').classList.toggle('active', tab === 'email');
+      document.getElementById('painelSenha').classList.toggle('active', tab === 'senha');
+      setTimeout(() => {
+        const el = tab === 'email'
+          ? document.getElementById('inputEmailAcesso')
+          : document.getElementById('inputSenhaAcesso');
+        if (el) el.focus();
+      }, 80);
+    }
+
+    function limparErrosAcesso() {
+      ['erroEmailAcesso','erroSenhaAcesso'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.style.display = 'none'; el.textContent = ''; }
+      });
+    }
+
+    function mostrarErroAcesso(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    /* Verifica se a sessão no localStorage ainda é válida */
+    function temAcessoValido() {
+      try {
+        const raw = localStorage.getItem('mentoria_access');
+        if (!raw) return false;
+        const data = JSON.parse(raw);
+        if (Date.now() > data.expiry) { localStorage.removeItem('mentoria_access'); return false; }
+        const expectedHash = btoa(data.token + ':rafael2026');
+        return data.hash === expectedHash;
+      } catch(e) { return false; }
+    }
+
+    /* Verificação por e-mail: busca chave salva na compra */
+    function verificarPorEmail() {
+      const email = document.getElementById('inputEmailAcesso').value.trim().toLowerCase();
+      limparErrosAcesso();
+
+      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        mostrarErroAcesso('erroEmailAcesso', 'Informe um e-mail válido.');
+        return;
+      }
+
+      const emailKey = 'mentoria_compra_' + email.replace(/[^a-z0-9]/g, '_');
+      let data = null;
+      try {
+        const raw = localStorage.getItem(emailKey);
+        if (raw) data = JSON.parse(raw);
+      } catch(e) {}
+
+      if (!data) {
+        mostrarErroAcesso('erroEmailAcesso',
+          'E-mail não encontrado. Verifique se é o mesmo usado na compra, ou use a aba "Por senha".');
+        return;
+      }
+
+      // Verifica expiração
+      if (Date.now() > data.expiry) {
+        mostrarErroAcesso('erroEmailAcesso',
+          'Acesso expirado. Entre em contato com o Rafael para renovar.');
+        return;
+      }
+
+      // Renova a expiração e restaura a sessão
+      data.expiry = Date.now() + EXPIRY_1ANO_V;
+      localStorage.setItem(emailKey, JSON.stringify(data));
+      localStorage.setItem('mentoria_access', JSON.stringify(data));
+
+      confirmarAcesso(data.nome || 'aluno(a)');
+    }
+
+    /* Verificação por senha */
+    function verificarPorSenha() {
+      const senha = document.getElementById('inputSenhaAcesso').value.trim();
+      limparErrosAcesso();
+
+      if (!SENHAS_ACESSO.includes(senha)) {
+        mostrarErroAcesso('erroSenhaAcesso', 'Senha incorreta. Tente novamente.');
+        document.getElementById('inputSenhaAcesso').value = '';
+        return;
+      }
+
+      // Gera nova sessão admin de 1 ano
+      const token = Math.random().toString(36).substring(2, 18) + Date.now().toString(36);
+      const expiry = Date.now() + EXPIRY_1ANO_V;
+      const hash = btoa(token + ':rafael2026');
+      const accessData = {
+        token, expiry, hash,
+        nome: 'Rafael',
+        email: 'admin@rafael.dev',
+        extras: { ob1: true, ob2: true, ob3: true },
+        compradoEm: new Date().toISOString()
+      };
+      localStorage.setItem('mentoria_access', JSON.stringify(accessData));
+
+      confirmarAcesso('Rafael');
+    }
+
+    /* Mostra tela de sucesso e redireciona */
+    function confirmarAcesso(nome) {
+      document.getElementById('acessoVerificar').style.display = 'none';
+      document.getElementById('acessoConfirmado').style.display = 'block';
+      const primeiroNome = (nome || 'aluno').split(' ')[0];
+      document.getElementById('acessoNomeConfirmado').textContent =
+        'Olá, ' + primeiroNome + '! Acesso confirmado.';
+    }
+
+    // Fecha ao clicar fora
+    document.getElementById('acessoOverlay').addEventListener('click', function(e) {
+      if (e.target === this) fecharVerificacaoAcesso();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('acessoOverlay').classList.contains('open')) {
+        fecharVerificacaoAcesso();
+      }
+    });
+
+  </script>
 </body>
-<!-- ACESSO ADMIN OCULTO -->
-<a href="admin.html" id="adminHiddenAccess"></a>
-
-<style>
-  #adminHiddenAccess {
-    position: fixed;
-    right: 8px;
-    bottom: 8px;
-    width: 40px;
-    height: 40px;
-    opacity: 0;
-    z-index: 99999;
-    display: block;
-    -webkit-tap-highlight-color: transparent;
-  }
-</style>
-
-<script>
-  (function () {
-    const ADMIN_URL = "admin.html";
-
-    let clickCount = 0;
-    let clickTimer = null;
-    let keySequence = "";
-
-    function goToAdmin() {
-      window.location.href = ADMIN_URL;
-    }
-
-    function handleSecretClick() {
-      clickCount++;
-
-      if (clickCount >= 7) {
-        goToAdmin();
-        return;
-      }
-
-      clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => {
-        clickCount = 0;
-      }, 2000);
-    }
-
-    function handleSecretKeys(event) {
-      keySequence += String(event.key).toLowerCase();
-
-      if (keySequence.includes("admin")) {
-        goToAdmin();
-        return;
-      }
-
-      if (keySequence.length > 20) {
-        keySequence = keySequence.slice(-20);
-      }
-    }
-
-    document.addEventListener("click", handleSecretClick);
-    document.addEventListener("touchstart", handleSecretClick, { passive: true });
-    document.addEventListener("keydown", handleSecretKeys);
-  })();
-</script>
+</html>
